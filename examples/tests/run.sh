@@ -2,7 +2,7 @@
 set -e
 
 cd $(dirname $0)
-ROOT=$PWD/../..
+ROOT=$PWD/../../mindspore
 
 KUNGFU_LIB_PATH=$ROOT/third_party/kungfu/lib
 
@@ -19,8 +19,8 @@ kungfu_run() {
 }
 
 test_broadcast_op() {
-    # kungfu_run python3.7 test_broadcast_op.py --device CPU --dtype i32
-    # kungfu_run python3.7 test_broadcast_op.py --device CPU --dtype f32
+    kungfu_run python3.7 test_broadcast_op.py --device CPU --dtype i32
+    kungfu_run python3.7 test_broadcast_op.py --device CPU --dtype f32
 
     # FIXME:
     # mindspore/KungFu/srcs/cpp/src/nccl/gpu_collective.cpp::141: unhandled cuda error(1) in broadcast

@@ -3,7 +3,9 @@ set -e
 
 cd $(dirname $0)
 
-TAG=$(cat tag.txt)
+# TAG=$(cat tag.txt)
+TAG=$(cat stable-tag.txt)
+echo "using TAG=$TAG"
 
 cd mindspore
 git checkout -f

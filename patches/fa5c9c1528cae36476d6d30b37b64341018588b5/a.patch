@@ -1,0 +1,36 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index cda70d5b7..714dc25c9 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -39,6 +39,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_party/securec/include)
+ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_party/flatbuffers/include)
+ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_party/flatbuffers/include/flatbuffers)
++include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_party/kungfu/include)
+ 
+ include(${CMAKE_SOURCE_DIR}/cmake/dependency_utils.cmake)
+ find_package(Python3 3.7 COMPONENTS Interpreter Development)
+diff --git a/mindspore/ccsrc/CMakeLists.txt b/mindspore/ccsrc/CMakeLists.txt
+index 6b3a2e18f..7a6b11c18 100644
+--- a/mindspore/ccsrc/CMakeLists.txt
++++ b/mindspore/ccsrc/CMakeLists.txt
+@@ -3,6 +3,7 @@ include_directories(${CMAKE_SOURCE_DIR}/mindspore/core)
+ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+ include_directories(${CMAKE_BINARY_DIR})
+ link_directories(${CMAKE_SOURCE_DIR}/build/mindspore/graphengine)
++link_directories(${CMAKE_SOURCE_DIR}/third_party/kungfu/lib)
+ 
+ if (CMAKE_SYSTEM_NAME MATCHES "Windows")
+     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-attributes -DHAVE_SNPRINTF")
+@@ -342,3 +343,11 @@ if (CMAKE_SYSTEM_NAME MATCHES "Linux")
+ elseif (CMAKE_SYSTEM_NAME MATCHES "Darwin")
+     set_target_properties(inference PROPERTIES MACOSX_RPATH ON)
+ endif ()
++
++if ($ENV{ENABLE_KUNGFU})
++    target_link_libraries(mindspore kungfu)
++    if (ENABLE_GPU)
++        target_link_libraries(mindspore kungfu_nccl)
++        target_link_libraries(mindspore mindspore::nccl)
++    endif()
++endif()
