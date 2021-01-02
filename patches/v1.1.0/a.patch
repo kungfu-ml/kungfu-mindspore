@@ -1,0 +1,36 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index b724259f1..887190634 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -40,6 +40,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_party/securec/include)
+ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_party/flatbuffers/include)
+ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_party/flatbuffers/include/flatbuffers)
++include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_party/kungfu/include)
+ 
+ include(${CMAKE_SOURCE_DIR}/cmake/dependency_utils.cmake)
+ find_package(Python3 3.7 COMPONENTS Interpreter Development)
+diff --git a/mindspore/ccsrc/CMakeLists.txt b/mindspore/ccsrc/CMakeLists.txt
+index 2a34ed5fe..cf6ffc54e 100644
+--- a/mindspore/ccsrc/CMakeLists.txt
++++ b/mindspore/ccsrc/CMakeLists.txt
+@@ -2,6 +2,7 @@
+ include_directories(${CMAKE_SOURCE_DIR}/mindspore/core)
+ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+ include_directories(${CMAKE_BINARY_DIR})
++link_directories(${CMAKE_SOURCE_DIR}/third_party/kungfu/lib)
+ 
+ if (ENABLE_ACL)
+     set(ASCEND_PATH /usr/local/Ascend)
+@@ -366,3 +367,11 @@ if (ENABLE_D)
+ endif()
+ 
+ add_subdirectory(cxx_api)
++
++if ($ENV{ENABLE_KUNGFU})
++    target_link_libraries(mindspore kungfu)
++    if (ENABLE_GPU)
++        target_link_libraries(mindspore kungfu_nccl)
++        target_link_libraries(mindspore mindspore::nccl)
++    endif()
++endif()
