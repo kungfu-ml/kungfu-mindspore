@@ -4,7 +4,10 @@ set -e
 cd $(dirname $0)/mindspore
 
 reinstall() {
-    python3.7 -m pip install -U output/mindspore_gpu-1.1.0-cp37-cp37m-linux_x86_64.whl
+    cd output
+    whl=$(ls *.whl)
+    echo $whl
+    python3.7 -m pip install -U ./$whl
 }
 
 reinstall

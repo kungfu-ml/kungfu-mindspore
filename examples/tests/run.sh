@@ -19,25 +19,22 @@ kungfu_run() {
 }
 
 test_broadcast_op() {
-    kungfu_run python3.7 test_broadcast_op.py --device CPU --dtype i32
-    kungfu_run python3.7 test_broadcast_op.py --device CPU --dtype f32
-
-    # FIXME:
-    # mindspore/KungFu/srcs/cpp/src/nccl/gpu_collective.cpp::141: unhandled cuda error(1) in broadcast
-
-    kungfu_run python3.7 test_broadcast_op.py --device GPU --dtype i32
-    # kungfu_run python3.7 test_broadcast_op.py --device GPU --dtype f32
+    local device=$1
+    kungfu_run python3.7 test_broadcast_op.py --device $device --dtype i32
+    kungfu_run python3.7 test_broadcast_op.py --device $device --dtype f32
 }
 
 test_allreduce_op() {
-    kungfu_run python3.7 test_allreduce_op.py --device CPU --dtype i32
-    kungfu_run python3.7 test_allreduce_op.py --device CPU --dtype f32
-
-    # FIXME:
-    # mindspore/KungFu/srcs/cpp/src/nccl/gpu_collective.cpp::163: unhandled cuda error(1) in all_reduce
-    # kungfu_run python3.7 test_allreduce_op.py --device GPU --dtype i32
-    # kungfu_run python3.7 test_allreduce_op.py --device GPU --dtype f32
+    local device=$1
+    kungfu_run python3.7 test_allreduce_op.py --device $device --dtype i32
+    kungfu_run python3.7 test_allreduce_op.py --device $device --dtype f32
 }
 
-test_broadcast_op
-# test_allreduce_op
+test_all() {
+    local device=$1
+    test_broadcast_op $device
+    test_allreduce_op $device
+}
+
+# test_all CPU
+test_all GPU

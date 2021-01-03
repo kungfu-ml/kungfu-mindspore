@@ -18,7 +18,11 @@ void kungfu_nccl_init() {
   auto nccl_scheduler = _kungfu_nccl_helper->EnsureScheduler(nccl_scope);
   auto nccl_controller = _kungfu_nccl_helper->EnsureController(nccl_scope);
   kungfu::Peer *peer = _kungfu_peer.get();
-  nccl_scheduler->Do([&] { nccl_controller->InitOnce(peer); });
+  if (kungfu_use_nccl_scheduler) {
+    nccl_scheduler->Do([&] { nccl_controller->InitOnce(peer); });
+  } else {
+    nccl_controller->InitOnce(peer);
+  }
 }
 
 void kungfu_nccl_finalize() {

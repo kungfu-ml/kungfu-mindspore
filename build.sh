@@ -2,6 +2,7 @@
 set -e
 
 cd $(dirname $0)
+. ./scripts/measure.sh
 
 # TAG=$(cat tag.txt)
 TAG=$(cat stable-tag.txt)
@@ -20,4 +21,4 @@ CUDA_HOME=/usr/local/cuda
 export CUDACXX=$CUDA_HOME/bin/nvcc
 export ENABLE_KUNGFU=ON
 
-./build.sh -e gpu
+measure ./build.sh -e gpu

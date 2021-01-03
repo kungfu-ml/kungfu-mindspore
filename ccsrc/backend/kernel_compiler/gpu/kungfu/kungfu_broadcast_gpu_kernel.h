@@ -46,8 +46,11 @@ class KungFuBroadcastGpuKernel : public GpuKernel {
     auto w = make_kungfu_workspace(input_addr, output_addr, input_count_);
 
     // TODO: support async
-    nccl_scheduler_->Do([=] { nccl_controller_->Broadcast(w, stream); });
-    // nccl_controller_->Broadcast(w, stream);
+    if (kungfu_use_nccl_scheduler) {
+      nccl_scheduler_->Do([=] { nccl_controller_->Broadcast(w, stream); });
+    } else {
+      nccl_controller_->Broadcast(w, stream);
+    }
     return true;
   }
 

@@ -47,8 +47,11 @@ class KungFuAllReduceGpuKernel : public GpuKernel {
     auto w = make_kungfu_workspace(input_addr, output_addr, input_count_);
 
     // TODO: support async
-    nccl_scheduler_->Do([=] { nccl_controller_->AllReduce(w, reduce_op_, stream); });
-    // nccl_controller_->AllReduce(w, reduce_op_, stream);
+    if (kungfu_use_nccl_scheduler) {
+      nccl_scheduler_->Do([=] { nccl_controller_->AllReduce(w, reduce_op_, stream); });
+    } else {
+      nccl_controller_->AllReduce(w, reduce_op_, stream);
+    }
     return true;
   }
 
