@@ -2,7 +2,7 @@
 set -e
 
 cd $(dirname $0)
-ROOT=$PWD/../../mindspore
+ROOT=$PWD/../mindspore
 
 KUNGFU_LIB_PATH=$ROOT/third_party/kungfu/lib
 
