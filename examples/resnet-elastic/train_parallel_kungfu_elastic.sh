@@ -37,7 +37,7 @@ kungfu_run() {
     kungfu-run $(kungfu_run_flags) $@
 }
 
-all_flags() {
+app_flags() {
     echo --net=resnet50
     echo --dataset=cifar10
     echo --dataset_path=$HOME/var/data/cifar/cifar-10-batches-bin
@@ -53,7 +53,7 @@ train() {
     rm -fr ckpt_*
     rm -fr cuda_meta_*
     kungfu_run \
-        /usr/bin/python3.7 train.py $(all_flags)
+        /usr/bin/python3.7 train.py $(app_flags)
 }
 
 train

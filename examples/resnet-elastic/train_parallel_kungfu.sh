@@ -1,12 +1,24 @@
 #!/bin/sh
 set -e
 
+join_path() {
+    local IFS=":"
+    echo "$*"
+}
+
 cd $(dirname $0)
-ROOT=$PWD/../..
+ROOT=$PWD/../../mindspore
 
 KUNGFU_LIB_PATH=$ROOT/third_party/kungfu/lib
 
-export LD_LIBRARY_PATH=$KUNGFU_LIB_PATH:$ROOT/mindspore/lib:$ROOT/build/mindspore/_deps/ompi-src/ompi/.libs
+ld_library_path() {
+    echo $KUNGFU_LIB_PATH
+    echo $ROOT/mindspore/lib
+    echo $ROOT/build/mindspore/_deps/ompi-src/ompi/.libs
+    echo $ROOT/build/mindspore/_deps/nccl-src/build/lib
+}
+
+export LD_LIBRARY_PATH=$(join_path $(ld_library_path))
 
 kungfu_run_flags() {
     echo -q
@@ -18,7 +30,7 @@ kungfu_run() {
     kungfu-run $(kungfu_run_flags) $@
 }
 
-all_flags() {
+app_flags() {
     echo --net=resnet50
     echo --dataset=cifar10
     echo --dataset_path=$HOME/var/data/cifar/cifar-10-batches-bin
@@ -32,7 +44,12 @@ train() {
     rm -fr ckpt_*
     rm -fr cuda_meta_*
     kungfu_run \
-        /usr/bin/python3.7 train.py $(all_flags)
+        /usr/bin/python3.7 train.py $(app_flags)
 }
+
+# export GLOG_v=3 # ERROR
+# export GLOG_v=2 # WARNING
+# export GLOG_v=1 # INFO
+# export GLOG_v=0 # DEBUG
 
 train

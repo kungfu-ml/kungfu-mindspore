@@ -36,6 +36,7 @@ from mindspore.train.model import Model
 from mindspore.train.serialization import load_checkpoint, load_param_into_net
 
 from src.CrossEntropySmooth import CrossEntropySmooth
+from src.debug import LogStepCallback
 from src.kungfu_mindspore_optimizer import KungFuMomentum
 from src.lr_generator import get_lr, warmup_cosine_annealing_lr
 
@@ -303,8 +304,9 @@ if __name__ == '__main__':
         dataset_sink_mode = False
         print('enabled elastic')
 
-        # from src.debug_stop_hook import DebugStopHook
+        # from src.debug import DebugStopHook
         # cb += [DebugStopHook()]
+    cb += [LogStepCallback()]
 
     # train model
     if args_opt.net == "se-resnet50":
