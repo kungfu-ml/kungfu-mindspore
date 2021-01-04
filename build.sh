@@ -4,9 +4,10 @@ set -e
 cd $(dirname $0)
 . ./scripts/measure.sh
 
-# TAG=$(cat tag.txt)
-TAG=$(cat stable-tag.txt)
+TAG=$(cat tag.txt)
 echo "using TAG=$TAG"
+
+./install-kungfu.sh
 
 cd mindspore
 git checkout -f

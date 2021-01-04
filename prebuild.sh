@@ -2,9 +2,9 @@
 set -e
 
 cd $(dirname $0)
+. ./scripts/measure.sh
 
-# TAG=$(cat tag.txt)
-TAG=$(cat stable-tag.txt)
+TAG=$(cat tag.txt)
 echo "using TAG=$TAG"
 
 if [ ! -d mindspore ]; then
@@ -22,4 +22,4 @@ rm -fr mindspore/ops/operations/kungfu_comm_ops.py
 CUDA_HOME=/usr/local/cuda
 export CUDACXX=$CUDA_HOME/bin/nvcc
 
-./build.sh -e gpu
+measure ./build.sh -e gpu
