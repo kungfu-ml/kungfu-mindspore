@@ -48,7 +48,7 @@ class LogStepCallback(ms.train.callback.Callback):
 
     def step_end(self, run_context):
         t1 = time.time()
-        d = t1 = self._last
+        d = t1 - self._last
         print('step took %.3fms' % (d * 1e3))
         self._last = t1
 
