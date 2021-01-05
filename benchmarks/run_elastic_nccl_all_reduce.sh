@@ -1,12 +1,23 @@
 #!/bin/sh
 set -e
 
+join_path() {
+    local IFS=":"
+    echo "$*"
+}
+
 cd $(dirname $0)
-ROOT=$PWD/../..
+ROOT=$PWD/../mindspore
 
 KUNGFU_LIB_PATH=$ROOT/third_party/kungfu/lib
 
-export LD_LIBRARY_PATH=$KUNGFU_LIB_PATH:$ROOT/mindspore/lib:$ROOT/build/mindspore/_deps/ompi-src/ompi/.libs
+ld_library_path() {
+    echo $KUNGFU_LIB_PATH
+    echo $ROOT/mindspore/lib
+    echo $ROOT/build/mindspore/_deps/ompi-src/ompi/.libs
+}
+
+export LD_LIBRARY_PATH=$(join_path $(ld_library_path))
 
 export KUNGFU_MINDSPORE_DEBUG=1
 # export KUNGFU_CONFIG_LOG_LEVEL=1
