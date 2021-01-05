@@ -15,7 +15,7 @@ ld_library_path() {
     echo $KUNGFU_LIB_PATH
     echo $ROOT/mindspore/lib
     echo $ROOT/build/mindspore/_deps/ompi-src/ompi/.libs
-    echo $ROOT/build/mindspore/_deps/nccl-src/build/lib
+    # echo $ROOT/build/mindspore/_deps/nccl-src/build/lib
 }
 
 export LD_LIBRARY_PATH=$(join_path $(ld_library_path))
