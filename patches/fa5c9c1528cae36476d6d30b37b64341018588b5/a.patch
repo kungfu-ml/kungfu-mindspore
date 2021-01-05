@@ -34,3 +34,25 @@ index 6b3a2e18f..7a6b11c18 100644
 +        target_link_libraries(mindspore mindspore::nccl)
 +    endif()
 +endif()
+diff --git a/mindspore/ccsrc/backend/session/kernel_build_client.h b/mindspore/ccsrc/backend/session/kernel_build_client.h
+index 8e3c639b1..631262fd7 100644
+--- a/mindspore/ccsrc/backend/session/kernel_build_client.h
++++ b/mindspore/ccsrc/backend/session/kernel_build_client.h
+@@ -164,7 +164,7 @@ static std::string GetScriptFilePath(const std::string cmd_env, const std::strin
+ class AscendKernelBuildClient : public KernelBuildClient {
+  public:
+   // Server configure
+-  constexpr inline static auto kEnv = "python";
++  constexpr inline static auto kEnv = "/usr/bin/python3.7";
+   constexpr inline static auto kGetPathScript =
+     "-c "
+     "\""
+@@ -229,7 +229,7 @@ class AscendKernelBuildClient : public KernelBuildClient {
+ class GpuKernelBuildClient : public KernelBuildClient {
+  public:
+   // Server configure
+-  constexpr inline static auto kEnv = "python";
++  constexpr inline static auto kEnv = "/usr/bin/python3.7";
+   constexpr inline static auto kGetPathScript =
+     "-c "
+     "\""
