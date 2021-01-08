@@ -1,24 +1,9 @@
 #!/bin/sh
 set -e
 
-join_path() {
-    local IFS=":"
-    echo "$*"
-}
-
 cd $(dirname $0)
-ROOT=$PWD/../../mindspore
-
-KUNGFU_LIB_PATH=$ROOT/third_party/kungfu/lib
-
-ld_library_path() {
-    echo $KUNGFU_LIB_PATH
-    echo $ROOT/mindspore/lib
-    echo $ROOT/build/mindspore/_deps/ompi-src/ompi/.libs
-    echo $ROOT/build/mindspore/_deps/nccl-src/build/lib
-}
-
-export LD_LIBRARY_PATH=$(join_path $(ld_library_path))
+. ../../ld_library_path.sh
+export LD_LIBRARY_PATH=$(ld_library_path ../../mindspore)
 
 app_flags() {
     echo --net=resnet50
@@ -35,7 +20,7 @@ train() {
     rm -fr resnet-graph.meta
     rm -fr ckpt*
     rm -fr cuda_meta*
-    /usr/bin/python3.7 train.py $(app_flags) >out.log 2>err.log
+    /usr/bin/python3.7 train.py $(app_flags)
 }
 
 train
