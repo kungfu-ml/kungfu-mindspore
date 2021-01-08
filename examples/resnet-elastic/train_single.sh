@@ -15,7 +15,7 @@ ld_library_path() {
     echo $KUNGFU_LIB_PATH
     echo $ROOT/mindspore/lib
     echo $ROOT/build/mindspore/_deps/ompi-src/ompi/.libs
-    # echo $ROOT/build/mindspore/_deps/nccl-src/build/lib
+    echo $ROOT/build/mindspore/_deps/nccl-src/build/lib
 }
 
 export LD_LIBRARY_PATH=$(join_path $(ld_library_path))
@@ -31,8 +31,11 @@ app_flags() {
 }
 
 train() {
+    rm -fr logs
     rm -fr resnet-graph.meta
-    /usr/bin/python3.7 train.py $(app_flags)
+    rm -fr ckpt*
+    rm -fr cuda_meta*
+    /usr/bin/python3.7 train.py $(app_flags) >out.log 2>err.log
 }
 
 train
