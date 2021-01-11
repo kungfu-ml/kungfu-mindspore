@@ -5,7 +5,7 @@ extern std::unique_ptr<kungfu::NCCLHelper> _kungfu_nccl_helper;
 
 namespace mindspore {
 namespace kernel {
-inline constexpr bool kungfu_use_nccl_scheduler = true;
+inline constexpr bool kungfu_use_nccl_scheduler = false;
 
 extern void init_kungfu_nccl_once();
 extern void finalize_kungfu_nccl();

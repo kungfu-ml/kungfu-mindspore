@@ -44,6 +44,7 @@ class LogStepCallback(ms.train.callback.Callback):
         print('%s::%s' % ('LogStepCallback', 'epoch_end'))
 
     def step_begin(self, run_context):
+        print('%s::%s' % ('LogStepCallback', 'step_begin'))
         self.step += 1
 
     def step_end(self, run_context):

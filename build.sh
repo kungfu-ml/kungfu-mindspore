@@ -14,9 +14,8 @@ git checkout -f
 
 cp -r ../ops mindspore/
 cp -r ../ccsrc mindspore/
-git apply ../patches/$TAG/a.patch
-# git diff
-# git status
+
+git apply ../patches/$TAG/*.patch
 
 CUDA_HOME=/usr/local/cuda
 export CUDACXX=$CUDA_HOME/bin/nvcc

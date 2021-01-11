@@ -320,10 +320,12 @@ if __name__ == '__main__':
         print('%s' % (c))
     train_epoch = config.epoch_size - config.pretrain_epoch_size
     print('dataset_sink_mode: %s' % (dataset_sink_mode))
+    # sink_size = dataset.get_dataset_size()
+    sink_size = 1
     model.train(train_epoch,
                 dataset,
                 callbacks=cb,
-                sink_size=dataset.get_dataset_size(),
+                sink_size=sink_size,
                 dataset_sink_mode=dataset_sink_mode)
     print('train finished.')
     if args_opt.run_kungfu:
