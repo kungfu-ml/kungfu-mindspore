@@ -1,1 +1,8 @@
 kungfu mindspore extension
+
+
+build and run:
+
+./prebuild.sh # build a clean mindspore
+./build.sh    # build with kungfu patch
+./examples/resnet-elastic/train_parallel_kungfu.sh
