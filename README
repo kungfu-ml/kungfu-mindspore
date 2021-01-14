@@ -3,6 +3,14 @@ kungfu mindspore extension
 
 build and run:
 
+cd ./mindspore/KungFu && go install -v ./srcs/go/cmd/kungfu-run # install kungfu-run
+
 ./prebuild.sh # build a clean mindspore
 ./build.sh    # build with kungfu patch
+./install.sh  # install built package
 ./examples/resnet-elastic/train_parallel_kungfu.sh
+
+
+download dataset
+
+./scripts/download-cifar.sh
