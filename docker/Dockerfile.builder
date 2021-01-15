@@ -92,3 +92,8 @@ RUN cd /tmp \
     && make install -j4 \
     && rm -rf /tmp/openmpi-4.0.3 \
     && rm -f /tmp/openmpi-4.0.3.tar.gz
+
+RUN apt install -y software-properties-common \
+    && add-apt-repository -y ppa:longsleep/golang-backports \
+    && apt update \
+    && apt install -y golang-go
