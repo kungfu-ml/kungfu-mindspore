@@ -93,7 +93,7 @@ RUN cd /tmp \
     && rm -rf /tmp/openmpi-4.0.3 \
     && rm -f /tmp/openmpi-4.0.3.tar.gz
 
-RUN apt install -y software-properties-common \
-    && add-apt-repository -y ppa:longsleep/golang-backports \
-    && apt update \
-    && apt install -y golang-go
+RUN curl -sLOJ https://golang.org/dl/go1.15.6.linux-amd64.tar.gz \
+    && tar -C /usr/local -xzf go1.15.6.linux-amd64.tar.gz
+
+ENV PATH /usr/local/go/bin:${PATH}
