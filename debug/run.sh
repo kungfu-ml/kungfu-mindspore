@@ -2,17 +2,16 @@
 set -e
 
 cd $(dirname $0)
+MS_ROOT=$PWD/../mindspore
+
 . ../ld_library_path.sh
 export LD_LIBRARY_PATH=$(ld_library_path ../mindspore)
-
-np=4
-# np=2
 
 kungfu_run_flags() {
     echo -q
     echo -logdir logs
     echo -logfile kungfu-run.log
-    echo -np $np
+    echo -np 2
 }
 
 kungfu_run() {
@@ -22,21 +21,6 @@ kungfu_run() {
 app_flags() {
     # echo --device CPU
     echo --device GPU
-
-    echo --warmup-steps 2
-    echo --steps 10
-
-    # echo --model empty
-    # echo --model vgg16
-    echo --model resnet50
-}
-
-mpi_run_flags() {
-    echo -np $np
-}
-
-mpi_run() {
-    mpirun $(mpi_run_flags) $@
 }
 
 trace() {
@@ -49,8 +33,9 @@ trace() {
 
 main() {
     rm -fr logs
-    trace kungfu_run python3.7 ./benchmark_all_reduce.py $(app_flags)
-    trace mpi_run python3.7 ./benchmark_all_reduce.py $(app_flags)
+    # trace kungfu_run python3.7 ./debug.py $(app_flags)
+    export NCCL_DEBUG=INFO
+    trace kungfu_run $MS_ROOT/third_party/kungfu/bin/kungfu_debug_nccl
 }
 
 main

@@ -1,0 +1,23 @@
+diff --git a/cmake/external_libs/nccl.cmake b/cmake/external_libs/nccl.cmake
+index 21162a50d..2eb100f12 100644
+--- a/cmake/external_libs/nccl.cmake
++++ b/cmake/external_libs/nccl.cmake
+@@ -6,14 +6,14 @@ else()
+     set(MD5 "073b19899f374c5ba07d2db02dc38f9f")
+ endif ()
+ 
+-set(nccl_CFLAGS "-D_FORTIFY_SOURCE=2 -O2")
++# set(nccl_CFLAGS "-D_FORTIFY_SOURCE=2 -O2")
+ mindspore_add_pkg(nccl
+         VER 2.7.6-1
+         LIBS nccl
+         URL ${REQ_URL}
+         MD5 ${MD5}
+-        BUILD_OPTION src.build NVCC_GENCODE="-gencode=arch=compute_70,code=sm_70"
++        BUILD_OPTION src.build # NVCC_GENCODE="-gencode=arch=compute_70,code=sm_70"
+         INSTALL_INCS build/include/*
+         INSTALL_LIBS build/lib/*)
+ include_directories(${nccl_INC})
+-add_library(mindspore::nccl ALIAS nccl::nccl)
+\ No newline at end of file
++add_library(mindspore::nccl ALIAS nccl::nccl)

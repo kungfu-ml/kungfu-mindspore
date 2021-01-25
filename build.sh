@@ -7,13 +7,15 @@ cd $(dirname $0)
 TAG=$(cat tag.txt)
 echo "using TAG=$TAG"
 
-./install-kungfu.sh
+measure ./install-kungfu.sh
 
 cd mindspore
 git checkout -f
 
-cp -r ../ops mindspore/
+rm -fr mindspore/ccsrc/backend/kernel_compiler/cpu/kungfu
+rm -fr mindspore/ccsrc/backend/kernel_compiler/gpu/kungfu
 cp -r ../ccsrc mindspore/
+cp -r ../ops mindspore/
 
 git apply ../patches/$TAG/*.patch
 
