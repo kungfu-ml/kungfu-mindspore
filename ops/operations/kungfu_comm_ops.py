@@ -36,3 +36,31 @@ class KungFuResize(PrimitiveWithInfer):
 
     def infer_dtype(self, *args):
         return (mstype.bool_, mstype.bool_)
+
+
+def init(device):
+    kungfu_init()
+    if device == 'GPU':
+        kungfu_nccl_init()
+
+
+def finalize(device):
+    if device == 'GPU':
+        kungfu_nccl_finalize()
+    kungfu_finalize()
+
+
+class KungFuContext:
+    def __init__(self, device='CPU'):
+        if not device in ['CPU', 'GPU']:
+            raise RuntimeError('invalid device %s' % (device))
+        self._device = device
+
+    def __enter__(self):
+        init(self._device)
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        finalize(self._device)
+
+
+from ..._c_expression import kungfu_debug_nccl
