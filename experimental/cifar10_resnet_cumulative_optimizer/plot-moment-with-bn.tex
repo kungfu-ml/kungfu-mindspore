@@ -1,0 +1,65 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{pgfplots}
+
+% \title{Untitled}
+\def\myaddplot#1#2#3{
+    \addplot[
+        color=#1,
+        mark=#2,
+    ] table {#3};
+}
+
+\begin{document}
+\begin{frame}
+
+\begin{figure}
+
+\begin{tikzpicture}
+    \begin{axis}[
+        title={Moment Optimizer with BN},
+        xlabel={\# step},
+        ylabel={accuracy},
+        % xmin=1,
+        % xmax=16,
+        % ymin=0,
+        ymax=1.0,
+        % xtick={1, 2, 3},
+    	% major tick num=1,
+    	% minor x tick num=1,
+        % xtick distance=4,
+        legend pos=north east,
+    	% major tick num=10,
+    	% minor y tick num=5,
+        % ymajorgrids=true,
+        % grid style=dashed,
+        legend cell align={right},
+        ]
+
+        \myaddplot{red}{square}{plot/lbs-200+dbs-200-1615156774.txt}
+        \myaddplot{red}{square}{plot/lbs-200+dbs-200-1615157202.txt}
+        \myaddplot{red}{square}{plot/lbs-200+dbs-200-1615157645.txt}
+        \myaddplot{red}{square}{plot/lbs-200+dbs-200-1615158072.txt}
+        \myaddplot{red}{square}{plot/lbs-200+dbs-200-1615158518.txt}
+        \myaddplot{red}{square}{plot/lbs-200+dbs-200-1615158961.txt}
+        \myaddplot{red}{square}{plot/lbs-200+dbs-200-1615159390.txt}
+        \myaddplot{red}{square}{plot/lbs-200+dbs-200-1615159833.txt}
+        \myaddplot{red}{square}{plot/lbs-200+dbs-200-1615160261.txt}
+        \myaddplot{red}{square}{plot/lbs-200+dbs-200-1615160689.txt}
+
+        \legend{
+            % dev-bs=200 = 1 logical-bs,
+            % dev-bs=200 = 1 logical-bs,
+            % dev-bs=200 = 1 logical-bs,
+            % dev-bs=100 = 1/2 logical-bs,
+            % dev-bs=50 = 1/4 logical-bs,
+        }
+        % \legend{dev-bs=100 = 1/2 logical-bs}
+    \end{axis}
+\end{tikzpicture}
+
+\end{figure}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,15 @@
+diff --git a/mindspore/ccsrc/backend/kernel_compiler/gpu/gpu_kernel_factory.cc b/mindspore/ccsrc/backend/kernel_compiler/gpu/gpu_kernel_factory.cc
+index 93ac6f9f9..401362244 100644
+--- a/mindspore/ccsrc/backend/kernel_compiler/gpu/gpu_kernel_factory.cc
++++ b/mindspore/ccsrc/backend/kernel_compiler/gpu/gpu_kernel_factory.cc
+@@ -115,8 +115,8 @@ void GpuKernelFactory::CheckSM(const KernelBuildInfo *kernel_info, const size_t
+       MS_LOG(EXCEPTION) << "Half precision ops can be used on Devices which computing capacity is >= " << MINIUM_SM
+                         << ", but the current device's computing capacity is " << major_sm;
+     }
+-    MS_LOG(WARNING) << "It is recommended to use devices with a computing capacity >= " << RECOMMEND_SM
+-                    << ", but the current device's computing capacity is " << major_sm;
++    // MS_LOG(WARNING) << "It is recommended to use devices with a computing capacity >= " << RECOMMEND_SM
++    //                 << ", but the current device's computing capacity is " << major_sm;
+     mindspore::device::gpu::CudaCommon::GetInstance().set_check_sm(false);
+   }
+ }

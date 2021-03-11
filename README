@@ -14,3 +14,11 @@ cd ./mindspore/KungFu && go install -v ./srcs/go/cmd/kungfu-run # install kungfu
 download dataset
 
 ./scripts/download-cifar.sh
+
+
+code structure
+
+extension/      # extra c++/python code for mindspore
+patch/          # modifications for existing mindspore code
+examples/       # stable examples
+experimental/   # developing examples

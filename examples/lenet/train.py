@@ -19,6 +19,7 @@ import argparse
 import os
 
 import mindspore as ms
+import mindspore.ops.operations.kungfu_comm_ops as kfops
 from mindspore.common.initializer import Normal
 from mindspore.nn.loss import SoftmaxCrossEntropyWithLogits
 from mindspore.nn.metrics import Accuracy
@@ -105,9 +106,7 @@ def test_net(network, model, mnist_path):
     print("============== Accuracy:{} ==============".format(acc))
 
 
-def main():
-    args = parse_args()
-
+def main(args):
     ms.context.set_context(mode=ms.context.GRAPH_MODE,
                            device_target=args.device)
     dataset_sink_mode = not args.device == "CPU"
@@ -130,8 +129,14 @@ def main():
 
     train_net(model, args.epoch_size, args.data_dir, args.repeat_size,
               ckpoint_cb, dataset_sink_mode)
-    test_net(network, model, args.data_dir)
+    # TODO: test
+    # test_net(network, model, args.data_dir)
 
 
 if __name__ == "__main__":
-    main()
+    args = parse_args()
+    if args.use_kungfu:
+        with kfops.KungFuContext(device=args.device):
+            main(args)
+    else:
+        main(args)

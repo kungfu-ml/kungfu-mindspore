@@ -1,0 +1,62 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{pgfplots}
+
+% \title{Untitled}
+\def\myaddplot#1#2#3{
+    \addplot[
+        color=#1,
+        mark=#2,
+    ] table {#3};
+}
+
+\begin{document}
+\begin{frame}
+
+\begin{figure}
+
+\begin{tikzpicture}
+    \begin{axis}[
+        title={ },
+        xlabel={\# step},
+        ylabel={accuracy},
+        % xmin=1,
+        % xmax=16,
+        % ymin=0,
+        ymax=1.0,
+        % xtick={1, 2, 3},
+    	% major tick num=1,
+    	% minor x tick num=1,
+        % xtick distance=4,
+        legend pos=north east,
+    	% major tick num=10,
+    	% minor y tick num=5,
+        % ymajorgrids=true,
+        % grid style=dashed,
+        legend cell align={right},
+        ]
+
+        \myaddplot{red}{square}{plot/with-bn/lbs-200+dbs-200-1615220519.txt}
+        \myaddplot{red}{square}{plot/with-bn/lbs-200+dbs-200-1615220562.txt}
+        \myaddplot{red}{square}{plot/with-bn/lbs-200+dbs-200-1615220606.txt}
+        \myaddplot{red}{square}{plot/with-bn/lbs-200+dbs-200-1615220649.txt}
+        \myaddplot{red}{square}{plot/with-bn/lbs-200+dbs-200-1615220693.txt}
+        \myaddplot{red}{square}{plot/with-bn/lbs-200+dbs-200-1615220736.txt}
+        \myaddplot{red}{square}{plot/with-bn/lbs-200+dbs-200-1615220779.txt}
+        \myaddplot{red}{square}{plot/with-bn/lbs-200+dbs-200-1615220823.txt}
+        \myaddplot{red}{square}{plot/with-bn/lbs-200+dbs-200-1615220867.txt}
+        \myaddplot{red}{square}{plot/with-bn/lbs-200+dbs-200-1615220911.txt}
+
+        \legend{
+            % dev-bs=200 = 1 logical-bs,
+            % dev-bs=100 = 1/2 logical-bs,
+            % dev-bs=50 = 1/4 logical-bs,
+        }
+    \end{axis}
+\end{tikzpicture}
+
+\end{figure}
+\end{frame}
+
+\end{document}

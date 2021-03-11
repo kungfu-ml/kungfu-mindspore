@@ -28,6 +28,7 @@ train() {
     rm -fr resnet-graph.meta
     rm -fr ckpt_*
     rm -fr cuda_meta_*
+    rm -fr logs
     kungfu_run \
         /usr/bin/python3.7 train.py $(app_flags)
 }

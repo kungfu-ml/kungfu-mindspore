@@ -1,0 +1,32 @@
+checkpoint/mnist-slp-000001.ckpt, accuracy: {'acc': 0.1893}
+checkpoint/mnist-slp-000002.ckpt, accuracy: {'acc': 0.4094}
+checkpoint/mnist-slp-000003.ckpt, accuracy: {'acc': 0.5152}
+checkpoint/mnist-slp-000004.ckpt, accuracy: {'acc': 0.6493}
+checkpoint/mnist-slp-000005.ckpt, accuracy: {'acc': 0.7321}
+checkpoint/mnist-slp-000006.ckpt, accuracy: {'acc': 0.7499}
+checkpoint/mnist-slp-000007.ckpt, accuracy: {'acc': 0.7684}
+checkpoint/mnist-slp-000008.ckpt, accuracy: {'acc': 0.7816}
+checkpoint/mnist-slp-000009.ckpt, accuracy: {'acc': 0.7855}
+checkpoint/mnist-slp-000010.ckpt, accuracy: {'acc': 0.7983}
+
+
+842a08892412345a777fb243682936ef  mnist-slp-device-000001+100.npz
+896cb672e7d6892091e9dbffd64ac0a8  mnist-slp-device-000002+100.npz
+896cb672e7d6892091e9dbffd64ac0a8  mnist-slp-device-000003+100.npz
+4a39850d1c28d250400d5af7d9891e33  mnist-slp-device-000004+100.npz
+4a39850d1c28d250400d5af7d9891e33  mnist-slp-device-000005+100.npz
+5bdb1511d8ee8f77ef3ca365cbb3ba95  mnist-slp-device-000006+100.npz
+5bdb1511d8ee8f77ef3ca365cbb3ba95  mnist-slp-device-000007+100.npz
+a32cac30cc301aab197156efa0424f28  mnist-slp-device-000008+100.npz
+a32cac30cc301aab197156efa0424f28  mnist-slp-device-000009+100.npz
+b380413541a1f227c1bf1f342952d5fd  mnist-slp-device-000010+100.npz
+b380413541a1f227c1bf1f342952d5fd  mnist-slp-device-000011+100.npz
+816ca099ac0c11dc09c0a720b1917782  mnist-slp-device-000012+100.npz
+816ca099ac0c11dc09c0a720b1917782  mnist-slp-device-000013+100.npz
+ffdcf92b799b038410d61b27469e8d06  mnist-slp-device-000014+100.npz
+ffdcf92b799b038410d61b27469e8d06  mnist-slp-device-000015+100.npz
+9f1fc78e483ad9758f66a9b3a0048b66  mnist-slp-device-000016+100.npz
+9f1fc78e483ad9758f66a9b3a0048b66  mnist-slp-device-000017+100.npz
+e083d909ef0bdfc6b58d522a3a0b3ae3  mnist-slp-device-000018+100.npz
+e083d909ef0bdfc6b58d522a3a0b3ae3  mnist-slp-device-000019+100.npz
+8d65a80d82edd41a265fec09c40eb91d  mnist-slp-device-000020+100.npz

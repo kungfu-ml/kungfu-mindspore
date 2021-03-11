@@ -3,16 +3,10 @@ import os
 import time
 
 import mindspore as ms
+import mindspore.ops.operations.kungfu_comm_ops as kfops
 import numpy as np
-from mindspore._c_expression import (kungfu_current_cluster_size,
-                                     kungfu_current_rank, kungfu_finalize,
-                                     kungfu_init, kungfu_nccl_finalize,
-                                     kungfu_nccl_init)
 from mindspore.communication.management import get_group_size, get_rank, init
 from mindspore.ops.operations.comm_ops import ReduceOp
-from mindspore.ops.operations.kungfu_comm_ops import (KungFuAllReduce,
-                                                      KungFuBroadcast,
-                                                      KungFuResize)
 
 resnet50 = [
     1000, 2048000, 2048, 2048, 2048, 1048576, 512, 512, 512, 2359296, 512, 512,
@@ -84,12 +78,11 @@ def main():
         12: 1,
     }
 
-    kungfu_init()
-    kungfu_nccl_init()
+    kfops.init(args.device)
 
-    all_reduce = KungFuAllReduce()
-    all_reduce_max = KungFuAllReduce(op=ReduceOp.MAX)
-    resize = KungFuResize()
+    all_reduce = kfops.KungFuAllReduce()
+    all_reduce_max = kfops.KungFuAllReduce(op=ReduceOp.MAX)
+    resize = kfops.KungFuResize()
 
     xs = [
         ms.Tensor(np.array([1.0] * size).astype(np.float32))
@@ -122,8 +115,7 @@ def main():
         if step > args.steps:
             break
     print('train loop finished')
-    kungfu_nccl_finalize()
-    kungfu_finalize()
+    kfops.finalize(args.device)
 
 
 main()

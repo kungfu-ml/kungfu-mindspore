@@ -19,11 +19,8 @@ import os
 
 import mindspore.common.initializer as weight_init
 import mindspore.nn as nn
+import mindspore.ops.operations.kungfu_comm_ops as kfops
 from mindspore import Tensor, context
-from mindspore._c_expression import (kungfu_current_cluster_size,
-                                     kungfu_current_rank, kungfu_finalize,
-                                     kungfu_init, kungfu_nccl_finalize,
-                                     kungfu_nccl_init)
 from mindspore.common import set_seed
 from mindspore.communication.management import get_group_size, get_rank, init
 from mindspore.context import ParallelMode
@@ -142,10 +139,9 @@ if __name__ == '__main__':
             get_rank()) + "/"
 
     if args_opt.run_kungfu:
-        kungfu_init()
-        kungfu_nccl_init()
-        rank = kungfu_current_rank()
-        size = kungfu_current_cluster_size()
+        kfops.init(args_opt.device_target)
+        rank = kfops.kungfu_current_rank()
+        size = kfops.kungfu_current_cluster_size()
         print('kungfu rank=%d, size=%d' % (rank, size))
         if args_opt.elastic:
             version = os.getenv('KUNGFU_INIT_CLUSTER_VERSION')
@@ -329,5 +325,4 @@ if __name__ == '__main__':
                 dataset_sink_mode=dataset_sink_mode)
     print('train finished.')
     if args_opt.run_kungfu:
-        kungfu_nccl_finalize()
-        kungfu_finalize()
+        kfops.finalize(args_opt.device_target)

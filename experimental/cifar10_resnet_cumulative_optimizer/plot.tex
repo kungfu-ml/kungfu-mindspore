@@ -1,0 +1,122 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{pgfplots}
+
+% \title{Untitled}
+\def\myaddplot#1#2#3{
+    \addplot[
+        color=#1,
+        mark=#2,
+    ] table {#3};
+}
+
+\begin{document}
+\begin{frame}
+
+\begin{figure}
+
+\begin{tikzpicture}
+    \begin{axis}[
+        title={ },
+        xlabel={\# step},
+        ylabel={accuracy},
+        % xmin=1,
+        % xmax=16,
+        % ymin=0,
+        ymax=1.0,
+        % xtick={1, 2, 3},
+    	% major tick num=1,
+    	% minor x tick num=1,
+        % xtick distance=4,
+        legend pos=north east,
+    	% major tick num=10,
+    	% minor y tick num=5,
+        % ymajorgrids=true,
+        % grid style=dashed,
+        legend cell align={right},
+        ]
+
+        % \myaddplot{blue}{square}{plot/lbs-200+dbs-200-1614994278.txt}
+        % \myaddplot{red}{square}{plot/lbs-200+dbs-200-1614995894.txt}
+        % \myaddplot{green}{square}{plot/lbs-200+dbs-200-1614997407.txt}
+
+        % \myaddplot{blue}{square}{plot/lbs-200+dbs-200-1615002205.txt}
+        % \myaddplot{red}{square}{plot/lbs-200+dbs-200-1615006450.txt}
+        % \myaddplot{green}{square}{plot/lbs-200+dbs-200-1615010415.txt}
+
+        % \myaddplot{green}{square}{plot/lbs-200+dbs-200-1615029928.txt}
+        % \myaddplot{green}{square}{plot/lbs-200+dbs-200-1615034036.txt}
+        % \myaddplot{green}{square}{plot/lbs-200+dbs-200-1615038851.txt}
+
+
+        % \myaddplot{green}{square}{plot/lbs-200+dbs-200-1615029928.txt}
+        % \myaddplot{green}{square}{plot/lbs-200+dbs-200-1615034036.txt}
+        % \myaddplot{green}{square}{plot/lbs-200+dbs-200-1615038851.txt}
+
+        % \myaddplot{green}{square}{plot/lbs-200+dbs-200-1615043125.txt}
+        % \myaddplot{green}{square}{plot/lbs-200+dbs-200-1615047210.txt}
+        % \myaddplot{green}{square}{plot/lbs-200+dbs-200-1615051201.txt}
+
+        % \myaddplot{green}{square}{plot/lbs-200+dbs-200-1615055368.txt}
+        % \myaddplot{green}{square}{plot/lbs-200+dbs-200-1615059393.txt}
+        % \myaddplot{green}{square}{plot/lbs-200+dbs-200-1615063394.txt}
+        % \myaddplot{green}{square}{plot/lbs-200+dbs-200-1615067376.txt}
+
+        % experimental/cifar10_resnet_cumulative_optimizer/plot/lbs-200+dbs-200-1615029928.txt
+        % experimental/cifar10_resnet_cumulative_optimizer/plot/lbs-200+dbs-200-1615034036.txt
+        % experimental/cifar10_resnet_cumulative_optimizer/plot/lbs-200+dbs-200-1615038851.txt
+
+
+        % lbs-200+dbs-200-1615128565.txt
+        % lbs-200+dbs-200-1615128990.txt
+        % lbs-200+dbs-200-1615129627.txt
+        % lbs-200+dbs-200-1615130044.txt
+        % lbs-200+dbs-200-1615130464.txt
+        % lbs-200+dbs-200-1615130884.txt
+        % lbs-200+dbs-200-1615131303.txt
+        % lbs-200+dbs-200-1615131721.txt
+        % lbs-200+dbs-200-1615132140.txt
+        % lbs-200+dbs-200-1615132568.txt
+        % lbs-200+dbs-200-1615132987.txt
+        % lbs-200+dbs-200-1615133407.txt
+
+        \myaddplot{red}{square}{plot/lbs-200+dbs-200-1615128565.txt}
+        \myaddplot{red}{square}{plot/lbs-200+dbs-200-1615128990.txt}
+        \myaddplot{red}{square}{plot/lbs-200+dbs-200-1615129627.txt}
+        \myaddplot{red}{square}{plot/lbs-200+dbs-200-1615130464.txt}
+        \myaddplot{red}{square}{plot/lbs-200+dbs-200-1615130464.txt}
+        \myaddplot{red}{square}{plot/lbs-200+dbs-200-1615130884.txt}
+        \myaddplot{red}{square}{plot/lbs-200+dbs-200-1615131303.txt}
+        \myaddplot{red}{square}{plot/lbs-200+dbs-200-1615131721.txt}
+
+        % \addplot[
+        %     color=blue,
+        %     mark=square,
+        % ] table {plot/lbs-200+dbs-200.txt};
+
+        % \addplot[
+        %     color=pink,
+        %     mark=triangle,
+        % ] table {plot/lbs-200+dbs-100.txt};
+
+        % \addplot[
+        %     color=yellow,
+        %     mark=circle,
+        % ] table {plot/lbs-200+dbs-50.txt};
+
+        \legend{
+            % dev-bs=200 = 1 logical-bs,
+            % dev-bs=200 = 1 logical-bs,
+            % dev-bs=200 = 1 logical-bs,
+            % dev-bs=100 = 1/2 logical-bs,
+            % dev-bs=50 = 1/4 logical-bs,
+        }
+        % \legend{dev-bs=100 = 1/2 logical-bs}
+    \end{axis}
+\end{tikzpicture}
+
+\end{figure}
+\end{frame}
+
+\end{document}

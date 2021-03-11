@@ -1,8 +1,8 @@
 diff --git a/.gitignore b/.gitignore
-index 9bbd42ed6..0c28dd515 100644
+index 9bbd42ed6..9abbe2b56 100644
 --- a/.gitignore
 +++ b/.gitignore
-@@ -103,3 +103,10 @@ mindspore/lite/test/do_test/
+@@ -103,3 +103,12 @@ mindspore/lite/test/do_test/
  
  # lite opencl compile file
  *.cl.inc
@@ -13,3 +13,5 @@ index 9bbd42ed6..0c28dd515 100644
 +/mindspore/ccsrc/backend/kernel_compiler/cpu/kungfu
 +/mindspore/ccsrc/backend/kernel_compiler/gpu/kungfu
 +/mindspore/ops/operations/kungfu_comm_ops.py
++/mindspore/train/callback/_kungfu.py
++/mindspore/nn/optim/kungfu.py

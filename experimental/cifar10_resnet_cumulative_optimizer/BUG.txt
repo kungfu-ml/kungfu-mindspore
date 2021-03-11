@@ -1,0 +1,39 @@
+[ERROR] DEVICE(8793,python3.7):2021-02-25-01:14:37.265.031 [mindspore/ccsrc/runtime/device/gpu/kernel_info_setter.cc:118] SelectAkgKernel] Not find op[BatchNorm] in akg
+[ERROR] DEVICE(8793,python3.7):2021-02-25-01:14:37.265.055 [mindspore/ccsrc/runtime/device/gpu/kernel_info_setter.cc:322] PrintUnsupportedTypeException] Select GPU kernel op[BatchNorm] fail! Incompatible data type!
+The supported data types are
+
+in[float32 float32 float32 float32 float32],
+out[float32 float32 float32 float32 float32];
+
+in[float16 float32 float32 float32 float32],
+out[float16 float32 float32 float32 float32]; ,
+
+but get
+in [float16 float16 float16 float16 float16 ]
+out [float16 float16 float16 float16 float16 ]
+
+Traceback (most recent call last):
+  File "./main.py", line 186, in <module>
+    main()
+  File "./main.py", line 179, in main
+    run(args)
+  File "./main.py", line 168, in run
+    test(args, net, loss, opt, ds_test, checkpoints)
+  File "/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_resnet_cumulative_optimizer/trainer.py", line 99, in test
+    acc = test_checkpoint(net, model, dataset, ckpt_name)
+  File "/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_resnet_cumulative_optimizer/trainer.py", line 76, in test_checkpoint
+    result = model.eval(ds_test, dataset_sink_mode=False)
+  File "/home/lg/.local/lib/python3.7/site-packages/mindspore/train/model.py", line 718, in eval
+    return self._eval_process(valid_dataset, list_callback, cb_params)
+  File "/home/lg/.local/lib/python3.7/site-packages/mindspore/train/model.py", line 657, in _eval_process
+    outputs = self._eval_network(*next_element)
+  File "/home/lg/.local/lib/python3.7/site-packages/mindspore/nn/cell.py", line 331, in __call__
+    out = self.compile_and_run(*inputs)
+  File "/home/lg/.local/lib/python3.7/site-packages/mindspore/nn/cell.py", line 588, in compile_and_run
+    self.compile(*inputs)
+  File "/home/lg/.local/lib/python3.7/site-packages/mindspore/nn/cell.py", line 575, in compile
+    _executor.compile(self, *inputs, phase=self.phase, auto_parallel_mode=self._auto_parallel_mode)
+  File "/home/lg/.local/lib/python3.7/site-packages/mindspore/common/api.py", line 502, in compile
+    result = self._executor.compile(obj, args_list, phase, use_vm)
+TypeError: mindspore/ccsrc/runtime/device/gpu/kernel_info_setter.cc:322 PrintUnsupportedTypeException] Select GPU kernel op[BatchNorm] fail! Incompatible data type!
+The supported data types are in[float32 float32 float32 float32 float32], out[float32 float32 float32 float32 float32]; in[float16 float32 float32 float32 float32], out[float16 float32 float32 float32 float32]; , but get in [float16 float16 float16 float16 float16 ] out [float16 float16 float16 float16 float16 ]
