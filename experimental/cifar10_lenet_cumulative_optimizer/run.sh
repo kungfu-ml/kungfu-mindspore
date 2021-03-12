@@ -11,9 +11,9 @@ INIT_CKPT_WITH_BN=1615220287
 
 hardware_flags() {
     echo --device GPU
-    # echo --device-batch-size 200
+    echo --device-batch-size 200
     # echo --device-batch-size 100
-    echo --device-batch-size 50
+    # echo --device-batch-size 50
 }
 
 config_flags() {
@@ -39,7 +39,7 @@ hyper_parameters() {
     # echo --ckpt-period 50
     # echo --ckpt-period 1 # for debug
 
-    echo --use-bn
+    # echo --use-bn
 }
 
 init_flags() {

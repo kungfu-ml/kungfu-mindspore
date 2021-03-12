@@ -7,6 +7,11 @@ cd $(dirname $0)
 pdflatex plot-moment-without-bn.tex
 pdflatex plot-moment-with-bn.tex
 
-pushd plot/with-bn-logical-bs
-pdflatex plot.tex
-popd
+plot_dir() {
+    pushd $1
+    pdflatex plot.tex
+    popd
+}
+
+plot_dir plot/with-bn-logical-bs
+plot_dir plot/without-bn-logical-bs
