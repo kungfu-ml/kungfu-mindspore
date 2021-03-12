@@ -36,11 +36,11 @@ cd $(dirname $0)
 # ./experimental/mnist_slp_cumulative_optimizer/run.sh
 # ./experimental/mnist_slp_cumulative_optimizer/plot.sh
 
-replicate 10 ./experimental/cifar10_resnet_cumulative_optimizer/run.sh
+# replicate 10 ./experimental/cifar10_resnet_cumulative_optimizer/run.sh
 # ./experimental/cifar10_resnet_cumulative_optimizer/plot.sh
 
 # ./experimental/cifar10_slp_cumulative_optimizer/run.sh
-# replicate 10 ./experimental/cifar10_lenet_cumulative_optimizer/run.sh
+replicate 3 ./experimental/cifar10_lenet_cumulative_optimizer/run.sh
 
 #############
 ### official examples
