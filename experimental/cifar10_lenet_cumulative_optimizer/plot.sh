@@ -14,4 +14,5 @@ plot_dir() {
 }
 
 plot_dir plot/with-bn-logical-bs
+plot_dir plot/with-bn2-logical-bs
 plot_dir plot/without-bn-logical-bs

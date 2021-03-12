@@ -23,6 +23,7 @@ class LeNet5(ms.nn.Cell):
         self.conv1 = ms.nn.Conv2d(num_channel, 6, 5, pad_mode='valid')
         self.bn1 = _bn(6)
         self.conv2 = ms.nn.Conv2d(6, 16, 5, pad_mode='valid')
+        self.bn2 = _bn(16)
         self.fc1 = ms.nn.Dense(16 * 5 * 5, 120, weight_init=weight_init1)
         self.fc2 = ms.nn.Dense(120, 84, weight_init=weight_init2)
         self.fc3 = ms.nn.Dense(84, num_class, weight_init=weight_init3)
@@ -36,7 +37,10 @@ class LeNet5(ms.nn.Cell):
         if self.use_bn:
             x = self.bn1(x)
         x = self.max_pool2d(self.relu(x))
-        x = self.max_pool2d(self.relu(self.conv2(x)))
+        x = self.conv2(x)
+        if self.use_bn:
+            x = self.bn2(x)
+        x = self.max_pool2d(self.relu(x))
         x = self.flatten(x)
         x = self.relu(self.fc1(x))
         x = self.relu(self.fc2(x))

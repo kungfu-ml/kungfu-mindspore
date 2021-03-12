@@ -7,13 +7,14 @@ export LD_LIBRARY_PATH=$(ld_library_path ../../mindspore)
 . ../../scripts/launcher.sh
 
 # INIT_CKPT=1615216120
-INIT_CKPT_WITH_BN=1615220287
+# INIT_CKPT_WITH_BN=1615220287
+INIT_CKPT_WITH_BN2=1615550013
 
 hardware_flags() {
     echo --device GPU
-    echo --device-batch-size 200
+    # echo --device-batch-size 200
     # echo --device-batch-size 100
-    # echo --device-batch-size 50
+    echo --device-batch-size 50
 }
 
 config_flags() {
@@ -23,7 +24,8 @@ config_flags() {
     echo --ckpt-dir checkpoint
 
     # echo --init-ckpt seeds/cifar10-lenet-$INIT_CKPT.ckpt
-    echo --init-ckpt seeds/cifar10-lenet-bn-$INIT_CKPT_WITH_BN.ckpt
+    # echo --init-ckpt seeds/cifar10-lenet-bn-$INIT_CKPT_WITH_BN.ckpt
+    echo --init-ckpt seeds/cifar10-lenet-bn2-$INIT_CKPT_WITH_BN2.ckpt
 }
 
 hyper_parameters() {
@@ -39,7 +41,7 @@ hyper_parameters() {
     # echo --ckpt-period 50
     # echo --ckpt-period 1 # for debug
 
-    # echo --use-bn
+    echo --use-bn
 }
 
 init_flags() {
@@ -122,5 +124,3 @@ main() {
 # trace run_init
 trace main
 # run_test
-
-# srun read-npz.py
