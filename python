@@ -1,0 +1,17 @@
+#!/bin/bash
+# wrapper of python for launching mindspore
+
+set -e
+
+join_path() {
+    local IFS=":"
+    echo "$*"
+}
+
+cd $(dirname $0)
+. ./debug_options.sh
+. ./ld_library_path.sh
+
+export LD_LIBRARY_PATH=$(ld_library_path $PWD/mindspore)
+
+python3.7 $@
