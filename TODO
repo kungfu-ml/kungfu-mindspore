@@ -1,3 +1,7 @@
 baseline
 moment
 bn
+
+elastic inside one epoch
+show that distributed training has different result than single training.
+(with large LR).
