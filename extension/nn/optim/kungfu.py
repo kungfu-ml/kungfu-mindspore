@@ -10,7 +10,13 @@ class KungFuMomentum(Momentum):
         self.map_ = ms.ops.composite.Map()
         self.all_reduce = kfops.KungFuAllReduce()
 
+        self.dbg_log_tensor = True
+        self.log_tensor = kfops.KungFuLogTensor()
+
     def construct(self, gradients):
+        if self.dbg_log_tensor:
+            gradients = self.map_(self.log_tensor, gradients)
+
         gradients = self.map_(self.all_reduce, gradients)
         return super(KungFuMomentum, self).construct(gradients)
 
@@ -21,7 +27,13 @@ class KungFuSGD(SGD):
         self.map_ = ms.ops.composite.Map()
         self.all_reduce = kfops.KungFuAllReduce()
 
+        self.dbg_log_tensor = True
+        self.log_tensor = kfops.KungFuLogTensor()
+
     def construct(self, gradients):
+        if self.dbg_log_tensor:
+            gradients = self.map_(self.log_tensor, gradients)
+
         gradients = self.map_(self.all_reduce, gradients)
         return super(KungFuSGD, self).construct(gradients)
 

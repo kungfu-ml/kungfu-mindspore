@@ -76,6 +76,7 @@ class KungFuModel(ms.train.model.Model):  # replace ms.train.model.Model
         for i in range(args.epochs):
             print('epoch #%d started' % (i + 1))
 
+            # input  ->  propro  ->
             for idx, batch in enumerate(dataset_helper):
                 print('%d of %d steps of epoch %d' % (idx, step_count, i + 1))
                 device_step += 1
@@ -85,8 +86,10 @@ class KungFuModel(ms.train.model.Model):  # replace ms.train.model.Model
                 # save_data_npz(x, y_, 'batch-%05d.npz' % (device_step))
 
                 print('{ // train_net(*batch) [%d]' % (idx), file=sys.stderr)
+                # log_tensor  ->  forward  ->  backward  ->  *sync grads*  ->  apply grads
                 train_net(*batch)
                 print('} // train_net(*batch) [%d]' % (idx), file=sys.stderr)
+                print('\n\n', file=sys.stderr)
 
                 # save_npz(net, get_ckpt_file_name_2(args, device_step, 'npz'))
 
