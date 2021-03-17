@@ -19,7 +19,7 @@ def get_ckpt_dir(args):
 
 def get_ckpt_file_name(args, step, suffix='ckpt'):
     filename = '%s-%06d.%s' % (args.ckpt_prefix, step, suffix)
-    return os.path.join(args.ckpt_dir, filename)
+    return os.path.join(get_ckpt_dir(args), filename)
 
 
 def get_ckpt_file_name_2(args, device_step, suffix='ckpt'):
@@ -29,7 +29,7 @@ def get_ckpt_file_name_2(args, device_step, suffix='ckpt'):
         args.device_batch_size,
         suffix,
     )
-    return os.path.join(args.ckpt_dir, filename)
+    return os.path.join(get_ckpt_dir(args), filename)
 
 
 def get_ckpt_file_name_3(args, step, name):

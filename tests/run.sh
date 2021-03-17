@@ -1,23 +1,10 @@
 #!/bin/sh
 set -e
 
-join_path() {
-    local IFS=":"
-    echo "$*"
-}
-
 cd $(dirname $0)
-ROOT=$PWD/../mindspore
-
-KUNGFU_LIB_PATH=$ROOT/third_party/kungfu/lib
-
-ld_library_path() {
-    echo $KUNGFU_LIB_PATH
-    echo $ROOT/mindspore/lib
-    echo $ROOT/build/mindspore/_deps/ompi-src/ompi/.libs
-}
-
-export LD_LIBRARY_PATH=$(join_path $(ld_library_path))
+. ../ld_library_path.sh
+export LD_LIBRARY_PATH=$(ld_library_path ../mindspore)
+. ../scripts/launcher.sh
 
 kungfu_run_flags() {
     echo -q
@@ -48,5 +35,10 @@ test_all() {
     test_allreduce_op $device
 }
 
-test_all CPU
-test_all GPU
+test_import() {
+    srun test_import.py
+}
+
+# test_all CPU
+# test_all GPU
+test_import

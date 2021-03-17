@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-export CUDA_VISIBLE_DEVICES=3
+export CUDA_VISIBLE_DEVICES=2,3
 
 cd $(dirname $0)
 . ./debug_options.sh
@@ -40,7 +40,11 @@ cd $(dirname $0)
 # ./experimental/cifar10_resnet_cumulative_optimizer/plot.sh
 
 # ./experimental/cifar10_slp_cumulative_optimizer/run.sh
-replicate 3 ./experimental/cifar10_lenet_cumulative_optimizer/run.sh
+# replicate 3 ./experimental/cifar10_lenet_cumulative_optimizer/run.sh
+
+#############
+### baseline experiments
+replicate 1 ./experimental/cifar10_lenet_baseline/run.sh
 
 #############
 ### official examples
