@@ -144,6 +144,7 @@ def run(args):
         num_class=10,
         num_channel=3,
         use_bn=args.use_bn,
+        dbg_log_tensor=True,
     )
 
     loss = ms.nn.loss.SoftmaxCrossEntropyWithLogits(sparse=True,
@@ -170,6 +171,7 @@ def run(args):
 
     if args.mode == 'test':
         ds_test = create_dataset(
+            args=args,
             data_path=os.path.join(args.data_path, 'test'),
             batch_size=args.device_batch_size,
         )

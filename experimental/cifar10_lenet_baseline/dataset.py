@@ -6,7 +6,7 @@ import mindspore.ops.operations.kungfu_comm_ops as kfops
 
 
 def create_dataset(args, data_path, batch_size):
-    if args.use_kungfu:
+    if args.mode == 'train' and args.use_kungfu:
         rank = kfops.kungfu_current_rank()
         size = kfops.kungfu_current_cluster_size()
         ds = de.Cifar10Dataset(

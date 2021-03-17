@@ -30,7 +30,7 @@ config_flags() {
 
 hyper_parameters() {
     echo --logical-batch-size 200
-    echo --epochs 10
+    echo --epochs 1
 
     # echo --optimizer sgd
     echo --optimizer momentum
@@ -94,24 +94,22 @@ run_init() {
     srun ./main.py $(init_flags)
 }
 
+NP=4
+
 run_train() {
     mkdir -p checkpoint
     mkdir -p plot
 
     # srun ./main.py $(train_flags)
 
-    # prun 1 ./main.py $(train_flags) --use-kungfu
-    # prun 2 ./main.py $(train_flags) --use-kungfu
-    prun 4 ./main.py $(train_flags) --use-kungfu
+    prun $NP ./main.py $(train_flags) --use-kungfu
 }
 
 run_test() {
     # checkpoints_files=$(comma_join $(ls checkpoint/*.ckpt))
     # srun ./main.py $(test_flags)  --ckpt-files $checkpoints_files
 
-    # prun 1 ./main.py $(test_flags) --use-kungfu
-    # prun 2 ./main.py $(test_flags) --use-kungfu
-    prun 4 ./main.py $(test_flags) --use-kungfu
+    prun $NP ./main.py $(test_flags) --use-kungfu
 }
 
 summary() {
@@ -121,7 +119,7 @@ summary() {
 }
 
 main() {
-    # cleanup
+    cleanup
     run_train
     # run_test
     # summary

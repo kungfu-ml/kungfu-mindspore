@@ -1,4 +1,5 @@
 import os
+import sys
 
 import mindspore as ms
 import mindspore.ops.operations.kungfu_comm_ops as kfops
@@ -74,14 +75,18 @@ class KungFuModel(ms.train.model.Model):  # replace ms.train.model.Model
         device_step = 0
         for i in range(args.epochs):
             print('epoch #%d started' % (i + 1))
-            for batch in dataset_helper:
+
+            for idx, batch in enumerate(dataset_helper):
+                print('%d of %d steps of epoch %d' % (idx, step_count, i + 1))
                 device_step += 1
                 print('device step %d' % (device_step))
 
                 # x, y_ = batch
                 # save_data_npz(x, y_, 'batch-%05d.npz' % (device_step))
 
+                print('{ // train_net(*batch) [%d]' % (idx), file=sys.stderr)
                 train_net(*batch)
+                print('} // train_net(*batch) [%d]' % (idx), file=sys.stderr)
 
                 # save_npz(net, get_ckpt_file_name_2(args, device_step, 'npz'))
 

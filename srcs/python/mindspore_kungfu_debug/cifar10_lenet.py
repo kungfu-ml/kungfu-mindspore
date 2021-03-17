@@ -1,6 +1,8 @@
 import mindspore as ms
 import mindspore.nn as nn
 
+from mindspore.ops.operations.kungfu_comm_ops import KungFuLogTensor
+
 
 def _bn(channel):
     return nn.BatchNorm2d(channel,
@@ -13,10 +15,18 @@ def _bn(channel):
 
 
 class LeNet5(ms.nn.Cell):
-    def __init__(self, num_class=10, num_channel=3, use_bn=False):
+    def __init__(
+        self,
+        num_class=10,
+        num_channel=3,
+        use_bn=False,
+        dbg_log_tensor=False,
+    ):
         """Define the operator required."""
         super(LeNet5, self).__init__()
         self.use_bn = use_bn
+        self.dbg_log_tensor = dbg_log_tensor
+
         weight_init1 = ms.common.initializer.Normal(0.02)
         weight_init2 = ms.common.initializer.Normal(0.02)
         weight_init3 = ms.common.initializer.Normal(0.02)
@@ -31,8 +41,13 @@ class LeNet5(ms.nn.Cell):
         self.max_pool2d = ms.nn.MaxPool2d(kernel_size=2, stride=2)
         self.flatten = ms.nn.Flatten()
 
+        self.log_tensor = KungFuLogTensor()
+
     def construct(self, x):
         """Use the preceding operators to construct networks."""
+        if self.dbg_log_tensor:
+            x = self.log_tensor(x)
+
         x = self.conv1(x)
         if self.use_bn:
             x = self.bn1(x)
@@ -45,4 +60,9 @@ class LeNet5(ms.nn.Cell):
         x = self.relu(self.fc1(x))
         x = self.relu(self.fc2(x))
         x = self.fc3(x)
+
+        # RuntimeError: mindspore/ccsrc/pipeline/jit/validator.cc:63 ValidateOperation] Illegal primitive: Primitive KungFuLogTensor's bprop not defined.
+        # if self.dbg_log_tensor:
+        #     x = self.log_tensor(x)
+
         return x

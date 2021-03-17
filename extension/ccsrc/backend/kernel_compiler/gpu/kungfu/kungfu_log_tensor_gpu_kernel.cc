@@ -40,6 +40,9 @@ void log_tensor(int idx, const kungfu::Workspace &w, cudaStream_t stream)
 
 void log_workspace(int idx, const kungfu::Workspace &w, cudaStream_t stream)
 {
+    if (_show_kungfu_debug_log) {
+        std::cerr << __func__ << ", count: " << w.count << std::endl;
+    }
     const size_t size = kungfu_type_size(w.dtype) * w.count;
     const auto dir = cudaMemcpyDeviceToDevice;
     // auto result = cudaMemcpy(w.recvbuf, w.sendbuf, size, dir);
@@ -57,6 +60,11 @@ void log_workspace(int idx, const kungfu::Workspace &w, cudaStream_t stream)
     }
 }
 
+MS_REG_GPU_KERNEL_ONE(KungFuLogTensor,
+                      KernelAttr()
+                          .AddInputAttr(kNumberTypeFloat16)
+                          .AddOutputAttr(kNumberTypeFloat16),
+                      KungFuLogTensorGpuKernel, kungfu::float16)
 MS_REG_GPU_KERNEL_ONE(KungFuLogTensor,
                       KernelAttr()
                           .AddInputAttr(kNumberTypeFloat32)
