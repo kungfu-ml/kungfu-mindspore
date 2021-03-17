@@ -158,6 +158,7 @@ def run(args):
 
     if args.mode == 'train':
         ds_train = create_dataset(
+            args=args,
             data_path=os.path.join(args.data_path, 'train'),
             batch_size=args.device_batch_size,
         )

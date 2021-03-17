@@ -2,14 +2,27 @@ import mindspore.common.dtype as mstype
 import mindspore.dataset.engine as de
 import mindspore.dataset.transforms.c_transforms as C2
 import mindspore.dataset.vision.c_transforms as C
+import mindspore.ops.operations.kungfu_comm_ops as kfops
 
 
-def create_dataset(data_path, batch_size):
-    ds = de.Cifar10Dataset(
-        data_path,
-        num_parallel_workers=8,
-        shuffle=False,
-    )
+def create_dataset(args, data_path, batch_size):
+    if args.use_kungfu:
+        rank = kfops.kungfu_current_rank()
+        size = kfops.kungfu_current_cluster_size()
+        ds = de.Cifar10Dataset(
+            data_path,
+            num_parallel_workers=8,
+            shuffle=False,
+            num_shards=size,
+            shard_id=rank,
+        )
+        print('using shard %d of %d' % (rank, size))
+    else:
+        ds = de.Cifar10Dataset(
+            data_path,
+            num_parallel_workers=8,
+            shuffle=False,
+        )
 
     # define map operations
     trans = []

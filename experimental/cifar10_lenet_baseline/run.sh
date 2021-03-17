@@ -99,14 +99,19 @@ run_train() {
     mkdir -p plot
 
     # srun ./main.py $(train_flags)
-    prun 2 ./main.py $(train_flags) --use-kungfu
+
+    # prun 1 ./main.py $(train_flags) --use-kungfu
+    # prun 2 ./main.py $(train_flags) --use-kungfu
+    prun 4 ./main.py $(train_flags) --use-kungfu
 }
 
 run_test() {
     # checkpoints_files=$(comma_join $(ls checkpoint/*.ckpt))
     # srun ./main.py $(test_flags)  --ckpt-files $checkpoints_files
 
-    prun 2 ./main.py $(test_flags) --use-kungfu
+    # prun 1 ./main.py $(test_flags) --use-kungfu
+    # prun 2 ./main.py $(test_flags) --use-kungfu
+    prun 4 ./main.py $(test_flags) --use-kungfu
 }
 
 summary() {

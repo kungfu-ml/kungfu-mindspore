@@ -39,6 +39,13 @@ test_import() {
     srun test_import.py
 }
 
+test_dataset() {
+    srun test_dataset.py \
+        --data-path $HOME/var/data/mindspore/cifar10
+
+}
+
 # test_all CPU
 # test_all GPU
-test_import
+# test_import
+test_dataset
