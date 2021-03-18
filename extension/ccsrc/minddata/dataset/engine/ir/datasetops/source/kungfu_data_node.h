@@ -9,6 +9,8 @@ namespace mindspore
 {
 namespace dataset
 {
+constexpr char kKungFuDataNode[] = "KungFuDataNode";
+
 class KungFuDataNode : public MappableSourceNode
 {
   public:
@@ -24,7 +26,7 @@ class KungFuDataNode : public MappableSourceNode
     /// \return Name of the current node
     std::string Name() const override
     {
-        return kMnistNode;
+        return kKungFuDataNode;
     }
 
     /// \brief Print the description
