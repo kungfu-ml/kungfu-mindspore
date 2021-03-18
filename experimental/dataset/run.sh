@@ -7,15 +7,19 @@ export LD_LIBRARY_PATH=$(ld_library_path ../../mindspore)
 
 app_flags() {
     echo --device GPU
-    echo --dataset_path $HOME/var/data/cifar/cifar-10-batches-bin
+    echo --data-path $HOME/var/data/mindspore
+
     # echo --batch_size 100
-    echo --batch_size 32
+    echo --batch-size 32
 }
 
 main() {
     rm -fr logs
+
     local np=1
-    prun $np ./dataset-example.py $(app_flags)
+    # prun $np ./dataset-example.py $(app_flags)
+
+    srun ./dataset-example.py $(app_flags)
 }
 
 main
