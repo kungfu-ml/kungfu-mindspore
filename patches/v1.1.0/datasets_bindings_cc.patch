@@ -1,0 +1,31 @@
+diff --git a/mindspore/ccsrc/minddata/dataset/api/python/bindings/dataset/include/datasets_bindings.cc b/mindspore/ccsrc/minddata/dataset/api/python/bindings/dataset/include/datasets_bindings.cc
+index 852ca3b9c..0f0312717 100644
+--- a/mindspore/ccsrc/minddata/dataset/api/python/bindings/dataset/include/datasets_bindings.cc
++++ b/mindspore/ccsrc/minddata/dataset/api/python/bindings/dataset/include/datasets_bindings.cc
+@@ -65,6 +65,7 @@
+ #include "minddata/dataset/engine/ir/datasetops/source/mnist_node.h"
+ #include "minddata/dataset/engine/ir/datasetops/source/random_node.h"
+ #include "minddata/dataset/engine/ir/datasetops/source/text_file_node.h"
++#include "minddata/dataset/engine/ir/datasetops/source/kungfu_data_node.h"
+ 
+ // IR leaf nodes disabled for android
+ #ifndef ENABLE_ANDROID
+@@ -261,6 +262,18 @@ PYBIND_REGISTER(MnistNode, 2, ([](const py::module *m) {
+                     }));
+                 }));
+ 
++PYBIND_REGISTER(KungFuDataNode, 2, ([](const py::module *m) {
++                  (void)py::class_<KungFuDataNode, DatasetNode, std::shared_ptr<KungFuDataNode>>(
++                    *m, "KungFuDataNode", "to create an KungFuDataNode")
++                    .def(py::init([](std::string dataset_dir, std::string usage, py::handle sampler,
++                                     std::shared_ptr<CacheClient> cc) {
++                      auto mnist = std::make_shared<KungFuDataNode>(dataset_dir, usage, toSamplerObj(sampler),
++                                                                    toDatasetCache(std::move(cc)));
++                      THROW_IF_ERROR(mnist->ValidateParams());
++                      return mnist;
++                    }));
++                }));
++
+ PYBIND_REGISTER(
+   RandomNode, 2, ([](const py::module *m) {
+     (void)py::class_<RandomNode, DatasetNode, std::shared_ptr<RandomNode>>(*m, "RandomNode", "to create a RandomNode")

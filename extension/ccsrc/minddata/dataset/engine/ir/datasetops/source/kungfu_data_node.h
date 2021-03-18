@@ -9,16 +9,16 @@ namespace mindspore
 {
 namespace dataset
 {
-class KungfuDataNode : public MappableSourceNode
+class KungFuDataNode : public MappableSourceNode
 {
   public:
     /// \brief Constructor
-    KungfuDataNode(std::string dataset_dir, std::string usage,
+    KungFuDataNode(std::string dataset_dir, std::string usage,
                    std::shared_ptr<SamplerObj> sampler,
                    std::shared_ptr<DatasetCache> cache);
 
     /// \brief Destructor
-    ~KungfuDataNode() = default;
+    ~KungFuDataNode() = default;
 
     /// \brief Node name getter
     /// \return Name of the current node

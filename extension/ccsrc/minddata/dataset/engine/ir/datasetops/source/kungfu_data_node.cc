@@ -8,11 +8,12 @@
 #include "minddata/dataset/engine/datasetops/source/mnist_op.h"
 
 #include "minddata/dataset/util/status.h"
+
 namespace mindspore
 {
 namespace dataset
 {
-KungfuDataNode::KungfuDataNode(std::string dataset_dir, std::string usage,
+KungFuDataNode::KungFuDataNode(std::string dataset_dir, std::string usage,
                                std::shared_ptr<SamplerObj> sampler,
                                std::shared_ptr<DatasetCache> cache)
     : MappableSourceNode(std::move(cache)),
@@ -22,34 +23,34 @@ KungfuDataNode::KungfuDataNode(std::string dataset_dir, std::string usage,
 {
 }
 
-std::shared_ptr<DatasetNode> KungfuDataNode::Copy()
+std::shared_ptr<DatasetNode> KungFuDataNode::Copy()
 {
     std::shared_ptr<SamplerObj> sampler =
         (sampler_ == nullptr) ? nullptr : sampler_->Copy();
     auto node =
-        std::make_shared<KungfuDataNode>(dataset_dir_, usage_, sampler, cache_);
+        std::make_shared<KungFuDataNode>(dataset_dir_, usage_, sampler, cache_);
     return node;
 }
 
-void KungfuDataNode::Print(std::ostream &out) const
+void KungFuDataNode::Print(std::ostream &out) const
 {
     out << Name();
 }
 
-Status KungfuDataNode::ValidateParams()
+Status KungFuDataNode::ValidateParams()
 {
     RETURN_IF_NOT_OK(DatasetNode::ValidateParams());
-    RETURN_IF_NOT_OK(ValidateDatasetDirParam("KungfuDataNode", dataset_dir_));
+    RETURN_IF_NOT_OK(ValidateDatasetDirParam("KungFuDataNode", dataset_dir_));
 
-    RETURN_IF_NOT_OK(ValidateDatasetSampler("KungfuDataNode", sampler_));
+    RETURN_IF_NOT_OK(ValidateDatasetSampler("KungFuDataNode", sampler_));
 
-    RETURN_IF_NOT_OK(ValidateStringValue("KungfuDataNode", usage_,
+    RETURN_IF_NOT_OK(ValidateStringValue("KungFuDataNode", usage_,
                                          {"train", "test", "all"}));
 
     return Status::OK();
 }
 
-Status KungfuDataNode::Build(std::vector<std::shared_ptr<DatasetOp>> *node_ops)
+Status KungFuDataNode::Build(std::vector<std::shared_ptr<DatasetOp>> *node_ops)
 {
     // Do internal Schema generation.
     auto schema = std::make_unique<DataSchema>();
@@ -69,7 +70,7 @@ Status KungfuDataNode::Build(std::vector<std::shared_ptr<DatasetOp>> *node_ops)
 }
 
 // Get the shard id of node
-Status KungfuDataNode::GetShardId(int32_t *shard_id)
+Status KungFuDataNode::GetShardId(int32_t *shard_id)
 {
     *shard_id = sampler_->ShardId();
 
@@ -77,7 +78,7 @@ Status KungfuDataNode::GetShardId(int32_t *shard_id)
 }
 
 // Get Dataset size
-Status KungfuDataNode::GetDatasetSize(
+Status KungFuDataNode::GetDatasetSize(
     const std::shared_ptr<DatasetSizeGetter> &size_getter, bool estimate,
     int64_t *dataset_size)
 {

@@ -7,6 +7,12 @@ mindspore.dataset.engine as de
 
 import mindspore._c_dataengine as cde
 
+ImportError: /home/lg/.local/lib/python3.7/site-packages/mindspore/_c_dataengine.cpython-37m-x86_64-linux-gnu.so: undefined symbol: _ZTVN9mindspore7dataset14KungFuDataNodeE
+
+echo _ZTVN9mindspore7dataset14KungFuDataNodeE | c++filt
+vtable for mindspore::dataset::KungFuDataNode
+
+
 class Dataset:
     __add__
     __class__

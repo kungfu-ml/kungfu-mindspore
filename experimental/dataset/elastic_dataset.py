@@ -34,8 +34,12 @@ class ElasticMnist(de.MappableDataset):
         else:
             cc = None
 
-        return cde.MnistNode(self.dataset_dir, self.usage, self.sampler,
-                             cc).SetNumWorkers(self.num_parallel_workers)
+        return cde.KungFuDataNode(
+            self.dataset_dir,
+            self.usage,
+            self.sampler,
+            cc,
+        ).SetNumWorkers(self.num_parallel_workers)
 
     # def get_args(self):
     #     args = super().get_args()
