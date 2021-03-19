@@ -1,5 +1,7 @@
-#include "minddata/dataset/engine/datasetops/source/kuntfu_data_op.h"
+#include "minddata/dataset/engine/datasetops/source/kungfu_data_op.h"
 
+#include "backend/kernel_compiler/cpu/kungfu/kungfu_common.h"
+#include "backend/kernel_compiler/cpu/kungfu/kungfu_logger.h"
 #include "minddata/dataset/core/config_manager.h"
 #include "minddata/dataset/core/tensor_shape.h"
 #include "minddata/dataset/engine/datasetops/source/sampler/sequential_sampler.h"
@@ -11,9 +13,7 @@
 #include <iomanip>
 #include <set>
 
-namespace mindspore
-{
-namespace dataset
+namespace mindspore::dataset
 {
 const int32_t kMnistImageFileMagicNumber = 2051;
 const int32_t kMnistLabelFileMagicNumber = 2049;
@@ -22,6 +22,9 @@ const int32_t kMnistImageCols = 28;
 
 KungFuDataOp::Builder::Builder() : builder_sampler_(nullptr), builder_usage_("")
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp::Builder:" << ':' << __func__;
+    }
     std::shared_ptr<ConfigManager> cfg = GlobalContext::config_manager();
     builder_num_workers_ = cfg->num_parallel_workers();
     builder_rows_per_buffer_ = cfg->rows_per_buffer();
@@ -30,6 +33,9 @@ KungFuDataOp::Builder::Builder() : builder_sampler_(nullptr), builder_usage_("")
 
 Status KungFuDataOp::Builder::Build(std::shared_ptr<KungFuDataOp> *ptr)
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp::Builder:" << ':' << __func__;
+    }
     RETURN_IF_NOT_OK(SanityCheck());
     if (builder_sampler_ == nullptr) {
         const int64_t num_samples = 0;
@@ -53,6 +59,9 @@ Status KungFuDataOp::Builder::Build(std::shared_ptr<KungFuDataOp> *ptr)
 
 Status KungFuDataOp::Builder::SanityCheck()
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp::Builder:" << ':' << __func__;
+    }
     const std::set<std::string> valid = {"test", "train", "all", ""};
     Path dir(builder_dir_);
     std::string err_msg;
@@ -89,6 +98,9 @@ KungFuDataOp::KungFuDataOp(const std::string &usage, int32_t num_workers,
       rows_per_buffer_(rows_per_buffer),
       data_schema_(std::move(data_schema))
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+    }
     io_block_queues_.Init(num_workers, queue_size);
 }
 
@@ -96,6 +108,10 @@ Status
 KungFuDataOp::TraversalSampleIds(const std::shared_ptr<Tensor> &sample_ids,
                                  std::vector<int64_t> *keys)
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+    }
+
     for (auto itr = sample_ids->begin<int64_t>();
          itr != sample_ids->end<int64_t>(); ++itr) {
         if ((*itr) >= num_rows_)
@@ -115,6 +131,10 @@ KungFuDataOp::TraversalSampleIds(const std::shared_ptr<Tensor> &sample_ids,
 // functor that contains the main logic of MNIST op
 Status KungFuDataOp::operator()()
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+    }
+
     RETURN_IF_NOT_OK(LaunchThreadsAndInitOp());
     std::unique_ptr<DataBuffer> sampler_buffer;
     RETURN_IF_NOT_OK(sampler_->GetNextSample(&sampler_buffer));
@@ -171,6 +191,10 @@ Status KungFuDataOp::operator()()
 // push the buffer to out_connector_
 Status KungFuDataOp::WorkerEntry(int32_t worker_id)
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+    }
+
     TaskManager::FindMe()->Post();
     int64_t buffer_id = worker_id;
     std::unique_ptr<IOBlock> iOBlock;
@@ -213,6 +237,10 @@ Status KungFuDataOp::LoadTensorRow(row_id_type row_id,
                                    const MnistLabelPair &mnist_pair,
                                    TensorRow *trow)
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+    }
+
     std::shared_ptr<Tensor> image, label;
     // make a copy of cached tensor
     RETURN_IF_NOT_OK(Tensor::CreateFromTensor(mnist_pair.first, &image));
@@ -227,6 +255,10 @@ Status KungFuDataOp::LoadTensorRow(row_id_type row_id,
 Status KungFuDataOp::LoadBuffer(const std::vector<int64_t> &keys,
                                 std::unique_ptr<DataBuffer> *db)
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+    }
+
     std::unique_ptr<TensorQTable> deq = std::make_unique<TensorQTable>();
     TensorRow trow;
     for (const int64_t &key : keys) {
@@ -240,6 +272,10 @@ Status KungFuDataOp::LoadBuffer(const std::vector<int64_t> &keys,
 
 void KungFuDataOp::Print(std::ostream &out, bool show_all) const
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+    }
+
     if (!show_all) {
         // Call the super class for displaying any common 1-liner info
         ParallelOp::Print(out, show_all);
@@ -257,6 +293,10 @@ void KungFuDataOp::Print(std::ostream &out, bool show_all) const
 // Reset Sampler and wakeup Master thread (functor)
 Status KungFuDataOp::Reset()
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+    }
+
     MS_LOG(DEBUG) << Name() << " performing a self-reset.";
     RETURN_IF_NOT_OK(sampler_->ResetSampler());
     row_cnt_ = 0;
@@ -267,6 +307,10 @@ Status KungFuDataOp::Reset()
 // get NumRows
 Status KungFuDataOp::InitSampler()
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+    }
+
     RETURN_IF_NOT_OK(sampler_->HandshakeRandomAccessOp(this));
     return Status::OK();
 }
@@ -275,6 +319,10 @@ Status KungFuDataOp::InitSampler()
 Status KungFuDataOp::GetClassIds(
     std::map<int32_t, std::vector<int64_t>> *cls_ids) const
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+    }
+
     if (cls_ids == nullptr || !cls_ids->empty() || image_label_pairs_.empty()) {
         if (image_label_pairs_.empty()) {
             RETURN_STATUS_UNEXPECTED("No image found in dataset, please check "
@@ -297,6 +345,10 @@ Status KungFuDataOp::GetClassIds(
 
 Status KungFuDataOp::ReadFromReader(std::ifstream *reader, uint32_t *result)
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+    }
+
     uint32_t res = 0;
     reader->read(reinterpret_cast<char *>(&res), 4);
     CHECK_FAIL_RETURN_UNEXPECTED(
@@ -315,6 +367,10 @@ Status KungFuDataOp::CheckImage(const std::string &file_name,
                                 std::ifstream *image_reader,
                                 uint32_t *num_images)
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+    }
+
     CHECK_FAIL_RETURN_UNEXPECTED(
         image_reader->is_open(),
         "Invalid file, failed to open mnist image file: " + file_name);
@@ -353,6 +409,10 @@ Status KungFuDataOp::CheckLabel(const std::string &file_name,
                                 std::ifstream *label_reader,
                                 uint32_t *num_labels)
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+    }
+
     CHECK_FAIL_RETURN_UNEXPECTED(
         label_reader->is_open(),
         "Invalid file, failed to open mnist label file: " + file_name);
@@ -378,6 +438,10 @@ Status KungFuDataOp::ReadImageAndLabel(std::ifstream *image_reader,
                                        std::ifstream *label_reader,
                                        size_t index)
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+    }
+
     uint32_t num_images, num_labels;
     RETURN_IF_NOT_OK(
         CheckImage(image_names_[index], image_reader, &num_images));
@@ -425,6 +489,10 @@ Status KungFuDataOp::ReadImageAndLabel(std::ifstream *image_reader,
 
 Status KungFuDataOp::ParseMnistData()
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+    }
+
     // MNIST contains 4 files, idx3 are image files, idx 1 are labels
     // training files contain 60K examples and testing files contain 10K
     // examples t10k-images-idx3-ubyte  t10k-labels-idx1-ubyte
@@ -452,6 +520,10 @@ Status KungFuDataOp::ParseMnistData()
 
 Status KungFuDataOp::WalkAllFiles()
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+    }
+
     const std::string img_ext = "idx3-ubyte";
     const std::string lbl_ext = "idx1-ubyte";
     const std::string train_prefix = "train";
@@ -496,6 +568,10 @@ Status KungFuDataOp::WalkAllFiles()
 
 Status KungFuDataOp::LaunchThreadsAndInitOp()
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+    }
+
     if (tree_ == nullptr) {
         RETURN_STATUS_UNEXPECTED(
             "Pipeline init failed, Execution tree not set.");
@@ -515,6 +591,9 @@ Status KungFuDataOp::LaunchThreadsAndInitOp()
 Status KungFuDataOp::CountTotalRows(const std::string &dir,
                                     const std::string &usage, int64_t *count)
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+    }
     // the logic of counting the number of samples is copied from
     // ParseMnistData() and uses CheckReader()
     std::shared_ptr<KungFuDataOp> op;
@@ -551,12 +630,18 @@ Status KungFuDataOp::CountTotalRows(const std::string &dir,
 // Visitor accept method for NodePass
 Status KungFuDataOp::Accept(NodePass *p, bool *modified)
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+    }
     // Downcast shared pointer then call visitor
     return p->RunOnNode(shared_from_base<KungFuDataOp>(), modified);
 }
 
 Status KungFuDataOp::ComputeColMap()
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+    }
     // set the column name map (base class field)
     if (column_name_id_map_.empty()) {
         for (int32_t i = 0; i < data_schema_->NumColumns(); ++i) {
@@ -567,6 +652,4 @@ Status KungFuDataOp::ComputeColMap()
     }
     return Status::OK();
 }
-
-}  // namespace dataset
-}  // namespace mindspore
+}  // namespace mindspore::dataset

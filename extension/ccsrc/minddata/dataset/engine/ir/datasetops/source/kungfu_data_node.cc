@@ -12,9 +12,7 @@
 #include "minddata/dataset/engine/opt/pass.h"
 #include "minddata/dataset/util/status.h"
 
-namespace mindspore
-{
-namespace dataset
+namespace mindspore::dataset
 {
 Status KungFuMappableSourceNode::Accept(IRNodePass *p, bool *modified)
 {
@@ -132,5 +130,4 @@ Status KungFuDataNode::GetDatasetSize(
     dataset_size_ = *dataset_size;
     return Status::OK();
 }
-}  // namespace dataset
-}  // namespace mindspore
+}  // namespace mindspore::dataset
