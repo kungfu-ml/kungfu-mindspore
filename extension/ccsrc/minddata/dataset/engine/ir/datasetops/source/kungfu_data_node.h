@@ -9,9 +9,43 @@ namespace mindspore
 {
 namespace dataset
 {
+
+// MappableSourceNode represents the leaf nodes that can be randomly accessed
+// with indexes.
+class KungFuMappableSourceNode : public DatasetNode
+{  // forked from MappableSourceNode
+  public:
+    /// \brief Constructor
+    KungFuMappableSourceNode() : DatasetNode()
+    {
+        mappable_ = kMappableSource;
+    }
+
+    /// \brief Constructor that initializes the cache
+    /// \param dataset_cache DatasetCache
+    explicit KungFuMappableSourceNode(
+        const std::shared_ptr<DatasetCache> &dataset_cache)
+        : DatasetNode(dataset_cache)
+    {
+        mappable_ = kMappableSource;
+        // Initially set to false, and set to true by the optimizer when
+        // conditions are met.
+        descendant_of_cache_ = false;
+    }
+
+    Status Accept(IRNodePass *p, bool *modified) override;
+
+    /// \brief Destructor
+    ~KungFuMappableSourceNode() = default;
+
+    /// \brief Node name getter
+    /// \return Name of the current node
+    virtual std::string Name() const = 0;
+};
+
 constexpr char kKungFuDataNode[] = "KungFuDataNode";
 
-class KungFuDataNode : public MappableSourceNode
+class KungFuDataNode : public KungFuMappableSourceNode
 {
   public:
     /// \brief Constructor

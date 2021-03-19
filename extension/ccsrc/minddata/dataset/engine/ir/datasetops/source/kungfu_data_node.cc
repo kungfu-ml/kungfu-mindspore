@@ -7,18 +7,27 @@
 
 #include "backend/kernel_compiler/cpu/kungfu/kungfu_common.h"
 #include "backend/kernel_compiler/cpu/kungfu/kungfu_logger.h"
-#include "minddata/dataset/engine/datasetops/source/mnist_op.h"
+#include "minddata/dataset/engine/datasetops/source/kungfu_data_op.h"
 
+#include "minddata/dataset/engine/opt/pass.h"
 #include "minddata/dataset/util/status.h"
 
 namespace mindspore
 {
 namespace dataset
 {
+Status KungFuMappableSourceNode::Accept(IRNodePass *p, bool *modified)
+{
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuMappableSourceNode:" << ':' << __func__;
+    }
+    return p->Visit(shared_from_base<KungFuMappableSourceNode>(), modified);
+}
+
 KungFuDataNode::KungFuDataNode(std::string dataset_dir, std::string usage,
                                std::shared_ptr<SamplerObj> sampler,
                                std::shared_ptr<DatasetCache> cache)
-    : MappableSourceNode(std::move(cache)),
+    : KungFuMappableSourceNode(std::move(cache)),
       dataset_dir_(dataset_dir),
       usage_(usage),
       sampler_(sampler)
@@ -79,7 +88,7 @@ Status KungFuDataNode::Build(std::vector<std::shared_ptr<DatasetOp>> *node_ops)
                                         TensorImpl::kFlexible, 0, &scalar)));
     RETURN_IF_NOT_OK(AddCacheOp(node_ops));
 
-    node_ops->push_back(std::make_shared<MnistOp>(
+    node_ops->push_back(std::make_shared<KungFuDataOp>(
         usage_, num_workers_, rows_per_buffer_, dataset_dir_,
         connector_que_size_, std::move(schema), std::move(sampler_->Build())));
 
@@ -104,7 +113,7 @@ Status KungFuDataNode::GetShardId(int32_t *shard_id)
 
 // Get Dataset size
 Status KungFuDataNode::GetDatasetSize(
-    const std::shared_ptr<DatasetSizeGetter> &size_getter, bool estimate,
+    const std::shared_ptr<DatasetSizeGetter> &size_getter, bool _estimate,
     int64_t *dataset_size)
 {
     if (_show_kungfu_debug_log) {
@@ -116,7 +125,8 @@ Status KungFuDataNode::GetDatasetSize(
         return Status::OK();
     }
     int64_t num_rows, sample_size;
-    RETURN_IF_NOT_OK(MnistOp::CountTotalRows(dataset_dir_, usage_, &num_rows));
+    RETURN_IF_NOT_OK(
+        KungFuDataOp::CountTotalRows(dataset_dir_, usage_, &num_rows));
     sample_size = sampler_->Build()->CalculateNumSamples(num_rows);
     *dataset_size = sample_size;
     dataset_size_ = *dataset_size;
