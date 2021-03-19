@@ -34,6 +34,7 @@ class ElasticMnist(de.MappableDataset):
         else:
             cc = None
 
+        print('!!!! creating KungFuDataNode')
         return cde.KungFuDataNode(
             self.dataset_dir,
             self.usage,
@@ -71,3 +72,8 @@ def create_elastic_mnist(data_path, batch_size):
     ds = ElasticMnist(dataset_dir=data_path)
     ds = ds.batch(batch_size)
     return ds
+
+
+class Cursor:
+    def __init__(self, length):
+        self._length = length

@@ -40,15 +40,17 @@ def numpy_ds_example():
     features, labels = np.random.sample((4, 2)), np.random.sample((4, 1))
 
     data = (features, labels)
-    dataset = ds.NumpySlicesDataset(data,
-                                    column_names=["col1", "col2"],
-                                    shuffle=False)
+    dataset = ds.NumpySlicesDataset(
+        data,
+        column_names=["col1", "col2"],
+        shuffle=False,
+    )
 
     for data in dataset:
         print(data[0], data[1])
 
 
-def cifar10_example():
+def cifar10_example(args):
     data_dir = os.path.join(args.data_path, 'cifar10', 'train')
     print(data_dir)
     dataset = create_dataset(
@@ -62,11 +64,11 @@ def cifar10_example():
     print('step_size: %d' % (step_size))
 
 
-def elastic_example():
+def elastic_example(args):
     data_dir = os.path.join(args.data_path, 'mnist', 'train')
     dataset = create_elastic_mnist(
         data_path=data_dir,
-        batch_size=1000,
+        batch_size=args.batch_size,
     )
     total = dataset.get_dataset_size()
 
@@ -84,11 +86,11 @@ def main(args):
         save_graphs=False,
     )
 
-    numpy_ds_example()
-    cifar10_example()
-    elastic_example()
+    # numpy_ds_example()
+    # cifar10_example()
+    elastic_example(args)
 
-    train(args)
+    # train(args)
 
 
 if __name__ == '__main__':

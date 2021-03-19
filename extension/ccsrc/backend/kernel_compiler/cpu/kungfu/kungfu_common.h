@@ -9,6 +9,7 @@
 #include "backend/kernel_compiler/cpu/kungfu/kungfu_profiler.h"
 
 extern std::unique_ptr<kungfu::Peer> _kungfu_peer;
+
 extern bool _show_kungfu_debug_log;
 
 inline void log_func_call(const char *name)
@@ -22,7 +23,6 @@ namespace mindspore
 {
 namespace kernel
 {
-
 void LOG_InitKernel(const std::string &kernel_name);
 
 void LOG_Kernel_Launch(const std::string &kernel_name,
