@@ -19,6 +19,7 @@ def parse_args():
                    choices=['Ascend', 'GPU', 'CPU'])
     p.add_argument('--data-path', type=str, default=None)
     p.add_argument('--batch-size', type=int, default=100)
+    p.add_argument('--max-step', type=int, default=100)
     return p.parse_args()
 
 
@@ -33,12 +34,17 @@ def elastic_example(args):
         batch_size=args.batch_size,
     )
     total = dataset.get_dataset_size()
-    print('total: %d' % (total))
+    print('total steps: %d when using batch size: %d' % (
+        total,
+        args.batch_size,
+    ))
+
+    total_step = total / args.batch_size
 
     with kfops.KungFuContext(device=args.device):
         it = enumerate(dataset)
 
-        for i in range(6):
+        for i in range(min(args.max_step, total_step)):
             idx, (x, y) = next(it)
             print('%d/%d %s%s %s%s' %
                   (idx, total, x.dtype, x.shape, y.dtype, y.shape))

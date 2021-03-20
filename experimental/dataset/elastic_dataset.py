@@ -16,6 +16,10 @@ class ElasticMnist(de.MappableDataset):
                  num_shards=None,
                  shard_id=None,
                  cache=None):
+
+        if num_parallel_workers is None:
+            num_parallel_workers = 1
+        assert num_parallel_workers == 1
         super().__init__(num_parallel_workers=num_parallel_workers)
 
         self.dataset_dir = dataset_dir
@@ -35,12 +39,15 @@ class ElasticMnist(de.MappableDataset):
             cc = None
 
         print('!!!! creating KungFuDataNode')
-        return cde.KungFuDataNode(
+        node = cde.KungFuDataNode(
             self.dataset_dir,
             self.usage,
             self.sampler,
             cc,
-        ).SetNumWorkers(self.num_parallel_workers)
+        )
+        print('self.num_parallel_workers: %s' % (self.num_parallel_workers))
+        node.SetNumWorkers(self.num_parallel_workers)
+        return node
 
     # def get_args(self):
     #     args = super().get_args()
@@ -69,7 +76,10 @@ class ElasticMnist(de.MappableDataset):
 
 
 def create_elastic_mnist(data_path, batch_size):
-    ds = ElasticMnist(dataset_dir=data_path)
+    ds = ElasticMnist(
+        dataset_dir=data_path,
+        shuffle=False,
+    )
     ds = ds.batch(batch_size)
     return ds
 

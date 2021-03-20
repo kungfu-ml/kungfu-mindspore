@@ -29,6 +29,14 @@ KungFuDataOp::Builder::Builder() : builder_sampler_(nullptr), builder_usage_("")
     builder_num_workers_ = cfg->num_parallel_workers();
     builder_rows_per_buffer_ = cfg->rows_per_buffer();
     builder_op_connector_size_ = cfg->op_connector_size();
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp::Builder:" << ':' << __func__
+                 << "builder_num_workers_:" << builder_num_workers_;
+        KF_LOG() << "KungFuDataOp::Builder:" << ':' << __func__
+                 << "builder_rows_per_buffer_:" << builder_rows_per_buffer_;
+        KF_LOG() << "KungFuDataOp::Builder:" << ':' << __func__
+                 << "builder_op_connector_size_:" << builder_op_connector_size_;
+    }
 }
 
 Status KungFuDataOp::Builder::Build(std::shared_ptr<KungFuDataOp> *ptr)
@@ -238,7 +246,8 @@ Status KungFuDataOp::LoadTensorRow(row_id_type row_id,
                                    TensorRow *trow)
 {
     if (_show_kungfu_debug_log) {
-        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__ << "with row_id"
+                 << row_id;
     }
 
     std::shared_ptr<Tensor> image, label;
@@ -256,7 +265,8 @@ Status KungFuDataOp::LoadBuffer(const std::vector<int64_t> &keys,
                                 std::unique_ptr<DataBuffer> *db)
 {
     if (_show_kungfu_debug_log) {
-        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__ << "with " << keys.size()
+                 << "keys:" << '?';
     }
 
     std::unique_ptr<TensorQTable> deq = std::make_unique<TensorQTable>();
@@ -402,6 +412,10 @@ Status KungFuDataOp::CheckImage(const std::string &file_name,
                                      ", which is not equal to real data len: " +
                                      std::to_string(num_items * rows * cols));
     *num_images = num_items;
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__
+                 << "num_images:" << *num_images;
+    }
     return Status::OK();
 }
 
@@ -439,7 +453,7 @@ Status KungFuDataOp::ReadImageAndLabel(std::ifstream *image_reader,
                                        size_t index)
 {
     if (_show_kungfu_debug_log) {
-        KF_LOG() << "KungFuDataOp:" << ':' << __func__;
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__ << "index:" << index;
     }
 
     uint32_t num_images, num_labels;

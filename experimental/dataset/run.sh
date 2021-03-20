@@ -9,8 +9,10 @@ app_flags() {
     echo --device GPU
     echo --data-path $HOME/var/data/mindspore
 
-    echo --batch-size 10000
+    echo --batch-size 8
     # echo --batch-size 32
+
+    echo --max-step 3
 }
 
 main() {
@@ -22,7 +24,8 @@ main() {
     # srun ./dataset-example.py $(app_flags)
 
     # erun 1 ./dataset-example.py $(app_flags)
-    erun 2 ./elastic-main.py $(app_flags)
+    erun 1 ./elastic-main.py $(app_flags)
+    # erun 2 ./elastic-main.py $(app_flags)
 }
 
 main

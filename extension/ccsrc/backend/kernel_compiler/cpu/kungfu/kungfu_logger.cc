@@ -4,7 +4,7 @@ namespace kungfu
 {
 std::mutex logger::mu_;
 
-bool logger::show_thread_id = false;
+bool logger::show_thread_id = true;
 
 std::set<log_once::ukey> log_once::sites_;
 
