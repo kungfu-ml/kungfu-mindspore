@@ -26,7 +26,7 @@ cd $(dirname $0)
 ### experimental
 #
 # ./experimental/elastic/run.sh
-./experimental/dataset/run.sh
+# ./experimental/dataset/run.sh
 # ./experimental/mnist/run.sh
 # ./experimental/mnist/run_elastic.sh
 
@@ -44,7 +44,7 @@ cd $(dirname $0)
 
 #############
 ### baseline experiments
-# replicate 1 ./experimental/cifar10_lenet_baseline/run.sh
+replicate 1 ./experimental/cifar10_lenet_baseline/run.sh
 
 #############
 ### official examples

@@ -52,6 +52,7 @@ def parse_args():
     p.add_argument('--momentum', type=float, default=0.9)
 
     # debug options
+    p.add_argument('--log-tensor', action='store_true', default=False)
     p.add_argument('--log-step', action='store_true', default=False)
     p.add_argument('--log-loss', action='store_true', default=False)
     p.add_argument('--stop-logical-step', type=int, default=0)
@@ -89,7 +90,7 @@ def build_optimizer(args, net):
     use_sgd = False
 
     if args.optimizer == 'sgd':
-        opt = ms.nn.optim.kungfu.KungFuSGDSGD(
+        opt = ms.nn.optim.kungfu.KungFuSGD(
             [x for x in net.get_parameters() if x.requires_grad],
             args.learning_rate,
         )
@@ -144,11 +145,13 @@ def run(args):
         num_class=10,
         num_channel=3,
         use_bn=args.use_bn,
-        dbg_log_tensor=True,
+        dbg_log_tensor=args.log_tensor,
     )
 
-    loss = ms.nn.loss.SoftmaxCrossEntropyWithLogits(sparse=True,
-                                                    reduction='mean')
+    loss = ms.nn.loss.SoftmaxCrossEntropyWithLogits(
+        sparse=True,
+        reduction='mean',
+    )
     opt = build_optimizer(args, net)
 
     if args.mode == 'init':

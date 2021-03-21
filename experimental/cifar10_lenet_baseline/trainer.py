@@ -4,6 +4,7 @@ import time
 import mindspore as ms
 import mindspore.ops.operations.kungfu_comm_ops as kfops
 from mindspore_kungfu_debug import (LogStepHook, load_ckpt, KungFuModel)
+from mindspore.train.loss_scale_manager import FixedLossScaleManager
 
 
 def get_ckpt_dir(args):
@@ -49,11 +50,15 @@ def build_callbacks(args):
 
 
 def train(args, net, loss, opt, dataset):
+    loss_scale = FixedLossScaleManager(
+        loss_scale=1,
+        drop_overflow_update=False,
+    )
     model = KungFuModel(
         net,
         loss_fn=loss,
         optimizer=opt,
-        # loss_scale_manager=loss_scale,
+        loss_scale_manager=loss_scale,
         metrics={'acc'},
         amp_level="O2",
         keep_batchnorm_fp32=False,

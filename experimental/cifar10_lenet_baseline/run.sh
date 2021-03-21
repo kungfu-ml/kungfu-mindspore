@@ -80,13 +80,14 @@ comma_join() {
 }
 
 cleanup() {
-    rm -fr logs
-    rm -fr cuda_meta_*
-    rm -fr analyze_fail.dat
     rm -fr *.ckpt
+    rm -fr *.data
     rm -fr *.meta
-    rm -fr checkpoint
+    rm -fr analyze_fail.dat
     rm -fr batch-*.npz
+    rm -fr checkpoint
+    rm -fr cuda_meta_*
+    rm -fr logs
 }
 
 run_init() {
