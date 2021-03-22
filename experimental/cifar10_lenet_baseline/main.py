@@ -11,6 +11,7 @@ from mindspore_kungfu_debug import (CumulativeMomentumOptimizer,
 from mindspore_kungfu_debug.cifar10_lenet import LeNet5
 from mindspore_kungfu_debug.kungfu_model import get_ckpt_dir
 from trainer import load_ckpt, test, train
+import mindspore.ops.operations.kungfu_comm_ops as kfops
 
 from dataset import create_dataset as create_dataset
 
@@ -85,7 +86,9 @@ def build_optimizer(args, net):
         raise RuntimeError(msg)
 
     apply_period = args.logical_batch_size / args.device_batch_size
-    assert apply_period == 1
+    if args.use_kungfu:
+        size = kfops.kungfu_current_cluster_size()
+        assert apply_period == size
 
     use_sgd = False
 
@@ -94,40 +97,12 @@ def build_optimizer(args, net):
             [x for x in net.get_parameters() if x.requires_grad],
             args.learning_rate,
         )
-        # if apply_period == 1:
-        #     print('using SGD')
-        #     opt = ms.nn.SGD(
-        #         [x for x in net.get_parameters() if x.requires_grad],
-        #         args.learning_rate,
-        #     )
-        # else:
-        #     print('using CumulativeSGDOptimizer')
-        #     opt = CumulativeSGDOptimizer(
-        #         [x for x in net.get_parameters() if x.requires_grad],
-        #         args.learning_rate,
-        #         apply_period=apply_period,
-        #     )
     elif args.optimizer == 'momentum':
         opt = ms.nn.optim.kungfu.KungFuMomentum(
             [x for x in net.get_parameters() if x.requires_grad],
             args.learning_rate,
             args.momentum,
         )
-        # if apply_period == 1:
-        #     print('using Momentum')
-        #     opt = ms.nn.Momentum(
-        #         [x for x in net.get_parameters() if x.requires_grad],
-        #         args.learning_rate,
-        #         args.momentum,
-        #     )
-        # else:
-        #     print('using CumulativeMomentumOptimizer')
-        #     opt = CumulativeMomentumOptimizer(
-        #         [x for x in net.get_parameters() if x.requires_grad],
-        #         args.learning_rate,
-        #         args.momentum,
-        #         apply_period=apply_period,
-        #     )
     else:
         msg = 'invalid optimizer: %s' % (args.optimizer)
         raise RuntimeError(msg)
@@ -172,6 +147,10 @@ def run(args):
         train(args, net, loss, opt, ds_train)
 
     if args.mode == 'test':
+        if args.use_kungfu:
+            rank = kfops.kungfu_current_rank()
+            if rank > 0:
+                return
         ds_test = create_dataset(
             args=args,
             data_path=os.path.join(args.data_path, 'test'),

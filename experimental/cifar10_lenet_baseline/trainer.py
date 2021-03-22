@@ -81,7 +81,8 @@ def test_checkpoint(net, model, ds_test, ckpt_name):
 
 def parse_logical_step(ckpt_name):
     # ckpt_name = 'x/x/x/mnist-slp-000000.npz'
-    return int(ckpt_name.split('/')[-1].split('.')[-2].split('-')[-1])
+    # ckpt_name = 'x/x/cifar10-lenet-1_xxx.ckpt'
+    return int(ckpt_name.split('_')[-1].split('.')[0])
 
 
 def get_eval_result_filename(args):
@@ -124,7 +125,7 @@ def test(args, net, loss, opt, dataset, checkpoints):
     filename = get_eval_result_filename(args)
 
     with open(filename, 'w') as f:
-        for step, result in results:
+        for step, result in sorted(results):
             acc = result[metrics[0]]
             msg = '%d %s' % (step, acc)
             f.write(msg + '\n')

@@ -85,7 +85,7 @@ cleanup() {
     rm -fr *.meta
     rm -fr analyze_fail.dat
     rm -fr batch-*.npz
-    rm -fr checkpoint
+    # rm -fr checkpoint
     rm -fr cuda_meta_*
     rm -fr logs
 }
@@ -104,7 +104,7 @@ run_train() {
     # srun ./main.py $(train_flags)
 
     # prun $NP ./main.py $(train_flags) --use-kungfu
-    prun 1 ./main.py $(train_flags) --use-kungfu
+    # prun 1 ./main.py $(train_flags) --use-kungfu
     # prun 2 ./main.py $(train_flags) --use-kungfu
     # prun 3 ./main.py $(train_flags) --use-kungfu
     # prun 4 ./main.py $(train_flags) --use-kungfu
@@ -114,7 +114,10 @@ run_test() {
     # checkpoints_files=$(comma_join $(ls checkpoint/*.ckpt))
     # srun ./main.py $(test_flags)  --ckpt-files $checkpoints_files
 
-    prun $NP ./main.py $(test_flags) --use-kungfu
+    # prun $NP ./main.py $(test_flags) --use-kungfu
+    prun 1 ./main.py $(test_flags) --use-kungfu
+    # prun 4 ./main.py $(test_flags) --use-kungfu
+    true
 }
 
 summary() {
@@ -124,9 +127,9 @@ summary() {
 }
 
 main() {
-    cleanup
-    run_train
-    # run_test
+    # cleanup
+    # run_train
+    run_test
     # summary
 }
 

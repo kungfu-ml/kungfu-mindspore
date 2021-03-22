@@ -1,0 +1,20 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{pgfplots}
+
+\input plot-template
+% \title{Untitled}
+
+\begin{document}
+
+\begin{frame}
+    \begin{figure}
+        \simpleplot{acc}{
+            \myaddplot{blue}{triangle}{worker.0.lbs-200+dbs-50-1616409169.txt}
+            \myaddplot{red}{square}{worker.0.lbs-200+dbs-200-1616409198.txt}
+        }
+    \end{figure}
+\end{frame}
+
+\end{document}
