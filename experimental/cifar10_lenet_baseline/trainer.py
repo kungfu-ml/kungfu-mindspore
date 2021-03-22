@@ -10,7 +10,7 @@ from mindspore.train.loss_scale_manager import FixedLossScaleManager
 
 def build_ckpt_callback(prefix, directory):
     config_ck = ms.train.callback.CheckpointConfig(
-        save_checkpoint_steps=100,
+        save_checkpoint_steps=10,
         keep_checkpoint_max=100,
     )
     cb = ms.train.callback.ModelCheckpoint(
@@ -47,7 +47,8 @@ def train(args, net, loss, opt, dataset):
         loss_scale=1,
         drop_overflow_update=False,
     )
-    model = KungFuModel(
+    # model = KungFuModel(
+    model = ms.train.model.Model(
         net,
         loss_fn=loss,
         optimizer=opt,
@@ -57,7 +58,7 @@ def train(args, net, loss, opt, dataset):
         keep_batchnorm_fp32=False,
     )
     model.train(
-        args,
+        # args,
         epoch=args.epochs,
         train_dataset=dataset,
         callbacks=build_callbacks(args),

@@ -1,4 +1,0 @@
-0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-000000.npz
-c913679d4e1106b7edae5f91a7d1eb67  cifar10-lenet-000050.ckpt
-9e6c1c268c62f894e27a4f69ef50f909  cifar10-lenet-000050.npz
-0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-device-000000+200.npz

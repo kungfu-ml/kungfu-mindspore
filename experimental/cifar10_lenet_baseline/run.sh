@@ -105,9 +105,9 @@ run_train() {
 
     # prun $NP ./main.py $(train_flags) --use-kungfu
     prun 1 ./main.py $(train_flags) --use-kungfu
-    prun 2 ./main.py $(train_flags) --use-kungfu
-    prun 3 ./main.py $(train_flags) --use-kungfu
-    prun 4 ./main.py $(train_flags) --use-kungfu
+    # prun 2 ./main.py $(train_flags) --use-kungfu
+    # prun 3 ./main.py $(train_flags) --use-kungfu
+    # prun 4 ./main.py $(train_flags) --use-kungfu
 }
 
 run_test() {
