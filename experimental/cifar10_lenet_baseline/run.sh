@@ -30,7 +30,7 @@ config_flags() {
 
 hyper_parameters() {
     echo --logical-batch-size 200
-    echo --epochs 1
+    echo --epochs 10
 
     # echo --optimizer sgd
     echo --optimizer momentum
@@ -41,7 +41,7 @@ hyper_parameters() {
     # echo --ckpt-period 50
     # echo --ckpt-period 1 # for debug
 
-    echo --use-bn
+    # echo --use-bn
 }
 
 init_flags() {
@@ -104,7 +104,7 @@ run_train() {
     # srun ./main.py $(train_flags)
 
     # prun $NP ./main.py $(train_flags) --use-kungfu
-    # prun 1 ./main.py $(train_flags) --use-kungfu
+    prun 1 ./main.py $(train_flags) --use-kungfu
     # prun 2 ./main.py $(train_flags) --use-kungfu
     # prun 3 ./main.py $(train_flags) --use-kungfu
     # prun 4 ./main.py $(train_flags) --use-kungfu
@@ -128,7 +128,7 @@ summary() {
 
 main() {
     # cleanup
-    # run_train
+    run_train
     run_test
     # summary
 }

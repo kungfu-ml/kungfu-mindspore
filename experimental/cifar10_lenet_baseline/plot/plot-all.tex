@@ -10,9 +10,21 @@
 
 \begin{frame}
     \begin{figure}
-        \simpleplot{acc}{
+        \simpleplot{acc (with BN)}{
             \myaddplot{blue}{triangle}{worker.0.lbs-200+dbs-50-1616409169.txt}
             \myaddplot{red}{square}{worker.0.lbs-200+dbs-200-1616409198.txt}
+        }{
+            4x50,
+            1x200,
+        }
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \begin{figure}
+        \simpleplot{acc (without BN)}{
+            \myaddplot{blue}{triangle}{worker.0.lbs-200+dbs-50-1616448644.txt.parsed.txt}
+            \myaddplot{red}{square}{worker.0.lbs-200+dbs-200-1616448809.txt.parsed.txt}
         }{
             4x50,
             1x200,

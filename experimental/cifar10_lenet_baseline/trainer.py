@@ -11,7 +11,7 @@ from mindspore.train.loss_scale_manager import FixedLossScaleManager
 def build_ckpt_callback(prefix, directory):
     config_ck = ms.train.callback.CheckpointConfig(
         save_checkpoint_steps=10,
-        keep_checkpoint_max=100,
+        keep_checkpoint_max=1000,
     )
     cb = ms.train.callback.ModelCheckpoint(
         prefix=prefix,
@@ -81,8 +81,11 @@ def test_checkpoint(net, model, ds_test, ckpt_name):
 
 def parse_logical_step(ckpt_name):
     # ckpt_name = 'x/x/x/mnist-slp-000000.npz'
-    # ckpt_name = 'x/x/cifar10-lenet-1_xxx.ckpt'
-    return int(ckpt_name.split('_')[-1].split('.')[0])
+    # ckpt_name = 'x/x/cifar10-lenet-<epoch>_<step>.ckpt'
+    s = ckpt_name.split('-')[-1]
+    s = s.split('.')[0]
+    p = s.split('_')
+    return int(p[0]), int(p[1])
 
 
 def get_eval_result_filename(args):
@@ -116,18 +119,18 @@ def test(args, net, loss, opt, dataset, checkpoints):
 
     results = []
     for ckpt_name in checkpoints:
-        logical_step = parse_logical_step(ckpt_name)
+        epoch, step = parse_logical_step(ckpt_name)
         result = test_checkpoint(net, model, dataset, ckpt_name)
-        results.append((logical_step, result))
+        results.append((epoch, step, result))
         msg = "%s, %s: %s" % (ckpt_name, metrics[0], result[metrics[0]])
         print(msg)
 
     filename = get_eval_result_filename(args)
 
     with open(filename, 'w') as f:
-        for step, result in sorted(results):
+        for epoch, step, result in sorted(results):
             acc = result[metrics[0]]
-            msg = '%d %s' % (step, acc)
+            msg = '%d %d %s' % (epoch, step, acc)
             f.write(msg + '\n')
 
     print('%d points saved to %s' % (len(results), filename))
