@@ -95,7 +95,7 @@ run_init() {
     srun ./main.py $(init_flags)
 }
 
-NP=4
+NP=1
 
 run_train() {
     mkdir -p checkpoint
@@ -103,7 +103,11 @@ run_train() {
 
     # srun ./main.py $(train_flags)
 
-    prun $NP ./main.py $(train_flags) --use-kungfu
+    # prun $NP ./main.py $(train_flags) --use-kungfu
+    prun 1 ./main.py $(train_flags) --use-kungfu
+    prun 2 ./main.py $(train_flags) --use-kungfu
+    prun 3 ./main.py $(train_flags) --use-kungfu
+    prun 4 ./main.py $(train_flags) --use-kungfu
 }
 
 run_test() {

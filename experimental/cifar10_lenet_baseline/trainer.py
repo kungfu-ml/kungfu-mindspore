@@ -3,16 +3,9 @@ import time
 
 import mindspore as ms
 import mindspore.ops.operations.kungfu_comm_ops as kfops
-from mindspore_kungfu_debug import (LogStepHook, load_ckpt, KungFuModel)
+from mindspore_kungfu_debug import (LogStepHook, load_ckpt, get_ckpt_dir,
+                                    KungFuModel)
 from mindspore.train.loss_scale_manager import FixedLossScaleManager
-
-
-def get_ckpt_dir(args):
-    directory = args.ckpt_dir
-    if args.use_kungfu:
-        rank = kfops.kungfu_current_rank()
-        directory = os.path.join(directory, '%d' % (rank))
-    return directory
 
 
 def build_ckpt_callback(prefix, directory):

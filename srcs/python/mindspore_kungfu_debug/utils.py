@@ -31,6 +31,7 @@ def log_duration(f, *args, **kwargs):
 
 
 def save_npz(net, filename):
+    # print('save_npz::%s' % (filename))
     values = dict()
     for p in net.get_parameters():
         name = p.name

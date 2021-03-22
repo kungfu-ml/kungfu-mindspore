@@ -166,7 +166,6 @@ def run(args):
             data_path=os.path.join(args.data_path, 'train'),
             batch_size=args.device_batch_size,
         )
-
         if args.init_ckpt:
             print('using init checkpoint %s' % (args.init_ckpt))
             load_ckpt(net, args.init_ckpt)
@@ -193,7 +192,7 @@ def run(args):
 
 def main():
     args = parse_args()
-    log_args(args)
+    # log_args(args)
     if args.use_kungfu:
         with kfops.KungFuContext(device=args.device):
             log_duration(run, args)
@@ -201,7 +200,7 @@ def main():
         # log_duration(run, args)
         run(args)
 
-    log_args(args)
+    # log_args(args)
 
 
 # ke.info()

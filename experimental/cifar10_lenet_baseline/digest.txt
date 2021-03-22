@@ -1,0 +1,72 @@
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-000000.npz
+22102a5bd56397f41e298319bed0c1a7  cifar10-lenet-000050.ckpt
+a520debfd5ab948ffcb892937b33f643  cifar10-lenet-000050.npz
+906f859eb3112f43956baf406d6f07a4  cifar10-lenet-000100.ckpt
+35e2cd7eaf9b6806067d90b5d0a46f71  cifar10-lenet-000100.npz
+7197be8e048d11ef9a26369e2b3d51ff  cifar10-lenet-000150.ckpt
+ff549518636d6c90b683c2bbc982e46c  cifar10-lenet-000150.npz
+c1461a95220d4a3f0c3032b072bd6315  cifar10-lenet-000200.ckpt
+3c3b4b2048a8b99dda7fbf7d5416bb6a  cifar10-lenet-000200.npz
+23502e39f2ea3140df33d47b6af77795  cifar10-lenet-000250.ckpt
+6a9cfd81b2429514fb13f5becb2fbb09  cifar10-lenet-000250.npz
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-device-000000+200.npz
+/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_lenet_baseline
+
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-000000.npz
+5ea774ee5644a6a9c132133d33a53382  cifar10-lenet-000050.ckpt
+a569bb5680d388d0b363d235b57d1778  cifar10-lenet-000050.npz
+9f6af983f05206445ad00eb1c8df3837  cifar10-lenet-000100.ckpt
+180dab71e3eb7c87b375d1fea5b934cc  cifar10-lenet-000100.npz
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-device-000000+200.npz
+/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_lenet_baseline
+
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-000000.npz
+60875d7e19890b6cb935670d9681d330  cifar10-lenet-000050.ckpt
+9159001bb1470d06ba9204fb06b217a5  cifar10-lenet-000050.npz
+c2bdbb9057e997e8a828a450cff6786d  cifar10-lenet-000100.ckpt
+aad82827068c36b470b1ce7f17e4322b  cifar10-lenet-000100.npz
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-device-000000+200.npz
+/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_lenet_baseline
+
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-000000.npz
+8e19893db4a183056ac66e10f198c817  cifar10-lenet-000050.ckpt
+b73fdd6f3b170bcb9970128d04438cc4  cifar10-lenet-000050.npz
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-device-000000+200.npz
+/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_lenet_baseline
+
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-000000.npz
+118412d595f32e9aee0d2c9ee6ab58fc  cifar10-lenet-000050.ckpt
+c93554310bd0a4233845d117f7761491  cifar10-lenet-000050.npz
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-device-000000+200.npz
+/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_lenet_baseline
+
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-000000.npz
+752b7d34d3b2f199cee84ddd4682d094  cifar10-lenet-000050.ckpt
+79821a1af91c93ec93c2d88b50b1edfd  cifar10-lenet-000050.npz
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-device-000000+200.npz
+/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_lenet_baseline
+
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-000000.npz
+2375be3db0ee53e3c6b3df54a375f57c  cifar10-lenet-000050.ckpt
+005994da251ea76629275b89780342a8  cifar10-lenet-000050.npz
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-device-000000+200.npz
+/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_lenet_baseline
+
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-000000.npz
+6915dd8a84567d28a0332261a1842be7  cifar10-lenet-000050.ckpt
+048f2bc53ed619076f779124d67b781a  cifar10-lenet-000050.npz
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-device-000000+200.npz
+/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_lenet_baseline
+
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-000000.npz
+9eaed2b9eb12b8f07f796dc6a065b04a  cifar10-lenet-000050.ckpt
+46516e03af90b37224852dc8897f99bf  cifar10-lenet-000050.npz
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-device-000000+200.npz
+/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_lenet_baseline
+
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-000000.npz
+c913679d4e1106b7edae5f91a7d1eb67  cifar10-lenet-000050.ckpt
+9e6c1c268c62f894e27a4f69ef50f909  cifar10-lenet-000050.npz
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-device-000000+200.npz
+/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_lenet_baseline
+

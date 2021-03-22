@@ -13,8 +13,9 @@ from .utils import save_npz, save_npz_per_weight
 def get_ckpt_dir(args):
     directory = args.ckpt_dir
     if args.use_kungfu:
+        size = kfops.kungfu_current_cluster_size()
         rank = kfops.kungfu_current_rank()
-        directory = os.path.join(directory, '%d' % (rank))
+        directory = os.path.join(directory, '%d-%d' % (size, rank))
     return directory
 
 
@@ -67,7 +68,9 @@ class KungFuModel(ms.train.model.Model):  # replace ms.train.model.Model
             epoch_num=epoch,
         )
 
+        print('will save1')
         save_npz(net, get_ckpt_file_name(args, 0, 'npz'))
+        print('will save1')
         save_npz(net, get_ckpt_file_name_2(args, 0, 'npz'))
         # save_npz_per_weight(net,
         #                     lambda name: get_ckpt_file_name_3(args, 0, name))
@@ -89,7 +92,7 @@ class KungFuModel(ms.train.model.Model):  # replace ms.train.model.Model
                 # log_tensor  ->  forward  ->  backward  ->  *sync grads*  ->  apply grads
                 train_net(*batch)
                 print('} // train_net(*batch) [%d]' % (idx), file=sys.stderr)
-                print('\n\n', file=sys.stderr)
+                # print('\n\n', file=sys.stderr)
 
                 # save_npz(net, get_ckpt_file_name_2(args, device_step, 'npz'))
 
