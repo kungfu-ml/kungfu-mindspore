@@ -5,7 +5,7 @@
     ] table {#3};
 }
 
-\def\simpleplot#1#2{
+\def\simpleplot#1#2#3{
     \begin{tikzpicture}
         \begin{axis}[
             title={#1},
@@ -28,9 +28,8 @@
             ]
 
             {#2}
-
             \legend{
-                % dev-bs=200 = 1 logical-bs,
+                {#3}
             }
         \end{axis}
     \end{tikzpicture}
