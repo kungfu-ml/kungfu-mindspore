@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+
+import sys
+import numpy as np
+from hashlib import sha1
+
+
+def main(args):
+    for filename in args:
+        print('%s' % (filename))
+        a = np.load(filename)
+        w = max(len(k) for k in a)
+        for k in a:
+            v = a[k]
+            h = sha1(v.tobytes()).hexdigest()
+            print('%-*s :: %s %s %s' % (w, k, h, v.dtype, v.shape))
+        print()
+
+
+main(sys.argv[1:])

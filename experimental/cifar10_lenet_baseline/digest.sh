@@ -1,11 +1,19 @@
 #!/bin/sh
 set -e
 
+cd $(dirname $0)
+W=$PWD
+
+read_npz=$W/../../scripts/read-npz
+
 d() {
     cd $1
-    md5sum *
+    md5sum * >md5.txt
+    $read_npz *.npz >digest.txt
     cd -
-    echo
+    # echo
+    # echo
+    # echo
 }
 
 digest_all() {
@@ -24,4 +32,5 @@ digest_all() {
     d checkpoint/4-3
 }
 
-digest_all >digest.txt
+digest_all
+# >digest.txt
