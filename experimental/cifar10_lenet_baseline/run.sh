@@ -12,7 +12,7 @@ INIT_CKPT_WITH_BN2=1615550013
 
 hardware_flags() {
     echo --device GPU
-    echo --device-batch-size 200
+    echo --device-batch-size 50
     # echo --device-batch-size 100
     # echo --device-batch-size 50
 }
@@ -41,7 +41,7 @@ hyper_parameters() {
     # echo --ckpt-period 50
     # echo --ckpt-period 1 # for debug
 
-    # echo --use-bn
+    echo --use-bn
 }
 
 init_flags() {
@@ -104,10 +104,10 @@ run_train() {
     # srun ./main.py $(train_flags)
 
     # prun $NP ./main.py $(train_flags) --use-kungfu
-    prun 1 ./main.py $(train_flags) --use-kungfu
+    # prun 1 ./main.py $(train_flags) --use-kungfu
     # prun 2 ./main.py $(train_flags) --use-kungfu
     # prun 3 ./main.py $(train_flags) --use-kungfu
-    # prun 4 ./main.py $(train_flags) --use-kungfu
+    prun 4 ./main.py $(train_flags) --use-kungfu
 }
 
 run_test() {
@@ -115,8 +115,8 @@ run_test() {
     # srun ./main.py $(test_flags)  --ckpt-files $checkpoints_files
 
     # prun $NP ./main.py $(test_flags) --use-kungfu
-    prun 1 ./main.py $(test_flags) --use-kungfu
-    # prun 4 ./main.py $(test_flags) --use-kungfu
+    # prun 1 ./main.py $(test_flags) --use-kungfu
+    prun 4 ./main.py $(test_flags) --use-kungfu
     true
 }
 
