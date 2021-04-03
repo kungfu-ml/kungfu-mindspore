@@ -1,3 +1,4 @@
+python:
 mindspore.dataset.engine as de
      NumpySlicesDataset < GeneratorDataset < MappableDataset
 
@@ -5,12 +6,40 @@ mindspore.dataset.engine as de
 
                                                RandomDataset < SourceDataset
 
+                                                                BatchDataset < Dataset
+
 import mindspore._c_dataengine as cde
 
 ImportError: /home/lg/.local/lib/python3.7/site-packages/mindspore/_c_dataengine.cpython-37m-x86_64-linux-gnu.so: undefined symbol: _ZTVN9mindspore7dataset14KungFuDataNodeE
 
 echo _ZTVN9mindspore7dataset14KungFuDataNodeE | c++filt
 vtable for mindspore::dataset::KungFuDataNode
+
+
+
+class Dataset;
+class DatasetNode;
+
+
+c++
+class KungFuMappableSourceNode : public DatasetNode
+
+class KungFuDataNode : public KungFuMappableSourceNode
+
+KungFuDataNode < KungFuMappableSourceNode < DatasetNode
+
+class DatasetNode : public std::enable_shared_from_this<DatasetNode> {
+
+class BatchNode : public DatasetNode {
+
+mindspore/ccsrc/minddata/dataset/api/datasets.cc
+
+std::shared_ptr<BatchDataset> Dataset::Batch(int32_t batch_size, bool drop_remainder) {
+  return std::make_shared<BatchDataset>(shared_from_this(), batch_size, drop_remainder);
+}
+
+
+class BatchOp
 
 
 class Dataset:

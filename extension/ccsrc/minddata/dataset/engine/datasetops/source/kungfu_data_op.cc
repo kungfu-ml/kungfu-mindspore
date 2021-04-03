@@ -147,6 +147,7 @@ Status KungFuDataOp::operator()()
     std::unique_ptr<DataBuffer> sampler_buffer;
     RETURN_IF_NOT_OK(sampler_->GetNextSample(&sampler_buffer));
     while (true) {  // each iterator is 1 epoch
+        KF_LOG() << "KungFuDataOp:" << ':' << __func__ << "while loop";
         std::vector<int64_t> keys;
         keys.reserve(rows_per_buffer_);
         while (sampler_buffer->eoe() == false) {

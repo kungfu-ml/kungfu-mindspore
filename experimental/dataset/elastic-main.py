@@ -39,12 +39,10 @@ def elastic_example(args):
         args.batch_size,
     ))
 
-    total_step = total / args.batch_size
-
     with kfops.KungFuContext(device=args.device):
         it = enumerate(dataset)
 
-        for i in range(min(args.max_step, total_step)):
+        for i in range(min(args.max_step, total)):
             idx, (x, y) = next(it)
             print('%d/%d %s%s %s%s' %
                   (idx, total, x.dtype, x.shape, y.dtype, y.shape))
