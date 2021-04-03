@@ -10,6 +10,7 @@
 #include "minddata/dataset/engine/data_buffer.h"
 #include "minddata/dataset/engine/data_schema.h"
 #include "minddata/dataset/engine/datasetops/dataset_op.h"
+#include "minddata/dataset/engine/datasetops/source/sampler/sampler.h"
 
 namespace mindspore
 {
