@@ -84,6 +84,9 @@ Status KungFuDataNode::Build(std::vector<std::shared_ptr<DatasetOp>> *node_ops)
     RETURN_IF_NOT_OK(
         schema->AddColumn(ColDescriptor("label", DataType(DataType::DE_UINT32),
                                         TensorImpl::kFlexible, 0, &scalar)));
+    // RETURN_IF_NOT_OK(schema->AddColumn(
+    //     ColDescriptor("id", DataType(DataType::DE_INT64), TensorImpl::kCv,
+    //     1)));
     RETURN_IF_NOT_OK(AddCacheOp(node_ops));
 
     node_ops->push_back(std::make_shared<KungFuDataOp>(

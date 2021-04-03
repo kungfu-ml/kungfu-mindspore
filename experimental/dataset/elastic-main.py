@@ -1,5 +1,6 @@
 import argparse
 import os
+import sys
 import numpy as np
 import mindspore.dataset as ds
 import mindspore as ms
@@ -9,6 +10,7 @@ import mindspore.dataset.engine as de
 
 from cifar10 import create_dataset1 as create_dataset
 from elastic_dataset import create_elastic_mnist
+# from elastic_state import State
 
 
 def parse_args():
@@ -40,12 +42,23 @@ def elastic_example(args):
     ))
 
     with kfops.KungFuContext(device=args.device):
+        # state = State(0, 60000)
+        # state.sync()
+        # s = state.global_offset()
+        # print('start with global off=%d' % (s))
+
+        # while not state.finished():
+        #     pass
+
         it = enumerate(dataset)
 
         for i in range(min(args.max_step, total)):
             idx, (x, y) = next(it)
-            print('%d/%d %s%s %s%s' %
-                  (idx, total, x.dtype, x.shape, y.dtype, y.shape))
+            print(
+                'data consumed: %d/%d %s%s %s%s' %
+                (idx, total, x.dtype, x.shape, y.dtype, y.shape),
+                file=sys.stderr,
+            )
 
         # all_reduce = kfops.KungFuAllReduce()
         # x = ms.Tensor(np.array([1.0, 2.0, 3.0]).astype(np.float32))

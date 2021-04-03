@@ -9,10 +9,10 @@ app_flags() {
     echo --device GPU
     echo --data-path $HOME/var/data/mindspore
 
-    # echo --batch-size 8
-    echo --batch-size 1000
+    echo --batch-size 8
+    # echo --batch-size 1000
 
-    # echo --max-step 3
+    echo --max-step 10
 }
 
 main() {

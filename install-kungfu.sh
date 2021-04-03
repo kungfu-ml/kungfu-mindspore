@@ -5,6 +5,7 @@ GIT_URL=https://github.com/lsds/KungFu.git
 GIT_TAG=v0.2.4
 # GIT_URL=git@ssh.dev.azure.com:v3/lg4869/kungfu/kungfu
 # GIT_TAG=ms-dev
+# GIT_TAG=lg-numpy
 
 cd $(dirname $0)/mindspore
 MINDSPORE_ROOT=$PWD
