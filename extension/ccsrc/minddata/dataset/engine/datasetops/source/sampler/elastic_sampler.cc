@@ -1,201 +1,122 @@
-#include "minddata/dataset/engine/datasetops/source/sampler/elastic_sampler.h"
-#include "minddata/dataset/engine/datasetops/source/sampler/sampler.h"
+#include "minddata/dataset/engine/datasetops/source/sampler/elastic_sample.h"
 
 #include <algorithm>
-#include <string>
+#include <memory>
 
 namespace mindspore
 {
 namespace dataset
 {
-ElasticSampler::ElasticSampler(int64_t num_samples, int64_t samples_per_buffer)
-    : num_rows_(0),
-      num_samples_(num_samples),
-      samples_per_buffer_(samples_per_buffer),
-      col_desc_(nullptr)
+ElasticSamplerRT::ElasticSamplerRT(int64_t num_samples,
+                                         int64_t start_index,
+                                         int64_t samples_per_buffer)
+    : SamplerRT(num_samples, samples_per_buffer),
+      current_id_(start_index),
+      start_index_(start_index),
+      id_count_(0)
 {
 }
 
-Status ElasticSampler::HandshakeRandomAccessOp(const RandomAccessOp *op)
+Status
+ElasticSamplerRT::GetNextSample(std::unique_ptr<DataBuffer> *out_buffer)
 {
-    std::shared_ptr<ElasticSampler> child_sampler;
-    if (HasChildSampler()) {
-        child_sampler = std::dynamic_pointer_cast<ElasticSampler>(child_[0]);
-        if (!child_sampler) {
-            std::string err_msg(
-                "Cannot handshake, child is not a sampler object.");
-            RETURN_STATUS_UNEXPECTED(err_msg);
-        }
-
-        // Handshake and init child first.
-        RETURN_IF_NOT_OK(child_sampler->HandshakeRandomAccessOp(op));
-    }
-
-    CHECK_FAIL_RETURN_UNEXPECTED(op != nullptr, "RandomAccessOp is nullptr\n");
-
-    // If there's a child sampler, set the row count to be it's sample count
-    if (HasChildSampler()) {
-        num_rows_ = child_sampler->num_samples_;
+    if (id_count_ > num_samples_) {
+        RETURN_STATUS_UNEXPECTED("SequentialSampler Internal Error");
+    } else if (id_count_ == num_samples_) {
+        (*out_buffer) =
+            std::make_unique<DataBuffer>(0, DataBuffer::kDeBFlagEOE);
     } else {
-        RETURN_IF_NOT_OK(op->GetNumRowsInDataset(&num_rows_));
-    }
+        if (HasChildSampler()) {
+            RETURN_IF_NOT_OK(child_[0]->GetNextSample(&child_ids_));
+        }
 
-    // It's up to the derived class to check the validity of the two args
-    // Because some sampler only needs one of the arg (weighted_random_sampler)
-    RETURN_IF_NOT_OK(InitSampler());  // init sampler after callback
+        (*out_buffer) =
+            std::make_unique<DataBuffer>(current_id_, DataBuffer::kDeBFlagNone);
+        std::shared_ptr<Tensor> sampleIds;
+
+        // Compute how many ids are left to pack, and pack this amount into a
+        // new buffer.  Respect the setting for samples per buffer though.
+        int64_t remaining_ids = num_samples_ - id_count_;
+        int64_t num_elements = std::min(remaining_ids, samples_per_buffer_);
+
+        RETURN_IF_NOT_OK(CreateSamplerTensor(&sampleIds, num_elements));
+        auto idPtr = sampleIds->begin<int64_t>();
+        for (int64_t i = 0; i < num_elements; i++) {
+            int64_t sampled_id = current_id_;
+            if (HasChildSampler()) {
+                RETURN_IF_NOT_OK(GetAssociatedChildId(&sampled_id, sampled_id));
+            }
+
+            *idPtr = sampled_id;
+            current_id_++;  // Move the current id to the next one in the
+                            // sequence
+            idPtr++;
+        }
+
+        id_count_ += num_elements;  // Count the packed ids towards our overall
+                                    // sample count
+
+        TensorRow row(1, sampleIds);
+        (*out_buffer)->set_tensor_table(std::make_unique<TensorQTable>(1, row));
+    }
+    return Status::OK();
+}
+
+Status ElasticSamplerRT::InitSampler()
+{
+    CHECK_FAIL_RETURN_UNEXPECTED(start_index_ >= 0,
+                                 "Invalid parameter, start_index must be "
+                                 "greater than or equal to 0, but got " +
+                                     std::to_string(start_index_) + ".\n");
+    CHECK_FAIL_RETURN_UNEXPECTED(
+        start_index_ < num_rows_,
+        "Invalid parameter, start_index must be less than num_rows, but got "
+        "start_index: " +
+            std::to_string(start_index_) +
+            ", num_rows: " + std::to_string(num_rows_) + ".\n");
+    CHECK_FAIL_RETURN_UNEXPECTED(num_samples_ >= 0,
+                                 "Invalid parameter, num_samples must be "
+                                 "greater than or equal to 0, but got " +
+                                     std::to_string(num_samples_) + ".\n");
+    // Adjust the num_samples count based on the range of ids we are sequencing.
+    // If num_samples is 0, we sample the entire set.  If it's non-zero, we will
+    // implicitly cap the amount sampled based on available data.
+    int64_t available_row_count = num_rows_ - start_index_;
+    if (num_samples_ == 0 || num_samples_ > available_row_count) {
+        num_samples_ = available_row_count;
+    }
+    CHECK_FAIL_RETURN_UNEXPECTED(num_samples_ > 0 && samples_per_buffer_ > 0,
+                                 "Invalid parameter, samples_per_buffer must "
+                                 "be greater than 0, but got " +
+                                     std::to_string(samples_per_buffer_));
+    samples_per_buffer_ =
+        samples_per_buffer_ > num_samples_ ? num_samples_ : samples_per_buffer_;
+    return Status::OK();
+}
+
+Status ElasticSamplerRT::ResetSampler()
+{
+    CHECK_FAIL_RETURN_UNEXPECTED(id_count_ == num_samples_,
+                                 "ERROR Reset() called early/late");
+    current_id_ = start_index_;
+    id_count_ = 0;
+
+    if (HasChildSampler()) {
+        RETURN_IF_NOT_OK(child_[0]->ResetSampler());
+    }
 
     return Status::OK();
 }
 
-Status ElasticSampler::CreateSamplerTensor(std::shared_ptr<Tensor> *sample_ids,
-                                           int64_t num_elements)
+void ElasticSamplerRT::SamplerPrint(std::ostream &out, bool show_all) const
 {
-    if (num_elements == 0) {
-        RETURN_STATUS_UNEXPECTED("Invalid data, num of elements cannot be 0.");
-    }
-    if (col_desc_ == nullptr) {
-        // a ColDescriptor for Tensor that holds SampleIds
-        col_desc_ = std::make_unique<ColDescriptor>(
-            "sampleIds", DataType(DataType::DE_INT64), TensorImpl::kFlexible,
-            1);
-    }
-    TensorShape shape(std::vector<dsize_t>(1, num_elements));
-    RETURN_IF_NOT_OK(Tensor::CreateEmpty(shape, col_desc_->type(), sample_ids));
-    return Status::OK();
-}
-
-void ElasticSampler::SamplerPrint(std::ostream &out, bool show_all) const
-{
-    // Sampler printing is usually only called in the show_all mode.
-    // Derived classes will display the name, then call back to this base
-    // for common info.
-    // No-op in the summary mode.
+    out << "\nSampler: SequentialSampler";
     if (show_all) {
-        out << "\nnum_rows_: " << num_rows_
-            << "\nnum_samples_: " << num_samples_;
+        // Call the super class for displaying any common detailed info
+        SamplerRT::SamplerPrint(out, show_all);
+        // Then add our own info
+        out << "\nStart index: " << start_index_;
     }
 }
-
-#ifdef ENABLE_PYTHON
-Status ElasticSampler::GetAllIdsThenReset(py::array *data)
-{
-    std::unique_ptr<DataBuffer> db;
-    std::shared_ptr<Tensor> sample_ids;
-    TensorRow sample_row;
-
-    // A call to derived class to get sample ids wrapped inside a buffer
-    RETURN_IF_NOT_OK(GetNextSample(&db));
-    // Get the only tensor inside the buffer that contains the actual SampleIds
-    // for the entire epoch
-    RETURN_IF_NOT_OK(db->GetRow(0, &sample_row));
-    sample_ids = sample_row[0];
-
-    // check this buffer is not a ctrl buffer
-    CHECK_FAIL_RETURN_UNEXPECTED(db->buffer_flags() == DataBuffer::kDeBFlagNone,
-                                 "ERROR ctrl buffer received");
-
-    // perform error checking! Next buffer supposed to be EOE since last one
-    // already contains all ids for current epoch
-    RETURN_IF_NOT_OK(GetNextSample(&db));
-    CHECK_FAIL_RETURN_UNEXPECTED(db->eoe(), "ERROR Non EOE received");
-    // Reset Sampler since this is the end of the epoch
-    RETURN_IF_NOT_OK(ResetSampler());
-
-    {
-        py::gil_scoped_acquire gil_acquire;
-        if (Py_IsInitialized() == 0) {
-            return Status(StatusCode::kPythonInterpreterFailure,
-                          "Python Interpreter is finalized");
-        }
-        try {
-            RETURN_IF_NOT_OK(sample_ids->GetDataAsNumpy(data));
-        } catch (const std::runtime_error &e) {
-            return Status(StatusCode::kPyFuncException, e.what());
-        }
-    }
-    return Status::OK();
-}
-#endif
-
-Status ElasticSampler::SetNumSamples(int64_t num_samples)
-{
-    CHECK_FAIL_RETURN_UNEXPECTED(
-        num_samples >= 0,
-        "Invalid parameter, num_samples must be greater than or equal to 0.");
-    num_samples_ = num_samples;
-    return Status::OK();
-}
-
-int64_t ElasticSampler::GetNumSamples()
-{
-    return num_samples_;
-}
-
-int64_t ElasticSampler::CalculateNumSamples(int64_t num_rows)
-{
-    int64_t childs = num_rows;
-    if (!child_.empty()) {
-        childs = child_[0]->CalculateNumSamples(num_rows);
-    }
-
-    return (num_samples_ > 0) ? std::min(childs, num_samples_) : childs;
-}
-
-Status ElasticSampler::SetNumRowsInDataset(int64_t num_rows)
-{
-    CHECK_FAIL_RETURN_UNEXPECTED(
-        num_rows > 0,
-        "Invalid data, data rows of input dataset must not be less than or "
-        "equal to 0, please check the input dataset.");
-    num_rows_ = num_rows;
-    return Status::OK();
-}
-
-Status ElasticSampler::AddChild(std::shared_ptr<ElasticSampler> child)
-{
-    if (child == nullptr) {
-        return Status::OK();
-    }
-
-    // Only samplers can be added, not any other DatasetOp.
-    std::shared_ptr<ElasticSampler> sampler =
-        std::dynamic_pointer_cast<ElasticSampler>(child);
-    if (!sampler) {
-        std::string err_msg("Cannot add child, child is not a sampler object.");
-        RETURN_STATUS_UNEXPECTED(err_msg);
-    }
-
-    // Samplers can have at most 1 child.
-    if (!child_.empty()) {
-        std::string err_msg(
-            "Cannot add child sampler, this sampler already has a child.");
-        RETURN_STATUS_UNEXPECTED(err_msg);
-    }
-
-    child_.push_back(child);
-
-    return Status::OK();
-}
-
-bool ElasticSampler::HasChildSampler()
-{
-    return !child_.empty();
-}
-
-Status ElasticSampler::GetAssociatedChildId(int64_t *out_associated_id,
-                                            int64_t id)
-{
-    if (child_ids_ == nullptr) {
-        RETURN_STATUS_UNEXPECTED(
-            "Trying to get associated child id, but there are no child ids!");
-    }
-
-    TensorRow sample_row;
-    RETURN_IF_NOT_OK(child_ids_->GetRow(0, &sample_row));
-    std::shared_ptr<Tensor> sample_ids = sample_row[0];
-    RETURN_IF_NOT_OK(sample_ids->GetItemAt<int64_t>(out_associated_id, {id}));
-    return Status::OK();
-}
-
 }  // namespace dataset
 }  // namespace mindspore
