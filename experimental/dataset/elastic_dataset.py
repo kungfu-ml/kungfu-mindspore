@@ -38,7 +38,7 @@ class ElasticMnist(de.MappableDataset):
         else:
             cc = None
 
-        print('!!!! creating KungFuDataNode')
+        print('!!!! creating KungFuDataNode from python')
         node = cde.KungFuDataNode(
             self.dataset_dir,
             self.usage,

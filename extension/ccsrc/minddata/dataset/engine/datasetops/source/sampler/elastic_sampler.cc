@@ -10,19 +10,20 @@ namespace mindspore
 {
 namespace dataset
 {
-ElasticSamplerRT::ElasticSamplerRT(int64_t num_samples,
-                                         int64_t start_index,
-                                         int64_t samples_per_buffer)
+ElasticSamplerRT::ElasticSamplerRT(int64_t num_samples, int64_t start_index,
+                                   int64_t samples_per_buffer)
     : SamplerRT(num_samples, samples_per_buffer),
       current_id_(start_index),
       start_index_(start_index),
       id_count_(0)
 {
+    KF_LOG() << "ElasticSamplerRT"
+             << "created at" << this;
 }
 
-Status
-ElasticSamplerRT::GetNextSample(std::unique_ptr<DataBuffer> *out_buffer)
+Status ElasticSamplerRT::GetNextSample(std::unique_ptr<DataBuffer> *out_buffer)
 {
+    KF_LOG() << "ElasticSamplerRT" << ':' << __func__;
     if (_show_kungfu_debug_log) {
         KF_LOG() << "ElasticSamplerRT" << ':' << __func__;
     }
@@ -70,6 +71,7 @@ ElasticSamplerRT::GetNextSample(std::unique_ptr<DataBuffer> *out_buffer)
 
 Status ElasticSamplerRT::InitSampler()
 {
+    KF_LOG() << "ElasticSamplerRT" << ':' << __func__;
     if (_show_kungfu_debug_log) {
         KF_LOG() << "ElasticSamplerRT" << ':' << __func__;
     }

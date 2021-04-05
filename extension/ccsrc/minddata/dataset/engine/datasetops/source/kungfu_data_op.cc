@@ -48,6 +48,7 @@ Status KungFuDataOp::Builder::Build(std::shared_ptr<KungFuDataOp> *ptr)
     if (builder_sampler_ == nullptr) {
         const int64_t num_samples = 0;
         const int64_t start_index = 0;
+        KF_LOG() << "building ElasticSamplerRT";
         builder_sampler_ =
             std::make_shared<ElasticSamplerRT>(start_index, num_samples);
     }
@@ -58,6 +59,8 @@ Status KungFuDataOp::Builder::Build(std::shared_ptr<KungFuDataOp> *ptr)
     RETURN_IF_NOT_OK(builder_schema_->AddColumn(
         ColDescriptor("label", DataType(DataType::DE_UINT32),
                       TensorImpl::kFlexible, 0, &scalar)));
+    KF_LOG() << "calling"
+             << "std::make_shared<KungFuDataOp>";
     *ptr = std::make_shared<KungFuDataOp>(
         builder_usage_, builder_num_workers_, builder_rows_per_buffer_,
         builder_dir_, builder_op_connector_size_, std::move(builder_schema_),
@@ -106,6 +109,8 @@ KungFuDataOp::KungFuDataOp(const std::string &usage, int32_t num_workers,
       rows_per_buffer_(rows_per_buffer),
       data_schema_(std::move(data_schema))
 {
+    KF_LOG() << "KungFuDataOp"
+             << "created with sampler" << sampler_.get();
     if (_show_kungfu_debug_log) {
         KF_LOG() << "KungFuDataOp:" << ':' << __func__;
     }
@@ -145,7 +150,11 @@ Status KungFuDataOp::operator()()
 
     RETURN_IF_NOT_OK(LaunchThreadsAndInitOp());
     std::unique_ptr<DataBuffer> sampler_buffer;
+    KF_LOG() << "calling"
+             << "sampler_->GetNextSample(&sampler_buffer) @ " << sampler_.get();
     RETURN_IF_NOT_OK(sampler_->GetNextSample(&sampler_buffer));
+    KF_LOG() << "called"
+             << "sampler_->GetNextSample(&sampler_buffer)";
     while (true) {  // each iterator is 1 epoch
         KF_LOG() << "KungFuDataOp:" << ':' << __func__ << "while loop_0";
         std::vector<int64_t> keys;
