@@ -47,7 +47,11 @@ class ElasticMnist(de.MappableDataset):
         else:
             cc = None
 
-        print('[Python] !!!! creating cde.KungFuDataNode', file=sys.stderr)
+        # <mindspore.dataset.engine.samplers.SequentialSampler object at 0x7fa898f50450>
+        print('[Python] !!!! creating cde.KungFuDataNode with sampler: %s' %
+              (self.sampler),
+              file=sys.stderr)
+
         node = cde.KungFuDataNode(
             self.dataset_dir,
             self.usage,
