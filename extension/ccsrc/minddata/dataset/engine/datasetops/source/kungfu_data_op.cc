@@ -4,7 +4,7 @@
 #include "backend/kernel_compiler/cpu/kungfu/kungfu_logger.h"
 #include "minddata/dataset/core/config_manager.h"
 #include "minddata/dataset/core/tensor_shape.h"
-#include "minddata/dataset/engine/datasetops/source/sampler/sequential_sampler.h"
+#include "minddata/dataset/engine/datasetops/source/sampler/elastic_sampler.h"
 #include "minddata/dataset/engine/db_connector.h"
 #include "minddata/dataset/engine/execution_tree.h"
 #include "minddata/dataset/engine/opt/pass.h"
@@ -49,7 +49,7 @@ Status KungFuDataOp::Builder::Build(std::shared_ptr<KungFuDataOp> *ptr)
         const int64_t num_samples = 0;
         const int64_t start_index = 0;
         builder_sampler_ =
-            std::make_shared<SequentialSamplerRT>(start_index, num_samples);
+            std::make_shared<ElasticSamplerRT>(start_index, num_samples);
     }
     builder_schema_ = std::make_unique<DataSchema>();
     RETURN_IF_NOT_OK(builder_schema_->AddColumn(ColDescriptor(

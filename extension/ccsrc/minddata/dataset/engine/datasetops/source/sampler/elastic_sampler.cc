@@ -1,5 +1,8 @@
 #include "minddata/dataset/engine/datasetops/source/sampler/elastic_sampler.h"
 
+#include "backend/kernel_compiler/cpu/kungfu/kungfu_common.h"
+#include "backend/kernel_compiler/cpu/kungfu/kungfu_logger.h"
+
 #include <algorithm>
 #include <memory>
 
@@ -20,8 +23,11 @@ ElasticSamplerRT::ElasticSamplerRT(int64_t num_samples,
 Status
 ElasticSamplerRT::GetNextSample(std::unique_ptr<DataBuffer> *out_buffer)
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "ElasticSamplerRT" << ':' << __func__;
+    }
     if (id_count_ > num_samples_) {
-        RETURN_STATUS_UNEXPECTED("SequentialSampler Internal Error");
+        RETURN_STATUS_UNEXPECTED("ElasticSampler Internal Error");
     } else if (id_count_ == num_samples_) {
         (*out_buffer) =
             std::make_unique<DataBuffer>(0, DataBuffer::kDeBFlagEOE);
@@ -64,6 +70,9 @@ ElasticSamplerRT::GetNextSample(std::unique_ptr<DataBuffer> *out_buffer)
 
 Status ElasticSamplerRT::InitSampler()
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "ElasticSamplerRT" << ':' << __func__;
+    }
     CHECK_FAIL_RETURN_UNEXPECTED(start_index_ >= 0,
                                  "Invalid parameter, start_index must be "
                                  "greater than or equal to 0, but got " +
@@ -96,6 +105,9 @@ Status ElasticSamplerRT::InitSampler()
 
 Status ElasticSamplerRT::ResetSampler()
 {
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "ElasticSamplerRT" << ':' << __func__;
+    }
     CHECK_FAIL_RETURN_UNEXPECTED(id_count_ == num_samples_,
                                  "ERROR Reset() called early/late");
     current_id_ = start_index_;
@@ -110,7 +122,10 @@ Status ElasticSamplerRT::ResetSampler()
 
 void ElasticSamplerRT::SamplerPrint(std::ostream &out, bool show_all) const
 {
-    out << "\nSampler: SequentialSampler";
+    if (_show_kungfu_debug_log) {
+        KF_LOG() << "ElasticSamplerRT" << ':' << __func__;
+    }
+    out << "\nSampler: ElasticSampler";
     if (show_all) {
         // Call the super class for displaying any common detailed info
         SamplerRT::SamplerPrint(out, show_all);
