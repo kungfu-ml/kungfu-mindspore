@@ -1,4 +1,4 @@
-#include "minddata/dataset/engine/datasetops/source/sampler/elastic_sample.h"
+#include "minddata/dataset/engine/datasetops/source/sampler/elastic_sampler.h"
 
 #include <algorithm>
 #include <memory>
