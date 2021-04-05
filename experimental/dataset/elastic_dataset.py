@@ -5,6 +5,8 @@ import mindspore.dataset.engine as de
 from mindspore.dataset import check_mnist_cifar_dataset, replace_none
 from mindspore.dataset.engine.datasets import _select_sampler
 
+import inspect
+
 
 class ElasticMnist(de.MappableDataset):
     @check_mnist_cifar_dataset
@@ -36,6 +38,10 @@ class ElasticMnist(de.MappableDataset):
         print('[Python] ElasticMnist created', file=sys.stderr)
 
     def parse(self, children=None):
+        curframe = inspect.currentframe()
+        calframe = inspect.getouterframes(curframe, 2)
+        print('ElasticMnist::parse caller name:', calframe[1][3])  # parse_tree
+
         if self.cache:
             cc = self.cache.cache_client
         else:
