@@ -31,15 +31,19 @@ def elastic_dataset_example(args):
         data_path=data_dir,
         batch_size=args.batch_size,
     )
+    # <mindspore.dataset.engine.datasets.BatchDataset object at 0x7fc989f84350>
+    print('[Python] create_elastic_mnist returned %s' % (dataset),
+          file=sys.stderr)
     total = dataset.get_dataset_size()
-    print('total steps: %d when using batch size: %d' % (
-        total,
-        args.batch_size,
-    ))
+    print(
+        'total steps: %d when using batch size: %d' % (total, args.batch_size),
+        file=sys.stderr,
+    )
 
     it = enumerate(dataset)
-
+    print('enumerate(dataset) returned %s' % (it), file=sys.stderr)
     for i in range(min(args.max_step, total)):
+        print('iteration step %d' % (i), file=sys.stderr)
         idx, (x, y) = next(it)
         print(
             'data consumed: %d/%d %s%s %s%s' %

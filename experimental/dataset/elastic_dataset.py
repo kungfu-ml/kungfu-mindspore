@@ -1,7 +1,9 @@
-import mindspore.dataset.engine as de
-from mindspore.dataset.engine.datasets import _select_sampler
-from mindspore.dataset import check_mnist_cifar_dataset, replace_none
+import sys
+
 import mindspore._c_dataengine as cde
+import mindspore.dataset.engine as de
+from mindspore.dataset import check_mnist_cifar_dataset, replace_none
+from mindspore.dataset.engine.datasets import _select_sampler
 
 
 class ElasticMnist(de.MappableDataset):
@@ -31,6 +33,7 @@ class ElasticMnist(de.MappableDataset):
         self.num_shards = num_shards
         self.shard_id = shard_id
         self.cache = cache
+        print('[Python] ElasticMnist created', file=sys.stderr)
 
     def parse(self, children=None):
         if self.cache:
@@ -38,16 +41,18 @@ class ElasticMnist(de.MappableDataset):
         else:
             cc = None
 
-        print('!!!! creating KungFuDataNode from python')
+        print('[Python] !!!! creating cde.KungFuDataNode', file=sys.stderr)
         node = cde.KungFuDataNode(
             self.dataset_dir,
             self.usage,
             self.sampler,
             cc,
-        )
-        print('self.num_parallel_workers: %s' % (self.num_parallel_workers))
-        node.SetNumWorkers(self.num_parallel_workers)
+        ).SetNumWorkers(self.num_parallel_workers)
         return node
+        # print('[Python] self.num_parallel_workers: %s' %
+        #       (self.num_parallel_workers))
+        # node.SetNumWorkers(self.num_parallel_workers)
+        # return node
 
     # def get_args(self):
     #     args = super().get_args()
