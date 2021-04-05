@@ -25,6 +25,10 @@ def parse_args():
     return p.parse_args()
 
 
+def show_tensor(x):
+    return '%s%s' % (x.dtype, x.shape)
+
+
 def elastic_dataset_example(args):
     data_dir = os.path.join(args.data_path, 'mnist', 'train')
     dataset = create_elastic_mnist(
@@ -41,15 +45,8 @@ def elastic_dataset_example(args):
     )
 
     it = enumerate(dataset)
-    print('enumerate(dataset) returned %s' % (it), file=sys.stderr)
-    for i in range(min(args.max_step, total)):
-        print('iteration step %d' % (i), file=sys.stderr)
-        idx, (x, y) = next(it)
-        print(
-            'data consumed: %d/%d %s%s %s%s' %
-            (idx, total, x.dtype, x.shape, y.dtype, y.shape),
-            file=sys.stderr,
-        )
+    idx, (x, y) = next(it)
+    print('%d %s %s' % (idx, show_tensor(x), show_tensor(y)), file=sys.stderr)
 
 
 def main(args):
