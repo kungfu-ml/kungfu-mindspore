@@ -30,6 +30,8 @@ class ElasticMnist(de.MappableDataset):
         self.usage = replace_none(usage, "all")
         self.sampler = _select_sampler(num_samples, sampler, shuffle,
                                        num_shards, shard_id)
+        # <mindspore.dataset.engine.samplers.SequentialSampler object at 0x7fe4926b4b50>
+        print('_select_sampler returns %s' % (self.sampler), file=sys.stderr)
         self.num_samples = num_samples
         self.shuffle_level = shuffle
         self.num_shards = num_shards
