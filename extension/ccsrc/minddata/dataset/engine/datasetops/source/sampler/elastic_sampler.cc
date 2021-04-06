@@ -18,15 +18,16 @@ ElasticSamplerRT::ElasticSamplerRT(int64_t num_samples, int64_t start_index,
       id_count_(0)
 {
     KF_LOG() << "ElasticSamplerRT"
-             << "created at" << this;
+             << "created at" << this          //
+             << "num_samples" << num_samples  //
+             << "start_index" << start_index  //
+             << "samples_per_buffer" << samples_per_buffer;
 }
 
 Status ElasticSamplerRT::GetNextSample(std::unique_ptr<DataBuffer> *out_buffer)
 {
     KF_LOG() << "ElasticSamplerRT" << ':' << __func__;
-    if (_show_kungfu_debug_log) {
-        KF_LOG() << "ElasticSamplerRT" << ':' << __func__;
-    }
+
     if (id_count_ > num_samples_) {
         RETURN_STATUS_UNEXPECTED("ElasticSampler Internal Error");
     } else if (id_count_ == num_samples_) {
@@ -46,9 +47,13 @@ Status ElasticSamplerRT::GetNextSample(std::unique_ptr<DataBuffer> *out_buffer)
         int64_t remaining_ids = num_samples_ - id_count_;
         int64_t num_elements = std::min(remaining_ids, samples_per_buffer_);
 
+        KF_LOG() << "remaining_ids" << remaining_ids;
+        KF_LOG() << "num_elements" << num_elements;
+
         RETURN_IF_NOT_OK(CreateSamplerTensor(&sampleIds, num_elements));
         auto idPtr = sampleIds->begin<int64_t>();
         for (int64_t i = 0; i < num_elements; i++) {
+            KF_LOG() << "ElasticSamplerRT" << __func__ << "loop" << i;
             int64_t sampled_id = current_id_;
             if (HasChildSampler()) {
                 RETURN_IF_NOT_OK(GetAssociatedChildId(&sampled_id, sampled_id));
@@ -102,6 +107,9 @@ Status ElasticSamplerRT::InitSampler()
                                      std::to_string(samples_per_buffer_));
     samples_per_buffer_ =
         samples_per_buffer_ > num_samples_ ? num_samples_ : samples_per_buffer_;
+    KF_LOG() << "after"
+             << "ElasticSamplerRT" << __func__;
+    KF_LOG() << "num_samples_" << num_samples_;
     return Status::OK();
 }
 

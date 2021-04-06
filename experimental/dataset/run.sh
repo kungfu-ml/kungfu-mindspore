@@ -24,10 +24,10 @@ main() {
     # srun ./dataset-example.py $(app_flags)
 
     # erun 1 ./dataset-example.py $(app_flags)
-    # erun 1 ./elastic-main.py $(app_flags)
+    erun 1 ./elastic-main.py $(app_flags)
     # erun 2 ./elastic-main.py $(app_flags)
 
-    srun ./simple-main.py $(app_flags)
+    # srun ./simple-main.py $(app_flags)
 }
 
 main

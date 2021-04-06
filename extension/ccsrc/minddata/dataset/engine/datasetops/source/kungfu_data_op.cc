@@ -331,8 +331,11 @@ Status KungFuDataOp::InitSampler()
     if (_show_kungfu_debug_log) {
         KF_LOG() << "KungFuDataOp:" << ':' << __func__;
     }
-
+    KF_LOG() << "calling"
+             << "sampler_->HandshakeRandomAccessOp(this)";
     RETURN_IF_NOT_OK(sampler_->HandshakeRandomAccessOp(this));
+    KF_LOG() << "called"
+             << "sampler_->HandshakeRandomAccessOp(this)";
     return Status::OK();
 }
 
@@ -609,7 +612,11 @@ Status KungFuDataOp::LaunchThreadsAndInitOp()
     TaskManager::FindMe()->Post();
     RETURN_IF_NOT_OK(this->WalkAllFiles());
     RETURN_IF_NOT_OK(this->ParseMnistData());
+    KF_LOG() << "calling"
+             << "InitSampler";
     RETURN_IF_NOT_OK(this->InitSampler());  // handle shake with sampler
+    KF_LOG() << "called"
+             << "InitSampler";
     return Status::OK();
 }
 
