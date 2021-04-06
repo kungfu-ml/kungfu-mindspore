@@ -7,6 +7,21 @@ from mindspore.dataset.engine.datasets import _select_sampler
 
 import inspect
 
+from elastic_sampler import ElasticSampler
+
+
+def _my_select_sampler(num_samples,
+                       input_sampler,
+                       shuffle,
+                       num_shards,
+                       shard_id,
+                       non_mappable=False):
+    # <mindspore.dataset.engine.samplers.SequentialSampler object at 0x7fe4926b4b50>
+    # return _select_sampler(num_samples, input_sampler, shuffle, num_shards,
+    #                        shard_id, non_mappable)
+
+    return ElasticSampler(num_samples=num_samples)
+
 
 class ElasticMnist(de.MappableDataset):
     @check_mnist_cifar_dataset
@@ -28,9 +43,8 @@ class ElasticMnist(de.MappableDataset):
 
         self.dataset_dir = dataset_dir
         self.usage = replace_none(usage, "all")
-        self.sampler = _select_sampler(num_samples, sampler, shuffle,
-                                       num_shards, shard_id)
-        # <mindspore.dataset.engine.samplers.SequentialSampler object at 0x7fe4926b4b50>
+        self.sampler = _my_select_sampler(num_samples, sampler, shuffle,
+                                          num_shards, shard_id)
         print('_select_sampler returns %s' % (self.sampler), file=sys.stderr)
         self.num_samples = num_samples
         self.shuffle_level = shuffle
