@@ -38,18 +38,19 @@ class ElasticSampler(BuiltinSampler):
     def create(self):
         start_index = self.start_index if self.start_index is not None else 0
         num_samples = self.num_samples if self.num_samples is not None else 0
-        c_sampler = cde.SequentialSampler(num_samples, start_index)
+        c_sampler = cde.ElasticSampler(num_samples, start_index)
         c_child_sampler = self.create_child()
         c_sampler.add_child(c_child_sampler)
         return c_sampler
 
     def create_for_minddataset(self):
-        start_index = self.start_index if self.start_index is not None else 0
-        num_samples = self.num_samples if self.num_samples is not None else 0
-        c_sampler = cde.MindrecordSequentialSampler(num_samples, start_index)
-        c_child_sampler = self.create_child_for_minddataset()
-        c_sampler.add_child(c_child_sampler)
-        return c_sampler
+        raise NotImplementedError()
+        # start_index = self.start_index if self.start_index is not None else 0
+        # num_samples = self.num_samples if self.num_samples is not None else 0
+        # c_sampler = cde.MindrecordSequentialSampler(num_samples, start_index)
+        # c_child_sampler = self.create_child_for_minddataset()
+        # c_sampler.add_child(c_child_sampler)
+        # return c_sampler
 
     def is_shuffled(self):
         if self.child_sampler is None:
