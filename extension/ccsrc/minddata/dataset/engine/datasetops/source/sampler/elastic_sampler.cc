@@ -26,7 +26,7 @@ ElasticSamplerRT::ElasticSamplerRT(int64_t num_samples, int64_t start_index,
 
 Status ElasticSamplerRT::GetNextSample(std::unique_ptr<DataBuffer> *out_buffer)
 {
-    KF_LOG() << "ElasticSamplerRT" << ':' << __func__;
+    KF_LOG() << "ElasticSamplerRT::GetNextSample";
 
     if (id_count_ > num_samples_) {
         RETURN_STATUS_UNEXPECTED("ElasticSampler Internal Error");
@@ -53,7 +53,8 @@ Status ElasticSamplerRT::GetNextSample(std::unique_ptr<DataBuffer> *out_buffer)
         RETURN_IF_NOT_OK(CreateSamplerTensor(&sampleIds, num_elements));
         auto idPtr = sampleIds->begin<int64_t>();
         for (int64_t i = 0; i < num_elements; i++) {
-            KF_LOG() << "ElasticSamplerRT" << __func__ << "loop" << i;
+            KF_LOG() << "ElasticSamplerRT::GetNextSample"
+                     << "loop" << i;
             int64_t sampled_id = current_id_;
             if (HasChildSampler()) {
                 RETURN_IF_NOT_OK(GetAssociatedChildId(&sampled_id, sampled_id));
