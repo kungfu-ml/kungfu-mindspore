@@ -9,8 +9,7 @@ export LD_LIBRARY_PATH=$(ld_library_path ../../mindspore)
 train_flags() {
     local data_dir=$HOME/var/data/mindspore/mnist
 
-    # echo --device $(default_device)
-    echo --device CPU
+    echo --device $(default_device)
     echo --data-dir $data_dir
     echo --batch-size 200
     # echo --epoch-size 1

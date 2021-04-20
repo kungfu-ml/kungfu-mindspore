@@ -1,24 +1,10 @@
-# Copyright 2020 Huawei Technologies Co., Ltd
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-# http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-# ============================================================================
-"""Lenet Tutorial
-The sample can be run on CPU, GPU and Ascend 910 AI processor.
-"""
 import argparse
 import os
 
 import mindspore as ms
+import mindspore.ops.operations.kungfu_comm_ops as kfops
+from download import download_dataset
+from kungfu_mindspore_optimizer import build_optimizer
 from mindspore._c_expression import kungfu_finalize, kungfu_init
 from mindspore.common.initializer import Normal
 from mindspore.nn.loss import SoftmaxCrossEntropyWithLogits
@@ -28,8 +14,6 @@ from mindspore.train.callback import (CheckpointConfig, LossMonitor,
                                       ModelCheckpoint)
 from mindspore.train.serialization import load_checkpoint, load_param_into_net
 
-from download import download_dataset
-from kungfu_mindspore_optimizer import build_optimizer
 from dataset import create_dataset
 
 
@@ -134,13 +118,10 @@ def test_net(network, model, args):
     print("============== Accuracy:{} ==============".format(acc))
 
 
-def main():
-    args = parse_args()
-    kungfu_init()
-
+def run(args):
     ms.context.set_context(mode=ms.context.GRAPH_MODE,
                            device_target=args.device)
-    dataset_sink_mode = not args.device == "CPU"
+    dataset_sink_mode = False
 
     download_dataset(args.data_dir)
 
@@ -159,10 +140,14 @@ def main():
     model = Model(network, net_loss, net_opt, metrics={"Accuracy": Accuracy()})
 
     train_net(network, model, args, ckpoint_cb, dataset_sink_mode)
-    if args.run_test:
-        test_net(network, model, args.data_dir)
-    kungfu_finalize()
+    # if args.run_test:
+    #     test_net(network, model, args.data_dir)
 
 
-if __name__ == "__main__":
-    main()
+def main():
+    args = parse_args()
+    with kfops.KungFuContext(device=args.device):
+        run(args)
+
+
+main()
