@@ -17,6 +17,7 @@ cd $(dirname $0)
 ### example
 #
 # ./examples/lenet/run.sh
+./examples/lenet-elastic/run.sh
 # ./examples/resnet-elastic/train_single.sh
 # ./examples/resnet-elastic/train_parallel_kungfu.sh
 # ./examples/resnet-elastic/train_parallel_kungfu_elastic.sh
@@ -26,7 +27,7 @@ cd $(dirname $0)
 ### experimental
 #
 # ./experimental/elastic/run.sh
-./experimental/dataset/run.sh
+# ./experimental/dataset/run.sh
 # ./experimental/mnist/run.sh
 # ./experimental/mnist/run_elastic.sh
 
