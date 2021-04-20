@@ -3,6 +3,14 @@
 # export CUDA_VISIBLE_DEVICES=0,1,2,3
 # export CUDA_VISIBLE_DEVICES=2,3
 
+default_device() {
+    if [ -c /dev/nvidia0 ]; then
+        echo GPU
+    else
+        echo CPU
+    fi
+}
+
 kungfu_run_flags_default() {
     echo -q
     echo -logdir logs
