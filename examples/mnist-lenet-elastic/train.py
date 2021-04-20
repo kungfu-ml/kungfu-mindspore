@@ -35,6 +35,8 @@ def parse_args():
     p.add_argument('--use-kungfu', action='store_true', default=False)
     p.add_argument('--use-kungfu-elastic', action='store_true', default=False)
     p.add_argument('--run-test', action='store_true', default=False)
+
+    p.add_argument('--init-ckpt', type=str, default='')
     return p.parse_args()
 
 
@@ -42,6 +44,11 @@ def log_callbacks(cb):
     print('%d callbacks' % (len(cb)))
     for c in cb:
         print('%s' % (c))
+
+
+def load_ckpt(net, ckpt_name):
+    param_dict = ms.train.serialization.load_checkpoint(ckpt_name)
+    ms.train.serialization.load_param_into_net(net, param_dict)
 
 
 def train_net(network, model, args, ckpoint_cb, sink_mode):
@@ -113,6 +120,9 @@ def run(args):
     ckpoint_cb = ModelCheckpoint(prefix="checkpoint_lenet", config=config_ck)
     # group layers into an object with training and evaluation features
     model = Model(network, net_loss, net_opt, metrics={"Accuracy": Accuracy()})
+
+    if args.init_ckpt:
+        load_ckpt(network, args.init_ckpt)
 
     train_net(network, model, args, ckpoint_cb, dataset_sink_mode)
     # if args.run_test:

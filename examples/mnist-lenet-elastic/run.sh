@@ -2,6 +2,8 @@
 set -e
 
 cd $(dirname $0)
+ROOT=$PWD/../..
+
 . ../../ld_library_path.sh
 export LD_LIBRARY_PATH=$(ld_library_path ../../mindspore)
 . ../../scripts/launcher.sh
@@ -12,6 +14,9 @@ train_flags() {
     echo --device $(default_device)
     echo --data-dir $data_dir
     echo --batch-size 200
+
+    echo --init-ckpt $ROOT/gist/mindspore-lenet-checkpoints/mnist-lenet-1618324040.ckpt
+
     # echo --epoch-size 1
     # echo --repeat-size 1
     # echo --run-test
