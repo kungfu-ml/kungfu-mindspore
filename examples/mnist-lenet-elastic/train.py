@@ -30,7 +30,7 @@ from mindspore.train.serialization import load_checkpoint, load_param_into_net
 
 from download import download_dataset
 from kungfu_mindspore_optimizer import build_optimizer
-from mnist import create_dataset
+from dataset import create_dataset
 
 
 def parse_args():
