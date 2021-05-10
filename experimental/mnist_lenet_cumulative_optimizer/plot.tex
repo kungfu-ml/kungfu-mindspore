@@ -1,0 +1,60 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{pgfplots}
+
+% \title{Untitled}
+
+\begin{document}
+\begin{frame}
+
+\begin{figure}
+\begin{tikzpicture}
+    \begin{axis}[
+        title={ },
+        xlabel={\# step},
+        ylabel={accuracy},
+        % xmin=1,
+        % xmax=16,
+        % ymin=0,
+        % ymax=80,
+        % xtick={1, 2, 3},
+    	% major tick num=1,
+    	% minor x tick num=1,
+        % xtick distance=4,
+        legend pos=south east,
+    	% major tick num=10,
+    	% minor y tick num=5,
+        % ymajorgrids=true,
+        % grid style=dashed,
+        legend cell align={right},
+        ]
+
+        \addplot[
+            color=blue,
+            mark=square,
+        ] table {plot/lbs-200+dbs-200.txt};
+
+        \addplot[
+            color=pink,
+            mark=triangle,
+        ] table {plot/lbs-200+dbs-100.txt};
+
+        \addplot[
+            color=yellow,
+            mark=circle,
+        ] table {plot/lbs-200+dbs-50.txt};
+
+        \legend{
+            dev-bs=200 = 1 logical-bs,
+            dev-bs=100 = 1/2 logical-bs,
+            dev-bs=50 = 1/4 logical-bs,
+        }
+        % \legend{dev-bs=100 = 1/2 logical-bs}
+    \end{axis}
+\end{tikzpicture}
+
+\end{figure}
+\end{frame}
+
+\end{document}

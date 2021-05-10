@@ -1,0 +1,37 @@
+param_dict = ms.train.serialization.load_checkpoint(ckpt_name)
+
+
+[0] conv1.weight=Parameter (name=conv1.weight)
+[1] conv2.weight=Parameter (name=conv2.weight)
+[2] fc1.weight=Parameter (name=fc1.weight)
+[3] fc1.bias=Parameter (name=fc1.bias)
+[4] fc2.weight=Parameter (name=fc2.weight)
+[5] fc2.bias=Parameter (name=fc2.bias)
+[6] fc3.weight=Parameter (name=fc3.weight)
+[7] fc3.bias=Parameter (name=fc3.bias)
+[8] scale_sense=Parameter (name=scale_sense)
+[9] learning_rate=Parameter (name=learning_rate)
+[10] momentum=Parameter (name=momentum)
+[11] moments.conv1.weight=Parameter (name=moments.conv1.weight)
+[12] moments.conv2.weight=Parameter (name=moments.conv2.weight)
+[13] moments.fc1.weight=Parameter (name=moments.fc1.weight)
+[14] moments.fc1.bias=Parameter (name=moments.fc1.bias)
+[15] moments.fc2.weight=Parameter (name=moments.fc2.weight)
+[16] moments.fc2.bias=Parameter (name=moments.fc2.bias)
+[17] moments.fc3.weight=Parameter (name=moments.fc3.weight)
+[18] moments.fc3.bias=Parameter (name=moments.fc3.bias)
+[19] current_iterator_step=Parameter (name=current_iterator_step)
+[20] last_overflow_iterator_step=Parameter (name=last_overflow_iterator_step)
+
+
+for idx, p in enumerate(net.get_parameters()):
+    print('[%d] %s' % (idx, p.name))
+
+[0] conv1.weight
+[1] conv2.weight
+[2] fc1.weight
+[3] fc1.bias
+[4] fc2.weight
+[5] fc2.bias
+[6] fc3.weight
+[7] fc3.bias

@@ -1,0 +1,19 @@
+diff --git a/mindspore/ccsrc/minddata/dataset/engine/ir/datasetops/source/CMakeLists.txt b/mindspore/ccsrc/minddata/dataset/engine/ir/datasetops/source/CMakeLists.txt
+index 92bcef432..c217a52f3 100644
+--- a/mindspore/ccsrc/minddata/dataset/engine/ir/datasetops/source/CMakeLists.txt
++++ b/mindspore/ccsrc/minddata/dataset/engine/ir/datasetops/source/CMakeLists.txt
+@@ -10,6 +10,7 @@ set(DATASET_ENGINE_IR_DATASETOPS_SOURCE_SRC_FILES
+         coco_node.cc
+         csv_node.cc
+         image_folder_node.cc
++        kungfu_data_node.cc
+         manifest_node.cc
+         minddata_node.cc
+         mnist_node.cc
+@@ -26,4 +27,4 @@ if (ENABLE_PYTHON)
+             )
+ endif ()
+ 
+-add_library(engine-ir-datasetops-source OBJECT ${DATASET_ENGINE_IR_DATASETOPS_SOURCE_SRC_FILES})
+\ No newline at end of file
++add_library(engine-ir-datasetops-source OBJECT ${DATASET_ENGINE_IR_DATASETOPS_SOURCE_SRC_FILES})

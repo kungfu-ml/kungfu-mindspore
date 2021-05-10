@@ -3,9 +3,8 @@
 import argparse
 
 import mindspore as ms
+import mindspore.ops.operations.kungfu_comm_ops as kfops
 import numpy as np
-
-import kungfu_mindspore_ops as kf
 
 
 def parse_args():
@@ -22,12 +21,12 @@ def main():
     ms.context.set_context(mode=ms.context.GRAPH_MODE,
                            device_target=args.device)
 
-    all_reduce = kf.AllReduce()
-
-    x = ms.Tensor(np.array([1.0, 2.0, 3.0]).astype(np.float32))
-    print(x)
-    y = all_reduce(x)
-    print(y)
+    with kfops.KungFuContext(device=args.device):
+        all_reduce = kfops.KungFuAllReduce()
+        x = ms.Tensor(np.array([1.0, 2.0, 3.0]).astype(np.float32))
+        print(x)
+        y = all_reduce(x)
+        print(y)
 
 
 main()

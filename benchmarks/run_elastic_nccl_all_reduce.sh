@@ -1,26 +1,9 @@
 #!/bin/sh
 set -e
 
-join_path() {
-    local IFS=":"
-    echo "$*"
-}
-
 cd $(dirname $0)
-ROOT=$PWD/../mindspore
-
-KUNGFU_LIB_PATH=$ROOT/third_party/kungfu/lib
-
-ld_library_path() {
-    echo $KUNGFU_LIB_PATH
-    echo $ROOT/mindspore/lib
-    echo $ROOT/build/mindspore/_deps/ompi-src/ompi/.libs
-}
-
-export LD_LIBRARY_PATH=$(join_path $(ld_library_path))
-
-export KUNGFU_MINDSPORE_DEBUG=1
-# export KUNGFU_CONFIG_LOG_LEVEL=1
+. ../ld_library_path.sh
+export LD_LIBRARY_PATH=$(ld_library_path ../mindspore)
 
 kungfu_run_flags() {
     local np=$1
@@ -61,9 +44,8 @@ trace() {
 }
 
 main() {
+    rm -fr logs
     trace kungfu_run 1 python3.7 ./elastic_gpu_all_reduce.py $(app_flags)
 }
 
-rm -fr logs
-# export GLOG_v=0
 main

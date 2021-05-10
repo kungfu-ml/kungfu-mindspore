@@ -1,0 +1,6 @@
+[submodule "gist/mindspore-lenet-checkpoints"]
+	path = gist/mindspore-lenet-checkpoints
+	url = git@gist.github.com:a28b63d46d83f8b33bf8500ed90a676c.git
+[submodule "gist/mindspore-numeric-debug"]
+	path = gist/mindspore-numeric-debug
+	url = https://gist.github.com/996687e0276a70191ad81728999044f6.git

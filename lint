@@ -1,0 +1,15 @@
+#!/bin/sh
+set -e
+
+list_py() {
+    find experimental/ -type f | grep .py$
+}
+
+autoflake_flags() {
+    echo -i
+    echo --remove-all-unused-imports
+}
+
+for py in $(list_py); do
+    autoflake $(autoflake_flags) $py
+done

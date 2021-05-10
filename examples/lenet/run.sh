@@ -2,27 +2,12 @@
 set -e
 
 cd $(dirname $0)
-
-KUNGFU_LIB_PATH=$HOME/code/repos/github.com/lgarithm/mindspore/third_party/kungfu/lib
-export LD_LIBRARY_PATH=$KUNGFU_LIB_PATH
-
-kungfu_run_flags() {
-    echo -q
-    echo -logdir logs
-    echo -np 4
-}
-
-kungfu_run() {
-    # export KUNGFU_MINDSPORE_DEBUG=1
-    # KUNGFU_MINDSPORE_DEBUG=$KUNGFU_MINDSPORE_DEBUG \
-    env \
-        LD_LIBRARY_PATH=$KUNGFU_LIB_PATH \
-        kungfu-run $(kungfu_run_flags) $@
-}
+. ../../ld_library_path.sh
+export LD_LIBRARY_PATH=$(ld_library_path ../../mindspore)
+. ../../scripts/launcher.sh
 
 train_flags() {
-    local data_dir=$HOME/var/data/mindspore/mnist
-    echo --data-dir $data_dir
+    echo --data-dir $HOME/var/data/mindspore/mnist
 
     # echo --device CPU
     echo --device GPU
@@ -38,7 +23,8 @@ single_train() {
 
 kungfu_train() {
     rm -f *.meta
-    kungfu_run python3.7 train.py $(train_flags) --use-kungfu
+    rm -fr logs
+    prun 1 train.py $(train_flags) --use-kungfu
 }
 
 main() {

@@ -1,0 +1,740 @@
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-000000.npz
+22102a5bd56397f41e298319bed0c1a7  cifar10-lenet-000050.ckpt
+a520debfd5ab948ffcb892937b33f643  cifar10-lenet-000050.npz
+906f859eb3112f43956baf406d6f07a4  cifar10-lenet-000100.ckpt
+35e2cd7eaf9b6806067d90b5d0a46f71  cifar10-lenet-000100.npz
+7197be8e048d11ef9a26369e2b3d51ff  cifar10-lenet-000150.ckpt
+ff549518636d6c90b683c2bbc982e46c  cifar10-lenet-000150.npz
+c1461a95220d4a3f0c3032b072bd6315  cifar10-lenet-000200.ckpt
+3c3b4b2048a8b99dda7fbf7d5416bb6a  cifar10-lenet-000200.npz
+23502e39f2ea3140df33d47b6af77795  cifar10-lenet-000250.ckpt
+6a9cfd81b2429514fb13f5becb2fbb09  cifar10-lenet-000250.npz
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-device-000000+200.npz
+cifar10-lenet-000000.npz
+conv1.weight        :: 524d76003d9f5cdaab5d225cebfcdd252e65649f float32 (6, 3, 5, 5)
+bn1.moving_mean     :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+bn1.moving_variance :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.gamma           :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.beta            :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+conv2.weight        :: 60d08ef89700a040671acd4496e1e1ad1dd594ef float32 (16, 6, 5, 5)
+bn2.moving_mean     :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+bn2.moving_variance :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.gamma           :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.beta            :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+fc1.weight          :: 96893627d5c69102b7f95d0e3503964998feadf5 float32 (120, 400)
+fc1.bias            :: fadad623162f56983edef5df34c65a9a3aadca77 float32 (120,)
+fc2.weight          :: 55716d2587dfaecd2074fa0f798a445c124dd17b float32 (84, 120)
+fc2.bias            :: 5253eee478649ba9b48ce75d465248229678858d float32 (84,)
+fc3.weight          :: ba8138a4754f0d774158691640169eb6565201e2 float32 (10, 84)
+fc3.bias            :: b80de5d138758541c5f05265ad144ab9fa86d1db float32 (10,)
+
+cifar10-lenet-000050.npz
+conv1.weight        :: 5f988806589af23156920c178dafda3cd7f6edae float32 (6, 3, 5, 5)
+bn1.moving_mean     :: abceec77b4e394f36a208ee05772ca0a97001b59 float32 (6,)
+bn1.moving_variance :: 24bed391c7e4dc85066b33113407f3d43acf017a float32 (6,)
+bn1.gamma           :: 36221f2b7bf6512705fd5a8cd1b94342c4dea492 float32 (6,)
+bn1.beta            :: de47201d6586be4d76fe089ae26826933c2b1a74 float32 (6,)
+conv2.weight        :: 543b998dbc530f9715b65ab3be7c4f111a86b205 float32 (16, 6, 5, 5)
+bn2.moving_mean     :: 86bc63fae4acee8a4e07fadf791694734195de69 float32 (16,)
+bn2.moving_variance :: 5aae1f99ee89ac7cb65ce79443bf3c4915c6febb float32 (16,)
+bn2.gamma           :: 4c041f0fcdc6abf6f36b6e322a6db10306eba44c float32 (16,)
+bn2.beta            :: f286161cb0b32d09f9f8fb07b01fbc66e622b466 float32 (16,)
+fc1.weight          :: 0e36caf46121f248c7e5386aa07a5809e40cde59 float32 (120, 400)
+fc1.bias            :: 7b8cabd77eb7f78d157673e41f6db5837e8aa6ef float32 (120,)
+fc2.weight          :: fcffdd3334fd8ee4501d0f70cb4da29c9e5d2cbe float32 (84, 120)
+fc2.bias            :: 7b3d758a96409cb51ced9872f530422976f6176b float32 (84,)
+fc3.weight          :: a2212121fd086424abf4e9369b79ef9d73fe4ef2 float32 (10, 84)
+fc3.bias            :: 997935c0bc776155b9bd6a3b098f04d32fc69e50 float32 (10,)
+
+cifar10-lenet-000100.npz
+conv1.weight        :: 7ce0aa27341058b6dcf0bacae168aeb59414c99e float32 (6, 3, 5, 5)
+bn1.moving_mean     :: 1050468dd403c532ba2e981b33c68783384aafdc float32 (6,)
+bn1.moving_variance :: 60abd9c19abdb120ccb5f80d0cb3daee5384aebb float32 (6,)
+bn1.gamma           :: f448506e32c645c73a2a67d1925bc8215dca7412 float32 (6,)
+bn1.beta            :: 473d7da255a46957bb35112c0d3b3a568e83e832 float32 (6,)
+conv2.weight        :: b13da65ac3c59ca6adc2d71c0c105186a65ec6fe float32 (16, 6, 5, 5)
+bn2.moving_mean     :: cd1d97f6710c2415dbed7e7aba0e2f5e86856bc3 float32 (16,)
+bn2.moving_variance :: c33248c2803f1fe20222c87e7da6844fefdde9ac float32 (16,)
+bn2.gamma           :: ae08e4878e61afac186c99b98a5efe5d109ba4e3 float32 (16,)
+bn2.beta            :: 3552e6f9dc92bfb78b72bffa4028312e17ffd757 float32 (16,)
+fc1.weight          :: 9d954d063fe37fdfc4afabc7adab53391bfa9e43 float32 (120, 400)
+fc1.bias            :: 708fce13c7815392f686bc72287ac56a1bb18d97 float32 (120,)
+fc2.weight          :: a7409dc41e8a118aa149d1ce916548b9d0a9b9e3 float32 (84, 120)
+fc2.bias            :: 809a2f14dfc9aafcae5252a766c607f4fa6e90e5 float32 (84,)
+fc3.weight          :: 2b6e3c252f653cdb8b8c5e440527cc322cd32c41 float32 (10, 84)
+fc3.bias            :: 174391e3aae3f996d8d20c1e372d6436f1eb7246 float32 (10,)
+
+cifar10-lenet-000150.npz
+conv1.weight        :: d3b46ad75402c9d46d317f37a9ce03aa1bddb6bf float32 (6, 3, 5, 5)
+bn1.moving_mean     :: 63cbdfc9245be990a2bfa39fc8a22bad21da114e float32 (6,)
+bn1.moving_variance :: e23935a86b7acbffc278c6a430e8daf6152c3bb9 float32 (6,)
+bn1.gamma           :: fb8ed1cd0e71813b95a519b441b3776a73cb170b float32 (6,)
+bn1.beta            :: f3f3ede7daf7362daa7937e4e672b038ce234037 float32 (6,)
+conv2.weight        :: def45637dfb7e819c3f47b83b017e2b1fe984841 float32 (16, 6, 5, 5)
+bn2.moving_mean     :: 585219a89844b5da2d4254c21072cb8592aff6f5 float32 (16,)
+bn2.moving_variance :: d0e691cbe65d995eada5d186a020401e259b0e0d float32 (16,)
+bn2.gamma           :: 17218dbae2a16dabe7981312abf04fe7bb2903ab float32 (16,)
+bn2.beta            :: c522b068dbc1a021262f1f2ac82d539e0aa22b9a float32 (16,)
+fc1.weight          :: 3d7ea7140a020c3ce9aea2dd07f7bdd916faa76f float32 (120, 400)
+fc1.bias            :: ddb61944acd93319d2d5dd336e9450bd2790a5ae float32 (120,)
+fc2.weight          :: b8b23620782d44ef0b0a3d5c7ae4082874c04512 float32 (84, 120)
+fc2.bias            :: c50f64b9b0e76575e57ff0e2aee5f22b32ef19c3 float32 (84,)
+fc3.weight          :: ff4f8491e4d67a67a1571baec055d743641d18ad float32 (10, 84)
+fc3.bias            :: c9bd07f34277f894e8e7b81cc089598d5a2b9dcb float32 (10,)
+
+cifar10-lenet-000200.npz
+conv1.weight        :: 32e5e2491088a881f6ae997f9dab68a6d7674cca float32 (6, 3, 5, 5)
+bn1.moving_mean     :: 863b1fca49810398cca8f0b0564bc2c8da6debae float32 (6,)
+bn1.moving_variance :: d059534e5bd96e01d74ad2778821be406511e961 float32 (6,)
+bn1.gamma           :: 06cc82a200a3e95d2b7de683f0a7fd86aa5858cd float32 (6,)
+bn1.beta            :: f0d257cee7e936fee12167eed4822182a8251fc1 float32 (6,)
+conv2.weight        :: d9eb23a17d80202633eb3a6b0357c7f9a469266b float32 (16, 6, 5, 5)
+bn2.moving_mean     :: f98303f079a8ba66b021f2011ffbc3af144f1f6b float32 (16,)
+bn2.moving_variance :: f71539aabf14707d968748c387f2df054595fa65 float32 (16,)
+bn2.gamma           :: 981123410fd1eae8d526e545d4c149b6d11821b9 float32 (16,)
+bn2.beta            :: 7ce547d4374398916c4ab0a464179b6018eba7f6 float32 (16,)
+fc1.weight          :: 1ad31abd4e20f7f8440dd6ebc4fd56f95766f327 float32 (120, 400)
+fc1.bias            :: 72755a08b555beffa17502c7a112f25b238af203 float32 (120,)
+fc2.weight          :: 232e5d90db74f663cd579f80284a65dde9dfa4ea float32 (84, 120)
+fc2.bias            :: 346070b843ff87239b211c1148e2bbc42a1fa177 float32 (84,)
+fc3.weight          :: 33803f2012440cac73bae030f94cb1389559d081 float32 (10, 84)
+fc3.bias            :: dadae28bf821ecc3bbd0d358bcacd81bc81d6da3 float32 (10,)
+
+cifar10-lenet-000250.npz
+conv1.weight        :: 6a90c6ff89f385894de3befc7502a7e3bc18d78d float32 (6, 3, 5, 5)
+bn1.moving_mean     :: aa306334bbf8d70145a4eb7da3d6b66ce7d952cc float32 (6,)
+bn1.moving_variance :: ab1039519b834c7852737580d0aaa7b531459836 float32 (6,)
+bn1.gamma           :: 566b5280d796babfa349f7efce3410162810e6c1 float32 (6,)
+bn1.beta            :: 26d269ade0910f51d1a28fc09642fd6f45b6e136 float32 (6,)
+conv2.weight        :: a488bb6011971076c1af3bf84804e70e45968828 float32 (16, 6, 5, 5)
+bn2.moving_mean     :: 229785718f42682aa4ed1a2f5cf2d11c41e670b5 float32 (16,)
+bn2.moving_variance :: 450ff5979140bdcf665c952c8b06d7651e85287b float32 (16,)
+bn2.gamma           :: 9d24f1c5c9ecee64c8345298f5aa5036e4b9e0ff float32 (16,)
+bn2.beta            :: 927fd732e0cc23eec38becb6622589dae5fa31b1 float32 (16,)
+fc1.weight          :: 4ee0c78903997d071bb90e68c7479dd17a4d8027 float32 (120, 400)
+fc1.bias            :: 5f15221a1a429fc580a3b30e9982d2792a0ce897 float32 (120,)
+fc2.weight          :: b07bfc94457408e6519238cd6a558b68d67a062d float32 (84, 120)
+fc2.bias            :: dc4c98c4b0f736fc400800a4c2a27cab77b721dc float32 (84,)
+fc3.weight          :: 03e898fccc44d30cd37b33b8c2a822a4bfdde521 float32 (10, 84)
+fc3.bias            :: a44f26f56faa27c009b38324d958560108e5f3fc float32 (10,)
+
+cifar10-lenet-device-000000+200.npz
+conv1.weight        :: 524d76003d9f5cdaab5d225cebfcdd252e65649f float32 (6, 3, 5, 5)
+bn1.moving_mean     :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+bn1.moving_variance :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.gamma           :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.beta            :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+conv2.weight        :: 60d08ef89700a040671acd4496e1e1ad1dd594ef float32 (16, 6, 5, 5)
+bn2.moving_mean     :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+bn2.moving_variance :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.gamma           :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.beta            :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+fc1.weight          :: 96893627d5c69102b7f95d0e3503964998feadf5 float32 (120, 400)
+fc1.bias            :: fadad623162f56983edef5df34c65a9a3aadca77 float32 (120,)
+fc2.weight          :: 55716d2587dfaecd2074fa0f798a445c124dd17b float32 (84, 120)
+fc2.bias            :: 5253eee478649ba9b48ce75d465248229678858d float32 (84,)
+fc3.weight          :: ba8138a4754f0d774158691640169eb6565201e2 float32 (10, 84)
+fc3.bias            :: b80de5d138758541c5f05265ad144ab9fa86d1db float32 (10,)
+
+/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_lenet_baseline
+
+
+
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-000000.npz
+5ea774ee5644a6a9c132133d33a53382  cifar10-lenet-000050.ckpt
+a569bb5680d388d0b363d235b57d1778  cifar10-lenet-000050.npz
+9f6af983f05206445ad00eb1c8df3837  cifar10-lenet-000100.ckpt
+180dab71e3eb7c87b375d1fea5b934cc  cifar10-lenet-000100.npz
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-device-000000+200.npz
+cifar10-lenet-000000.npz
+conv1.weight        :: 524d76003d9f5cdaab5d225cebfcdd252e65649f float32 (6, 3, 5, 5)
+bn1.moving_mean     :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+bn1.moving_variance :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.gamma           :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.beta            :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+conv2.weight        :: 60d08ef89700a040671acd4496e1e1ad1dd594ef float32 (16, 6, 5, 5)
+bn2.moving_mean     :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+bn2.moving_variance :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.gamma           :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.beta            :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+fc1.weight          :: 96893627d5c69102b7f95d0e3503964998feadf5 float32 (120, 400)
+fc1.bias            :: fadad623162f56983edef5df34c65a9a3aadca77 float32 (120,)
+fc2.weight          :: 55716d2587dfaecd2074fa0f798a445c124dd17b float32 (84, 120)
+fc2.bias            :: 5253eee478649ba9b48ce75d465248229678858d float32 (84,)
+fc3.weight          :: ba8138a4754f0d774158691640169eb6565201e2 float32 (10, 84)
+fc3.bias            :: b80de5d138758541c5f05265ad144ab9fa86d1db float32 (10,)
+
+cifar10-lenet-000050.npz
+conv1.weight        :: 4ced8642dc62f57c509cd2871d3a7305c2817b54 float32 (6, 3, 5, 5)
+bn1.moving_mean     :: 484e01dd4213f2b9310ab0cc2e34d77caf7dc1dd float32 (6,)
+bn1.moving_variance :: 5aca8886a02ac675fd781718f90fa52230e85f17 float32 (6,)
+bn1.gamma           :: 0cd4ce21d4dbd27c7f1e274dc381490a2e1717b3 float32 (6,)
+bn1.beta            :: 6b344382031f4955294edb097be13b9e62170d5a float32 (6,)
+conv2.weight        :: 2b96490c87955a71b156efdbd402fcbafb9db901 float32 (16, 6, 5, 5)
+bn2.moving_mean     :: 4cc40351ba0efdc1a28c3fc973c2455472756029 float32 (16,)
+bn2.moving_variance :: 5066f4db61e508892e8811787c3cdc8d3401b552 float32 (16,)
+bn2.gamma           :: e2d745cd79654e07b52e598d063293201e808b11 float32 (16,)
+bn2.beta            :: f37110e62895d627ec06fd4fab05ee8572b6c202 float32 (16,)
+fc1.weight          :: 684743b6b3ba94228495bef64a2b4419ec9bb1c1 float32 (120, 400)
+fc1.bias            :: 916bcfbb69c1b193a3040e0dc7e04c3eb6d8d5ad float32 (120,)
+fc2.weight          :: 5c0c1b68296a21e2597604290b1726694b35bba8 float32 (84, 120)
+fc2.bias            :: 64d886ddd6df07a95dac056063bfd7eb20dd23e6 float32 (84,)
+fc3.weight          :: e3ea9422c1992ef50c57c4568b53a6605e3eca24 float32 (10, 84)
+fc3.bias            :: de2ee4677255e2f3a8f3cbd68d02b7cf3e1d4e77 float32 (10,)
+
+cifar10-lenet-000100.npz
+conv1.weight        :: 9ead83c30d13f99556d1b3903651699159878b3a float32 (6, 3, 5, 5)
+bn1.moving_mean     :: 61666c32f6af5e352453027987e7e544b954160f float32 (6,)
+bn1.moving_variance :: 12803d87c5d54cd28c5cbb6075704b75da78ee18 float32 (6,)
+bn1.gamma           :: eed18a3aa6363145389b55f001aa438b639589f8 float32 (6,)
+bn1.beta            :: 938ef05e7d6c7ea61f8104534ad0c4bd7bc528d0 float32 (6,)
+conv2.weight        :: f31c96e29d93c976949312c589f7b1b8076c4a9a float32 (16, 6, 5, 5)
+bn2.moving_mean     :: c0672c11eb7184418eb84486b26c062d91d9e469 float32 (16,)
+bn2.moving_variance :: 5cdef3a6107ff15494850486e0597ca47e102004 float32 (16,)
+bn2.gamma           :: 7e4d32f8b1db3a1c760b64d492039ce857770bce float32 (16,)
+bn2.beta            :: 91a4d61e26b881470cce5f04c7500a8c83817fe1 float32 (16,)
+fc1.weight          :: 4dff7d6b9d4f23311b26ff5495c1be0a6ae8fe86 float32 (120, 400)
+fc1.bias            :: eda247859ac9eafd904d64ff37867153e1baa319 float32 (120,)
+fc2.weight          :: 4bc817f19b128c31aba0a93baccfdce6d685ce07 float32 (84, 120)
+fc2.bias            :: c14f22485878d81d328a01891625436d4c227995 float32 (84,)
+fc3.weight          :: c64d239f540cfe59e936b0e1dd98a1b641a12739 float32 (10, 84)
+fc3.bias            :: 2b4c9319be8e5136c876393c14e9e8c0993c81de float32 (10,)
+
+cifar10-lenet-device-000000+200.npz
+conv1.weight        :: 524d76003d9f5cdaab5d225cebfcdd252e65649f float32 (6, 3, 5, 5)
+bn1.moving_mean     :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+bn1.moving_variance :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.gamma           :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.beta            :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+conv2.weight        :: 60d08ef89700a040671acd4496e1e1ad1dd594ef float32 (16, 6, 5, 5)
+bn2.moving_mean     :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+bn2.moving_variance :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.gamma           :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.beta            :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+fc1.weight          :: 96893627d5c69102b7f95d0e3503964998feadf5 float32 (120, 400)
+fc1.bias            :: fadad623162f56983edef5df34c65a9a3aadca77 float32 (120,)
+fc2.weight          :: 55716d2587dfaecd2074fa0f798a445c124dd17b float32 (84, 120)
+fc2.bias            :: 5253eee478649ba9b48ce75d465248229678858d float32 (84,)
+fc3.weight          :: ba8138a4754f0d774158691640169eb6565201e2 float32 (10, 84)
+fc3.bias            :: b80de5d138758541c5f05265ad144ab9fa86d1db float32 (10,)
+
+/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_lenet_baseline
+
+
+
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-000000.npz
+60875d7e19890b6cb935670d9681d330  cifar10-lenet-000050.ckpt
+9159001bb1470d06ba9204fb06b217a5  cifar10-lenet-000050.npz
+c2bdbb9057e997e8a828a450cff6786d  cifar10-lenet-000100.ckpt
+aad82827068c36b470b1ce7f17e4322b  cifar10-lenet-000100.npz
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-device-000000+200.npz
+cifar10-lenet-000000.npz
+conv1.weight        :: 524d76003d9f5cdaab5d225cebfcdd252e65649f float32 (6, 3, 5, 5)
+bn1.moving_mean     :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+bn1.moving_variance :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.gamma           :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.beta            :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+conv2.weight        :: 60d08ef89700a040671acd4496e1e1ad1dd594ef float32 (16, 6, 5, 5)
+bn2.moving_mean     :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+bn2.moving_variance :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.gamma           :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.beta            :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+fc1.weight          :: 96893627d5c69102b7f95d0e3503964998feadf5 float32 (120, 400)
+fc1.bias            :: fadad623162f56983edef5df34c65a9a3aadca77 float32 (120,)
+fc2.weight          :: 55716d2587dfaecd2074fa0f798a445c124dd17b float32 (84, 120)
+fc2.bias            :: 5253eee478649ba9b48ce75d465248229678858d float32 (84,)
+fc3.weight          :: ba8138a4754f0d774158691640169eb6565201e2 float32 (10, 84)
+fc3.bias            :: b80de5d138758541c5f05265ad144ab9fa86d1db float32 (10,)
+
+cifar10-lenet-000050.npz
+conv1.weight        :: 4ced8642dc62f57c509cd2871d3a7305c2817b54 float32 (6, 3, 5, 5)
+bn1.moving_mean     :: de9df376bdf7160052267fce172610a85e6ce082 float32 (6,)
+bn1.moving_variance :: 8f15774ff4b5eb7a44892afd01fb08652dccf035 float32 (6,)
+bn1.gamma           :: 0cd4ce21d4dbd27c7f1e274dc381490a2e1717b3 float32 (6,)
+bn1.beta            :: 6b344382031f4955294edb097be13b9e62170d5a float32 (6,)
+conv2.weight        :: 2b96490c87955a71b156efdbd402fcbafb9db901 float32 (16, 6, 5, 5)
+bn2.moving_mean     :: 203c3c218735ade52f44eb7560fae29f28d57cd7 float32 (16,)
+bn2.moving_variance :: 78e83376730177a0c4886652df2b9378871a2eab float32 (16,)
+bn2.gamma           :: e2d745cd79654e07b52e598d063293201e808b11 float32 (16,)
+bn2.beta            :: f37110e62895d627ec06fd4fab05ee8572b6c202 float32 (16,)
+fc1.weight          :: 684743b6b3ba94228495bef64a2b4419ec9bb1c1 float32 (120, 400)
+fc1.bias            :: 916bcfbb69c1b193a3040e0dc7e04c3eb6d8d5ad float32 (120,)
+fc2.weight          :: 5c0c1b68296a21e2597604290b1726694b35bba8 float32 (84, 120)
+fc2.bias            :: 64d886ddd6df07a95dac056063bfd7eb20dd23e6 float32 (84,)
+fc3.weight          :: e3ea9422c1992ef50c57c4568b53a6605e3eca24 float32 (10, 84)
+fc3.bias            :: de2ee4677255e2f3a8f3cbd68d02b7cf3e1d4e77 float32 (10,)
+
+cifar10-lenet-000100.npz
+conv1.weight        :: 9ead83c30d13f99556d1b3903651699159878b3a float32 (6, 3, 5, 5)
+bn1.moving_mean     :: 1320fa8291a58260954453453194061507b8e383 float32 (6,)
+bn1.moving_variance :: b56743911705f4ce21c1f2c83f3da15bf01adf1d float32 (6,)
+bn1.gamma           :: eed18a3aa6363145389b55f001aa438b639589f8 float32 (6,)
+bn1.beta            :: 938ef05e7d6c7ea61f8104534ad0c4bd7bc528d0 float32 (6,)
+conv2.weight        :: f31c96e29d93c976949312c589f7b1b8076c4a9a float32 (16, 6, 5, 5)
+bn2.moving_mean     :: edbfc7aafc83e85e538ee83634439f64f910d312 float32 (16,)
+bn2.moving_variance :: 00298ca6a7bc273d4d76a99eb614e32d2a200455 float32 (16,)
+bn2.gamma           :: 7e4d32f8b1db3a1c760b64d492039ce857770bce float32 (16,)
+bn2.beta            :: 91a4d61e26b881470cce5f04c7500a8c83817fe1 float32 (16,)
+fc1.weight          :: 4dff7d6b9d4f23311b26ff5495c1be0a6ae8fe86 float32 (120, 400)
+fc1.bias            :: eda247859ac9eafd904d64ff37867153e1baa319 float32 (120,)
+fc2.weight          :: 4bc817f19b128c31aba0a93baccfdce6d685ce07 float32 (84, 120)
+fc2.bias            :: c14f22485878d81d328a01891625436d4c227995 float32 (84,)
+fc3.weight          :: c64d239f540cfe59e936b0e1dd98a1b641a12739 float32 (10, 84)
+fc3.bias            :: 2b4c9319be8e5136c876393c14e9e8c0993c81de float32 (10,)
+
+cifar10-lenet-device-000000+200.npz
+conv1.weight        :: 524d76003d9f5cdaab5d225cebfcdd252e65649f float32 (6, 3, 5, 5)
+bn1.moving_mean     :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+bn1.moving_variance :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.gamma           :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.beta            :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+conv2.weight        :: 60d08ef89700a040671acd4496e1e1ad1dd594ef float32 (16, 6, 5, 5)
+bn2.moving_mean     :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+bn2.moving_variance :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.gamma           :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.beta            :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+fc1.weight          :: 96893627d5c69102b7f95d0e3503964998feadf5 float32 (120, 400)
+fc1.bias            :: fadad623162f56983edef5df34c65a9a3aadca77 float32 (120,)
+fc2.weight          :: 55716d2587dfaecd2074fa0f798a445c124dd17b float32 (84, 120)
+fc2.bias            :: 5253eee478649ba9b48ce75d465248229678858d float32 (84,)
+fc3.weight          :: ba8138a4754f0d774158691640169eb6565201e2 float32 (10, 84)
+fc3.bias            :: b80de5d138758541c5f05265ad144ab9fa86d1db float32 (10,)
+
+/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_lenet_baseline
+
+
+
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-000000.npz
+8e19893db4a183056ac66e10f198c817  cifar10-lenet-000050.ckpt
+b73fdd6f3b170bcb9970128d04438cc4  cifar10-lenet-000050.npz
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-device-000000+200.npz
+cifar10-lenet-000000.npz
+conv1.weight        :: 524d76003d9f5cdaab5d225cebfcdd252e65649f float32 (6, 3, 5, 5)
+bn1.moving_mean     :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+bn1.moving_variance :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.gamma           :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.beta            :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+conv2.weight        :: 60d08ef89700a040671acd4496e1e1ad1dd594ef float32 (16, 6, 5, 5)
+bn2.moving_mean     :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+bn2.moving_variance :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.gamma           :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.beta            :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+fc1.weight          :: 96893627d5c69102b7f95d0e3503964998feadf5 float32 (120, 400)
+fc1.bias            :: fadad623162f56983edef5df34c65a9a3aadca77 float32 (120,)
+fc2.weight          :: 55716d2587dfaecd2074fa0f798a445c124dd17b float32 (84, 120)
+fc2.bias            :: 5253eee478649ba9b48ce75d465248229678858d float32 (84,)
+fc3.weight          :: ba8138a4754f0d774158691640169eb6565201e2 float32 (10, 84)
+fc3.bias            :: b80de5d138758541c5f05265ad144ab9fa86d1db float32 (10,)
+
+cifar10-lenet-000050.npz
+conv1.weight        :: c1a1402ecdd21ad9e784135243f92ca5478f0235 float32 (6, 3, 5, 5)
+bn1.moving_mean     :: 8dd37a9322856d34fcca6ec936297d83a5081302 float32 (6,)
+bn1.moving_variance :: ce995b61867920b8e796117449afe41f9cd5822f float32 (6,)
+bn1.gamma           :: 767cdaf6922c8f9a4f793bcdb03142848716b24b float32 (6,)
+bn1.beta            :: f48ef7e4101fc0b602dcd708d75413165e7b1683 float32 (6,)
+conv2.weight        :: 82c15e1234522ba26ef92349457e0f79e94a21b4 float32 (16, 6, 5, 5)
+bn2.moving_mean     :: eb1146838e5d076cf052d51c0a1899f984671959 float32 (16,)
+bn2.moving_variance :: 2bcd80233eeefa6f805dab46b75eee39ae4221cf float32 (16,)
+bn2.gamma           :: a2f04d09f794c436d68902ec8b192f1dba851acf float32 (16,)
+bn2.beta            :: 40206f70bda8bae1b7a0250f8713eba488ede77d float32 (16,)
+fc1.weight          :: af762e5a8b63e6cae209fe89bc884aaf9b918a6c float32 (120, 400)
+fc1.bias            :: ed913cf37d1fcee5d33e94285adcec64bc96b20e float32 (120,)
+fc2.weight          :: e6d675ab639d256cef3f078559dfdd94c40de35f float32 (84, 120)
+fc2.bias            :: 643a567c17350836e2f27b7fe11a35af6792c1cf float32 (84,)
+fc3.weight          :: d4ea1c15a09634306b9cd814824dd75b8a3d9697 float32 (10, 84)
+fc3.bias            :: 640a999944ee20c7dc131fb803a680d0157c09a9 float32 (10,)
+
+cifar10-lenet-device-000000+200.npz
+conv1.weight        :: 524d76003d9f5cdaab5d225cebfcdd252e65649f float32 (6, 3, 5, 5)
+bn1.moving_mean     :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+bn1.moving_variance :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.gamma           :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.beta            :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+conv2.weight        :: 60d08ef89700a040671acd4496e1e1ad1dd594ef float32 (16, 6, 5, 5)
+bn2.moving_mean     :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+bn2.moving_variance :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.gamma           :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.beta            :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+fc1.weight          :: 96893627d5c69102b7f95d0e3503964998feadf5 float32 (120, 400)
+fc1.bias            :: fadad623162f56983edef5df34c65a9a3aadca77 float32 (120,)
+fc2.weight          :: 55716d2587dfaecd2074fa0f798a445c124dd17b float32 (84, 120)
+fc2.bias            :: 5253eee478649ba9b48ce75d465248229678858d float32 (84,)
+fc3.weight          :: ba8138a4754f0d774158691640169eb6565201e2 float32 (10, 84)
+fc3.bias            :: b80de5d138758541c5f05265ad144ab9fa86d1db float32 (10,)
+
+/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_lenet_baseline
+
+
+
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-000000.npz
+118412d595f32e9aee0d2c9ee6ab58fc  cifar10-lenet-000050.ckpt
+c93554310bd0a4233845d117f7761491  cifar10-lenet-000050.npz
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-device-000000+200.npz
+cifar10-lenet-000000.npz
+conv1.weight        :: 524d76003d9f5cdaab5d225cebfcdd252e65649f float32 (6, 3, 5, 5)
+bn1.moving_mean     :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+bn1.moving_variance :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.gamma           :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.beta            :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+conv2.weight        :: 60d08ef89700a040671acd4496e1e1ad1dd594ef float32 (16, 6, 5, 5)
+bn2.moving_mean     :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+bn2.moving_variance :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.gamma           :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.beta            :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+fc1.weight          :: 96893627d5c69102b7f95d0e3503964998feadf5 float32 (120, 400)
+fc1.bias            :: fadad623162f56983edef5df34c65a9a3aadca77 float32 (120,)
+fc2.weight          :: 55716d2587dfaecd2074fa0f798a445c124dd17b float32 (84, 120)
+fc2.bias            :: 5253eee478649ba9b48ce75d465248229678858d float32 (84,)
+fc3.weight          :: ba8138a4754f0d774158691640169eb6565201e2 float32 (10, 84)
+fc3.bias            :: b80de5d138758541c5f05265ad144ab9fa86d1db float32 (10,)
+
+cifar10-lenet-000050.npz
+conv1.weight        :: c1a1402ecdd21ad9e784135243f92ca5478f0235 float32 (6, 3, 5, 5)
+bn1.moving_mean     :: 66d34aaf934b0d63ef80011622d99be4faa7909c float32 (6,)
+bn1.moving_variance :: f27f1435e47847413d71414643a8110aee57540f float32 (6,)
+bn1.gamma           :: 767cdaf6922c8f9a4f793bcdb03142848716b24b float32 (6,)
+bn1.beta            :: f48ef7e4101fc0b602dcd708d75413165e7b1683 float32 (6,)
+conv2.weight        :: 82c15e1234522ba26ef92349457e0f79e94a21b4 float32 (16, 6, 5, 5)
+bn2.moving_mean     :: 4a0e0b4d42e3bfd418dcbdf07fd7b36e18937af1 float32 (16,)
+bn2.moving_variance :: b50995d81669245cdd459608290ececfbd5af59a float32 (16,)
+bn2.gamma           :: a2f04d09f794c436d68902ec8b192f1dba851acf float32 (16,)
+bn2.beta            :: 40206f70bda8bae1b7a0250f8713eba488ede77d float32 (16,)
+fc1.weight          :: af762e5a8b63e6cae209fe89bc884aaf9b918a6c float32 (120, 400)
+fc1.bias            :: ed913cf37d1fcee5d33e94285adcec64bc96b20e float32 (120,)
+fc2.weight          :: e6d675ab639d256cef3f078559dfdd94c40de35f float32 (84, 120)
+fc2.bias            :: 643a567c17350836e2f27b7fe11a35af6792c1cf float32 (84,)
+fc3.weight          :: d4ea1c15a09634306b9cd814824dd75b8a3d9697 float32 (10, 84)
+fc3.bias            :: 640a999944ee20c7dc131fb803a680d0157c09a9 float32 (10,)
+
+cifar10-lenet-device-000000+200.npz
+conv1.weight        :: 524d76003d9f5cdaab5d225cebfcdd252e65649f float32 (6, 3, 5, 5)
+bn1.moving_mean     :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+bn1.moving_variance :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.gamma           :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.beta            :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+conv2.weight        :: 60d08ef89700a040671acd4496e1e1ad1dd594ef float32 (16, 6, 5, 5)
+bn2.moving_mean     :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+bn2.moving_variance :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.gamma           :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.beta            :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+fc1.weight          :: 96893627d5c69102b7f95d0e3503964998feadf5 float32 (120, 400)
+fc1.bias            :: fadad623162f56983edef5df34c65a9a3aadca77 float32 (120,)
+fc2.weight          :: 55716d2587dfaecd2074fa0f798a445c124dd17b float32 (84, 120)
+fc2.bias            :: 5253eee478649ba9b48ce75d465248229678858d float32 (84,)
+fc3.weight          :: ba8138a4754f0d774158691640169eb6565201e2 float32 (10, 84)
+fc3.bias            :: b80de5d138758541c5f05265ad144ab9fa86d1db float32 (10,)
+
+/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_lenet_baseline
+
+
+
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-000000.npz
+752b7d34d3b2f199cee84ddd4682d094  cifar10-lenet-000050.ckpt
+79821a1af91c93ec93c2d88b50b1edfd  cifar10-lenet-000050.npz
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-device-000000+200.npz
+cifar10-lenet-000000.npz
+conv1.weight        :: 524d76003d9f5cdaab5d225cebfcdd252e65649f float32 (6, 3, 5, 5)
+bn1.moving_mean     :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+bn1.moving_variance :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.gamma           :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.beta            :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+conv2.weight        :: 60d08ef89700a040671acd4496e1e1ad1dd594ef float32 (16, 6, 5, 5)
+bn2.moving_mean     :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+bn2.moving_variance :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.gamma           :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.beta            :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+fc1.weight          :: 96893627d5c69102b7f95d0e3503964998feadf5 float32 (120, 400)
+fc1.bias            :: fadad623162f56983edef5df34c65a9a3aadca77 float32 (120,)
+fc2.weight          :: 55716d2587dfaecd2074fa0f798a445c124dd17b float32 (84, 120)
+fc2.bias            :: 5253eee478649ba9b48ce75d465248229678858d float32 (84,)
+fc3.weight          :: ba8138a4754f0d774158691640169eb6565201e2 float32 (10, 84)
+fc3.bias            :: b80de5d138758541c5f05265ad144ab9fa86d1db float32 (10,)
+
+cifar10-lenet-000050.npz
+conv1.weight        :: c1a1402ecdd21ad9e784135243f92ca5478f0235 float32 (6, 3, 5, 5)
+bn1.moving_mean     :: 1af41db9c1b9b7fa59d84ba1d51387686bd5bb7e float32 (6,)
+bn1.moving_variance :: 23349648c3803f38b1652697723fd845d1449787 float32 (6,)
+bn1.gamma           :: 767cdaf6922c8f9a4f793bcdb03142848716b24b float32 (6,)
+bn1.beta            :: f48ef7e4101fc0b602dcd708d75413165e7b1683 float32 (6,)
+conv2.weight        :: 82c15e1234522ba26ef92349457e0f79e94a21b4 float32 (16, 6, 5, 5)
+bn2.moving_mean     :: 44a8bae046b2b2032aa6f89d4c9cf919e552aa7f float32 (16,)
+bn2.moving_variance :: 76958a507e91da72646655f0a4907bded84c0664 float32 (16,)
+bn2.gamma           :: a2f04d09f794c436d68902ec8b192f1dba851acf float32 (16,)
+bn2.beta            :: 40206f70bda8bae1b7a0250f8713eba488ede77d float32 (16,)
+fc1.weight          :: af762e5a8b63e6cae209fe89bc884aaf9b918a6c float32 (120, 400)
+fc1.bias            :: ed913cf37d1fcee5d33e94285adcec64bc96b20e float32 (120,)
+fc2.weight          :: e6d675ab639d256cef3f078559dfdd94c40de35f float32 (84, 120)
+fc2.bias            :: 643a567c17350836e2f27b7fe11a35af6792c1cf float32 (84,)
+fc3.weight          :: d4ea1c15a09634306b9cd814824dd75b8a3d9697 float32 (10, 84)
+fc3.bias            :: 640a999944ee20c7dc131fb803a680d0157c09a9 float32 (10,)
+
+cifar10-lenet-device-000000+200.npz
+conv1.weight        :: 524d76003d9f5cdaab5d225cebfcdd252e65649f float32 (6, 3, 5, 5)
+bn1.moving_mean     :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+bn1.moving_variance :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.gamma           :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.beta            :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+conv2.weight        :: 60d08ef89700a040671acd4496e1e1ad1dd594ef float32 (16, 6, 5, 5)
+bn2.moving_mean     :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+bn2.moving_variance :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.gamma           :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.beta            :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+fc1.weight          :: 96893627d5c69102b7f95d0e3503964998feadf5 float32 (120, 400)
+fc1.bias            :: fadad623162f56983edef5df34c65a9a3aadca77 float32 (120,)
+fc2.weight          :: 55716d2587dfaecd2074fa0f798a445c124dd17b float32 (84, 120)
+fc2.bias            :: 5253eee478649ba9b48ce75d465248229678858d float32 (84,)
+fc3.weight          :: ba8138a4754f0d774158691640169eb6565201e2 float32 (10, 84)
+fc3.bias            :: b80de5d138758541c5f05265ad144ab9fa86d1db float32 (10,)
+
+/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_lenet_baseline
+
+
+
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-000000.npz
+2375be3db0ee53e3c6b3df54a375f57c  cifar10-lenet-000050.ckpt
+005994da251ea76629275b89780342a8  cifar10-lenet-000050.npz
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-device-000000+200.npz
+cifar10-lenet-000000.npz
+conv1.weight        :: 524d76003d9f5cdaab5d225cebfcdd252e65649f float32 (6, 3, 5, 5)
+bn1.moving_mean     :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+bn1.moving_variance :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.gamma           :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.beta            :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+conv2.weight        :: 60d08ef89700a040671acd4496e1e1ad1dd594ef float32 (16, 6, 5, 5)
+bn2.moving_mean     :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+bn2.moving_variance :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.gamma           :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.beta            :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+fc1.weight          :: 96893627d5c69102b7f95d0e3503964998feadf5 float32 (120, 400)
+fc1.bias            :: fadad623162f56983edef5df34c65a9a3aadca77 float32 (120,)
+fc2.weight          :: 55716d2587dfaecd2074fa0f798a445c124dd17b float32 (84, 120)
+fc2.bias            :: 5253eee478649ba9b48ce75d465248229678858d float32 (84,)
+fc3.weight          :: ba8138a4754f0d774158691640169eb6565201e2 float32 (10, 84)
+fc3.bias            :: b80de5d138758541c5f05265ad144ab9fa86d1db float32 (10,)
+
+cifar10-lenet-000050.npz
+conv1.weight        :: 68f41b162e585d667ece8eefea80bee88a7f5df6 float32 (6, 3, 5, 5)
+bn1.moving_mean     :: d8e75ec9d85e00ed1e2dac13cf7cc91d9143d065 float32 (6,)
+bn1.moving_variance :: 7f7ca4628f9d28c4a2be85c63f682f9a3dc8783b float32 (6,)
+bn1.gamma           :: 7dc13acf7e6aa6bbcace4328cfc2fabc97e93ba2 float32 (6,)
+bn1.beta            :: 93436a1dafe34dc8251c9265447627788d8e1f23 float32 (6,)
+conv2.weight        :: ceb59d747fd0a8b3aace83e1fc6a639d2118443d float32 (16, 6, 5, 5)
+bn2.moving_mean     :: 85ba3922bd418ea8f7417b80c0ec4381ec1b8a85 float32 (16,)
+bn2.moving_variance :: 3558f00d0eb8f7365e92eb045d3c173329c7dd8d float32 (16,)
+bn2.gamma           :: f5b3566ebf9a53862ab90d0cf147da84587ef154 float32 (16,)
+bn2.beta            :: 2e1be66138c52d3dc0ffae8f32d9c56a026be9da float32 (16,)
+fc1.weight          :: 8867a1fef60a9e56421b2d42fe577d6ef30de0ad float32 (120, 400)
+fc1.bias            :: 4a0ebb3745f9427c5355aaf0375ca7dbe60378c3 float32 (120,)
+fc2.weight          :: f5552b588805b4d698f8f19e560a404f0af9d567 float32 (84, 120)
+fc2.bias            :: dff15d1147c8446f61dfad438cf1acf9dc625078 float32 (84,)
+fc3.weight          :: 9c8e22da578ab2c70ca5560a49b7762ea8309945 float32 (10, 84)
+fc3.bias            :: cd1986d4e8d4807852eecbd1c3f3f5093e6351ce float32 (10,)
+
+cifar10-lenet-device-000000+200.npz
+conv1.weight        :: 524d76003d9f5cdaab5d225cebfcdd252e65649f float32 (6, 3, 5, 5)
+bn1.moving_mean     :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+bn1.moving_variance :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.gamma           :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.beta            :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+conv2.weight        :: 60d08ef89700a040671acd4496e1e1ad1dd594ef float32 (16, 6, 5, 5)
+bn2.moving_mean     :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+bn2.moving_variance :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.gamma           :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.beta            :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+fc1.weight          :: 96893627d5c69102b7f95d0e3503964998feadf5 float32 (120, 400)
+fc1.bias            :: fadad623162f56983edef5df34c65a9a3aadca77 float32 (120,)
+fc2.weight          :: 55716d2587dfaecd2074fa0f798a445c124dd17b float32 (84, 120)
+fc2.bias            :: 5253eee478649ba9b48ce75d465248229678858d float32 (84,)
+fc3.weight          :: ba8138a4754f0d774158691640169eb6565201e2 float32 (10, 84)
+fc3.bias            :: b80de5d138758541c5f05265ad144ab9fa86d1db float32 (10,)
+
+/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_lenet_baseline
+
+
+
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-000000.npz
+6915dd8a84567d28a0332261a1842be7  cifar10-lenet-000050.ckpt
+048f2bc53ed619076f779124d67b781a  cifar10-lenet-000050.npz
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-device-000000+200.npz
+cifar10-lenet-000000.npz
+conv1.weight        :: 524d76003d9f5cdaab5d225cebfcdd252e65649f float32 (6, 3, 5, 5)
+bn1.moving_mean     :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+bn1.moving_variance :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.gamma           :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.beta            :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+conv2.weight        :: 60d08ef89700a040671acd4496e1e1ad1dd594ef float32 (16, 6, 5, 5)
+bn2.moving_mean     :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+bn2.moving_variance :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.gamma           :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.beta            :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+fc1.weight          :: 96893627d5c69102b7f95d0e3503964998feadf5 float32 (120, 400)
+fc1.bias            :: fadad623162f56983edef5df34c65a9a3aadca77 float32 (120,)
+fc2.weight          :: 55716d2587dfaecd2074fa0f798a445c124dd17b float32 (84, 120)
+fc2.bias            :: 5253eee478649ba9b48ce75d465248229678858d float32 (84,)
+fc3.weight          :: ba8138a4754f0d774158691640169eb6565201e2 float32 (10, 84)
+fc3.bias            :: b80de5d138758541c5f05265ad144ab9fa86d1db float32 (10,)
+
+cifar10-lenet-000050.npz
+conv1.weight        :: 68f41b162e585d667ece8eefea80bee88a7f5df6 float32 (6, 3, 5, 5)
+bn1.moving_mean     :: 0ef6a76bec6658251c780065ffede389c578268d float32 (6,)
+bn1.moving_variance :: 7062345887ad3447d3ee53fee98862b8160ec33e float32 (6,)
+bn1.gamma           :: 7dc13acf7e6aa6bbcace4328cfc2fabc97e93ba2 float32 (6,)
+bn1.beta            :: 93436a1dafe34dc8251c9265447627788d8e1f23 float32 (6,)
+conv2.weight        :: ceb59d747fd0a8b3aace83e1fc6a639d2118443d float32 (16, 6, 5, 5)
+bn2.moving_mean     :: 37f8dd65113b3a9227826f87538c3b76e15e983f float32 (16,)
+bn2.moving_variance :: ceba222db6ef3508c1c54e2c0a405afa88a5bdd4 float32 (16,)
+bn2.gamma           :: f5b3566ebf9a53862ab90d0cf147da84587ef154 float32 (16,)
+bn2.beta            :: 2e1be66138c52d3dc0ffae8f32d9c56a026be9da float32 (16,)
+fc1.weight          :: 8867a1fef60a9e56421b2d42fe577d6ef30de0ad float32 (120, 400)
+fc1.bias            :: 4a0ebb3745f9427c5355aaf0375ca7dbe60378c3 float32 (120,)
+fc2.weight          :: f5552b588805b4d698f8f19e560a404f0af9d567 float32 (84, 120)
+fc2.bias            :: dff15d1147c8446f61dfad438cf1acf9dc625078 float32 (84,)
+fc3.weight          :: 9c8e22da578ab2c70ca5560a49b7762ea8309945 float32 (10, 84)
+fc3.bias            :: cd1986d4e8d4807852eecbd1c3f3f5093e6351ce float32 (10,)
+
+cifar10-lenet-device-000000+200.npz
+conv1.weight        :: 524d76003d9f5cdaab5d225cebfcdd252e65649f float32 (6, 3, 5, 5)
+bn1.moving_mean     :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+bn1.moving_variance :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.gamma           :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.beta            :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+conv2.weight        :: 60d08ef89700a040671acd4496e1e1ad1dd594ef float32 (16, 6, 5, 5)
+bn2.moving_mean     :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+bn2.moving_variance :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.gamma           :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.beta            :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+fc1.weight          :: 96893627d5c69102b7f95d0e3503964998feadf5 float32 (120, 400)
+fc1.bias            :: fadad623162f56983edef5df34c65a9a3aadca77 float32 (120,)
+fc2.weight          :: 55716d2587dfaecd2074fa0f798a445c124dd17b float32 (84, 120)
+fc2.bias            :: 5253eee478649ba9b48ce75d465248229678858d float32 (84,)
+fc3.weight          :: ba8138a4754f0d774158691640169eb6565201e2 float32 (10, 84)
+fc3.bias            :: b80de5d138758541c5f05265ad144ab9fa86d1db float32 (10,)
+
+/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_lenet_baseline
+
+
+
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-000000.npz
+9eaed2b9eb12b8f07f796dc6a065b04a  cifar10-lenet-000050.ckpt
+46516e03af90b37224852dc8897f99bf  cifar10-lenet-000050.npz
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-device-000000+200.npz
+cifar10-lenet-000000.npz
+conv1.weight        :: 524d76003d9f5cdaab5d225cebfcdd252e65649f float32 (6, 3, 5, 5)
+bn1.moving_mean     :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+bn1.moving_variance :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.gamma           :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.beta            :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+conv2.weight        :: 60d08ef89700a040671acd4496e1e1ad1dd594ef float32 (16, 6, 5, 5)
+bn2.moving_mean     :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+bn2.moving_variance :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.gamma           :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.beta            :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+fc1.weight          :: 96893627d5c69102b7f95d0e3503964998feadf5 float32 (120, 400)
+fc1.bias            :: fadad623162f56983edef5df34c65a9a3aadca77 float32 (120,)
+fc2.weight          :: 55716d2587dfaecd2074fa0f798a445c124dd17b float32 (84, 120)
+fc2.bias            :: 5253eee478649ba9b48ce75d465248229678858d float32 (84,)
+fc3.weight          :: ba8138a4754f0d774158691640169eb6565201e2 float32 (10, 84)
+fc3.bias            :: b80de5d138758541c5f05265ad144ab9fa86d1db float32 (10,)
+
+cifar10-lenet-000050.npz
+conv1.weight        :: 68f41b162e585d667ece8eefea80bee88a7f5df6 float32 (6, 3, 5, 5)
+bn1.moving_mean     :: 9a274c87d1066dc6a61698b44c058ca7b547ee82 float32 (6,)
+bn1.moving_variance :: c388221cf01f7374c4e2b3b63ee1c9426b32b1b3 float32 (6,)
+bn1.gamma           :: 7dc13acf7e6aa6bbcace4328cfc2fabc97e93ba2 float32 (6,)
+bn1.beta            :: 93436a1dafe34dc8251c9265447627788d8e1f23 float32 (6,)
+conv2.weight        :: ceb59d747fd0a8b3aace83e1fc6a639d2118443d float32 (16, 6, 5, 5)
+bn2.moving_mean     :: 8f5e6bccb1aab7f32e55ad3620c96e2e6c48cbed float32 (16,)
+bn2.moving_variance :: 7ba440a7223d998b6957e3f22d43653f1c0f174e float32 (16,)
+bn2.gamma           :: f5b3566ebf9a53862ab90d0cf147da84587ef154 float32 (16,)
+bn2.beta            :: 2e1be66138c52d3dc0ffae8f32d9c56a026be9da float32 (16,)
+fc1.weight          :: 8867a1fef60a9e56421b2d42fe577d6ef30de0ad float32 (120, 400)
+fc1.bias            :: 4a0ebb3745f9427c5355aaf0375ca7dbe60378c3 float32 (120,)
+fc2.weight          :: f5552b588805b4d698f8f19e560a404f0af9d567 float32 (84, 120)
+fc2.bias            :: dff15d1147c8446f61dfad438cf1acf9dc625078 float32 (84,)
+fc3.weight          :: 9c8e22da578ab2c70ca5560a49b7762ea8309945 float32 (10, 84)
+fc3.bias            :: cd1986d4e8d4807852eecbd1c3f3f5093e6351ce float32 (10,)
+
+cifar10-lenet-device-000000+200.npz
+conv1.weight        :: 524d76003d9f5cdaab5d225cebfcdd252e65649f float32 (6, 3, 5, 5)
+bn1.moving_mean     :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+bn1.moving_variance :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.gamma           :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.beta            :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+conv2.weight        :: 60d08ef89700a040671acd4496e1e1ad1dd594ef float32 (16, 6, 5, 5)
+bn2.moving_mean     :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+bn2.moving_variance :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.gamma           :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.beta            :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+fc1.weight          :: 96893627d5c69102b7f95d0e3503964998feadf5 float32 (120, 400)
+fc1.bias            :: fadad623162f56983edef5df34c65a9a3aadca77 float32 (120,)
+fc2.weight          :: 55716d2587dfaecd2074fa0f798a445c124dd17b float32 (84, 120)
+fc2.bias            :: 5253eee478649ba9b48ce75d465248229678858d float32 (84,)
+fc3.weight          :: ba8138a4754f0d774158691640169eb6565201e2 float32 (10, 84)
+fc3.bias            :: b80de5d138758541c5f05265ad144ab9fa86d1db float32 (10,)
+
+/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_lenet_baseline
+
+
+
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-000000.npz
+c913679d4e1106b7edae5f91a7d1eb67  cifar10-lenet-000050.ckpt
+9e6c1c268c62f894e27a4f69ef50f909  cifar10-lenet-000050.npz
+0a6f8a1fa3c1456700cb3d5713d419eb  cifar10-lenet-device-000000+200.npz
+cifar10-lenet-000000.npz
+conv1.weight        :: 524d76003d9f5cdaab5d225cebfcdd252e65649f float32 (6, 3, 5, 5)
+bn1.moving_mean     :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+bn1.moving_variance :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.gamma           :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.beta            :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+conv2.weight        :: 60d08ef89700a040671acd4496e1e1ad1dd594ef float32 (16, 6, 5, 5)
+bn2.moving_mean     :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+bn2.moving_variance :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.gamma           :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.beta            :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+fc1.weight          :: 96893627d5c69102b7f95d0e3503964998feadf5 float32 (120, 400)
+fc1.bias            :: fadad623162f56983edef5df34c65a9a3aadca77 float32 (120,)
+fc2.weight          :: 55716d2587dfaecd2074fa0f798a445c124dd17b float32 (84, 120)
+fc2.bias            :: 5253eee478649ba9b48ce75d465248229678858d float32 (84,)
+fc3.weight          :: ba8138a4754f0d774158691640169eb6565201e2 float32 (10, 84)
+fc3.bias            :: b80de5d138758541c5f05265ad144ab9fa86d1db float32 (10,)
+
+cifar10-lenet-000050.npz
+conv1.weight        :: 68f41b162e585d667ece8eefea80bee88a7f5df6 float32 (6, 3, 5, 5)
+bn1.moving_mean     :: 55919e90429acc8db1406a3dbea7270f12cc0d7e float32 (6,)
+bn1.moving_variance :: a31bd9279fa5213471bbac0f3d0b0cc001aa81cf float32 (6,)
+bn1.gamma           :: 7dc13acf7e6aa6bbcace4328cfc2fabc97e93ba2 float32 (6,)
+bn1.beta            :: 93436a1dafe34dc8251c9265447627788d8e1f23 float32 (6,)
+conv2.weight        :: ceb59d747fd0a8b3aace83e1fc6a639d2118443d float32 (16, 6, 5, 5)
+bn2.moving_mean     :: 9b05908229b37c1d8a195dc894b70d0af08e2ada float32 (16,)
+bn2.moving_variance :: 30565e62cc1e9fb50045935c0122e3f9f2861b59 float32 (16,)
+bn2.gamma           :: f5b3566ebf9a53862ab90d0cf147da84587ef154 float32 (16,)
+bn2.beta            :: 2e1be66138c52d3dc0ffae8f32d9c56a026be9da float32 (16,)
+fc1.weight          :: 8867a1fef60a9e56421b2d42fe577d6ef30de0ad float32 (120, 400)
+fc1.bias            :: 4a0ebb3745f9427c5355aaf0375ca7dbe60378c3 float32 (120,)
+fc2.weight          :: f5552b588805b4d698f8f19e560a404f0af9d567 float32 (84, 120)
+fc2.bias            :: dff15d1147c8446f61dfad438cf1acf9dc625078 float32 (84,)
+fc3.weight          :: 9c8e22da578ab2c70ca5560a49b7762ea8309945 float32 (10, 84)
+fc3.bias            :: cd1986d4e8d4807852eecbd1c3f3f5093e6351ce float32 (10,)
+
+cifar10-lenet-device-000000+200.npz
+conv1.weight        :: 524d76003d9f5cdaab5d225cebfcdd252e65649f float32 (6, 3, 5, 5)
+bn1.moving_mean     :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+bn1.moving_variance :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.gamma           :: 59c9471e0cea30173ce8ca20d743b9a5c14b7647 float32 (6,)
+bn1.beta            :: d3399b7262fb56cb9ed053d68db9291c410839c4 float32 (6,)
+conv2.weight        :: 60d08ef89700a040671acd4496e1e1ad1dd594ef float32 (16, 6, 5, 5)
+bn2.moving_mean     :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+bn2.moving_variance :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.gamma           :: 0984e27f5d49f9dc072257ced5bf767c6c66bdd0 float32 (16,)
+bn2.beta            :: c8d7d0ef0eedfa82d2ea1aa592845b9a6d4b02b7 float32 (16,)
+fc1.weight          :: 96893627d5c69102b7f95d0e3503964998feadf5 float32 (120, 400)
+fc1.bias            :: fadad623162f56983edef5df34c65a9a3aadca77 float32 (120,)
+fc2.weight          :: 55716d2587dfaecd2074fa0f798a445c124dd17b float32 (84, 120)
+fc2.bias            :: 5253eee478649ba9b48ce75d465248229678858d float32 (84,)
+fc3.weight          :: ba8138a4754f0d774158691640169eb6565201e2 float32 (10, 84)
+fc3.bias            :: b80de5d138758541c5f05265ad144ab9fa86d1db float32 (10,)
+
+/home/lg/code/repos/github.com/lgarithm/kungfu-mindspore/experimental/cifar10_lenet_baseline
+
+
+

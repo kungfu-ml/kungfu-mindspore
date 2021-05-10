@@ -1,0 +1,11 @@
+842a08892412345a777fb243682936ef  checkpoint/mnist-slp-000000.npz
+2f6170bc7f72624f44f6ee1c249a18d4  checkpoint/mnist-slp-000001.npz
+6e5b6f1ffd5c7d939483be1be6faa104  checkpoint/mnist-slp-000002.npz
+db5b08103b33581ec5e1dc696c0ed26e  checkpoint/mnist-slp-000003.npz
+10f872a28c48884fe6257fb856a3ca9e  checkpoint/mnist-slp-000004.npz
+fba87ff038d2c432842db54c1561c99f  checkpoint/mnist-slp-000005.npz
+c80c70f47ffd33f5c63bea5663e12e0c  checkpoint/mnist-slp-000006.npz
+6a0da1132b70ee90e5a5ac71f670a7b1  checkpoint/mnist-slp-000007.npz
+23260ddf38131588d55718f3a359c5c3  checkpoint/mnist-slp-000008.npz
+0b75e1d7669772691aebe95348ffc8f2  checkpoint/mnist-slp-000009.npz
+b14fffe498a415835e9039ba0f3efb62  checkpoint/mnist-slp-000010.npz

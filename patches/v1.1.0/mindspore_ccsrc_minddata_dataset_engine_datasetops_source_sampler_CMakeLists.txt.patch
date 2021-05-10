@@ -1,0 +1,12 @@
+diff --git a/mindspore/ccsrc/minddata/dataset/engine/datasetops/source/sampler/CMakeLists.txt b/mindspore/ccsrc/minddata/dataset/engine/datasetops/source/sampler/CMakeLists.txt
+index 86f2ffffd..f9e3555ac 100644
+--- a/mindspore/ccsrc/minddata/dataset/engine/datasetops/source/sampler/CMakeLists.txt
++++ b/mindspore/ccsrc/minddata/dataset/engine/datasetops/source/sampler/CMakeLists.txt
+@@ -6,6 +6,7 @@ set(DATASET_ENGINE_DATASETOPS_SOURCE_SAMPLER_SRC_FILES
+         pk_sampler.cc
+         random_sampler.cc
+         sampler.cc
++        elastic_sampler.cc
+         sequential_sampler.cc
+         subset_random_sampler.cc
+         weighted_random_sampler.cc

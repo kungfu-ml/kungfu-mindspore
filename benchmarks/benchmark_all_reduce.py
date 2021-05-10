@@ -3,11 +3,9 @@ import os
 import time
 
 import mindspore as ms
+import mindspore.ops.operations.kungfu_comm_ops as kfops
 import numpy as np
-from mindspore._c_expression import (kungfu_finalize, kungfu_init,
-                                     kungfu_nccl_finalize, kungfu_nccl_init)
 from mindspore.communication.management import get_group_size, get_rank, init
-from mindspore.ops.operations.kungfu_comm_ops import KungFuAllReduce
 
 resnet50 = [
     1000, 2048000, 2048, 2048, 2048, 1048576, 512, 512, 512, 2359296, 512, 512,
@@ -98,8 +96,7 @@ def main():
         rank = get_rank()
     else:
         print('using kungfu collective')
-        kungfu_init()
-        kungfu_nccl_init()
+        kfops.init(args.device)
         cluster_size = parse_kungfu_size()
         rank = parse_kungfu_port() - 10000
 
@@ -108,7 +105,7 @@ def main():
     if args.collective == 'mindspore':
         all_reduce = ms.ops.operations.AllReduce()
     elif args.collective == 'kungfu':
-        all_reduce = KungFuAllReduce()
+        all_reduce = kfops.KungFuAllReduce()
     else:
         raise RuntimeError('invalid collective')
 
@@ -136,8 +133,7 @@ def main():
     run_stage('step', args.steps)
 
     if args.collective == 'kungfu':
-        kungfu_nccl_finalize()
-        kungfu_finalize()
+        kfops.finalize(args.device)
 
 
 main()

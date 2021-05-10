@@ -1,0 +1,44 @@
+diff --git a/mindspore/ccsrc/minddata/dataset/api/python/bindings/dataset/include/datasets_bindings.cc b/mindspore/ccsrc/minddata/dataset/api/python/bindings/dataset/include/datasets_bindings.cc
+index 852ca3b9c..5fc55a7a1 100644
+--- a/mindspore/ccsrc/minddata/dataset/api/python/bindings/dataset/include/datasets_bindings.cc
++++ b/mindspore/ccsrc/minddata/dataset/api/python/bindings/dataset/include/datasets_bindings.cc
+@@ -65,6 +65,7 @@
+ #include "minddata/dataset/engine/ir/datasetops/source/mnist_node.h"
+ #include "minddata/dataset/engine/ir/datasetops/source/random_node.h"
+ #include "minddata/dataset/engine/ir/datasetops/source/text_file_node.h"
++#include "minddata/dataset/engine/ir/datasetops/source/kungfu_data_node.h"
+ 
+ // IR leaf nodes disabled for android
+ #ifndef ENABLE_ANDROID
+@@ -74,6 +75,9 @@
+ #include "minddata/dataset/engine/ir/datasetops/source/voc_node.h"
+ #endif
+ 
++#include "backend/kernel_compiler/cpu/kungfu/kungfu_common.h"
++#include "backend/kernel_compiler/cpu/kungfu/kungfu_logger.h"
++
+ namespace mindspore {
+ namespace dataset {
+ 
+@@ -261,6 +265,21 @@ PYBIND_REGISTER(MnistNode, 2, ([](const py::module *m) {
+                     }));
+                 }));
+ 
++PYBIND_REGISTER(KungFuDataNode, 2, ([](const py::module *m) {
++                  (void)py::class_<KungFuDataNode, DatasetNode, std::shared_ptr<KungFuDataNode>>(
++                    *m, "KungFuDataNode", "to create an KungFuDataNode")
++                    .def(py::init([](std::string dataset_dir, std::string usage, py::handle sampler,
++                                     std::shared_ptr<CacheClient> cc) {
++                      KF_LOG() << "creating py object"
++                               << "KungFuDataNode"
++                               << "with sampler" << sampler.ptr();
++                      auto mnist = std::make_shared<KungFuDataNode>(dataset_dir, usage, toSamplerObj(sampler),
++                                                                    toDatasetCache(std::move(cc)));
++                      THROW_IF_ERROR(mnist->ValidateParams());
++                      return mnist;
++                    }));
++                }));
++
+ PYBIND_REGISTER(
+   RandomNode, 2, ([](const py::module *m) {
+     (void)py::class_<RandomNode, DatasetNode, std::shared_ptr<RandomNode>>(*m, "RandomNode", "to create a RandomNode")

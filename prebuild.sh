@@ -19,6 +19,8 @@ rm -fr mindspore/ccsrc/backend/kernel_compiler/cpu/kungfu/
 rm -fr mindspore/ccsrc/backend/kernel_compiler/gpu/kungfu/
 rm -fr mindspore/ops/operations/kungfu_comm_ops.py
 
+git apply ../patches/$TAG/prebuild/*.patch
+
 CUDA_HOME=/usr/local/cuda
 export CUDACXX=$CUDA_HOME/bin/nvcc
 

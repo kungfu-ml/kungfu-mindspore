@@ -1,2 +1,7 @@
 /mindspore
 *.ckpt
+bin
+cuda_meta_*
+*.meta
+*.dat
+*.npz
