@@ -68,12 +68,12 @@ def download_dataset(data_dir):
         os.makedirs(train_path)
         os.makedirs(test_path)
     train_url = {
-        "http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz",
-        "http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz"
+        "http://storage.googleapis.com/cvdf-datasets/mnist/train-images-idx3-ubyte.gz",
+        "http://storage.googleapis.com/cvdf-datasets/mnist/train-labels-idx1-ubyte.gz"
     }
     test_url = {
-        "http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz",
-        "http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz"
+        "http://storage.googleapis.com/cvdf-datasets/mnist/t10k-images-idx3-ubyte.gz",
+        "http://storage.googleapis.com/cvdf-datasets/mnist/t10k-labels-idx1-ubyte.gz"
     }
     for url in train_url:
         url_parse = urlparse(url)
