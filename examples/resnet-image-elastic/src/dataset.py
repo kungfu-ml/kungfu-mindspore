@@ -77,7 +77,7 @@ def create_dataset1(dataset_path, do_train, repeat_num=1, batch_size=32, target=
 
     return ds
 
-'''
+
 def create_dataset2(dataset_path, do_train=True, repeat_num=1, batch_size=32, target="gpu"):
     """
     create a train or eval imagenet2012 dataset for resnet50
@@ -99,10 +99,11 @@ def create_dataset2(dataset_path, do_train=True, repeat_num=1, batch_size=32, ta
         rank_id = get_rank()
         device_num = get_group_size()
 
+    file_list = [os.path.join(dataset_path, f'train-{num:05d}-of-01024') for num in range(1024)]
     if device_num == 1:
-        ds = msds.MindDataset(dataset_file=dataset_path, num_parallel_workers=8, shuffle=True)
+        ds = msds.MindDataset(dataset_file=file_list, num_parallel_workers=8, shuffle=True)
     else:
-        ds = msds.MindDataset(dataset_file=dataset_path, num_parallel_workers=8, shuffle=True,
+        ds = msds.MindDataset(dataset_file=file_list, num_parallel_workers=8, shuffle=True,
                                    num_shards=device_num, shard_id=rank_id)
 
     image_size = 224
@@ -201,6 +202,7 @@ def create_dataset2(dataset_path, do_train, repeat_num=1, batch_size=32, target=
     ds = ds.repeat(repeat_num)
 
     return ds
+'''
 
 def create_dataset3(dataset_path, do_train, repeat_num=1, batch_size=32, target="Ascend"):
     """
