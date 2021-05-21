@@ -99,7 +99,7 @@ else:
 
 if __name__ == '__main__':
     target = args_opt.device_target
-    dataset_sink_mode = not args_opt.parameter_server
+    dataset_sink_mode = False
 
     ckpt_save_dir = config.save_checkpoint_path
 
@@ -156,7 +156,9 @@ if __name__ == '__main__':
                              do_train=True,
                              repeat_num=1,
                              batch_size=config.batch_size,
-                             target=target)
+                             target=target,
+                             rank=rank,
+                             size=size)
     step_size = dataset.get_dataset_size()
 
     # define net
@@ -259,9 +261,9 @@ if __name__ == '__main__':
 
         if (args_opt.net == "resnet101" or args_opt.net
                 == "resnet50") and not args_opt.parameter_server:
-            opt = Momentum(
-                filter(lambda x: x.requires_grad, net.get_parameters()), lr,
-                config.momentum, config.weight_decay, config.loss_scale)
+            # opt = Momentum(
+            #     filter(lambda x: x.requires_grad, net.get_parameters()), lr,
+            #     config.momentum, config.weight_decay, config.loss_scale)
             loss_scale = FixedLossScaleManager(config.loss_scale,
                                                drop_overflow_update=False)
             # Mixed precision

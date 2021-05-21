@@ -78,7 +78,7 @@ def create_dataset1(dataset_path, do_train, repeat_num=1, batch_size=32, target=
     return ds
 
 
-def create_dataset2(dataset_path, do_train=True, repeat_num=1, batch_size=32, target="gpu"):
+def create_dataset2(dataset_path, do_train=True, repeat_num=1, batch_size=32, target="gpu", rank=0, size=1):
     """
     create a train or eval imagenet2012 dataset for resnet50
 
@@ -96,8 +96,8 @@ def create_dataset2(dataset_path, do_train=True, repeat_num=1, batch_size=32, ta
         device_num, rank_id = _get_rank_info()
     else:
         init()
-        rank_id = get_rank()
-        device_num = get_group_size()
+        rank_id = rank
+        device_num = size
 
     file_list = [os.path.join(dataset_path, f'train-{num:05d}-of-01024') for num in range(1024)]
     if device_num == 1:
