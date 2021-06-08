@@ -1,0 +1,24 @@
+diff --git a/mindspore/ccsrc/minddata/dataset/api/python/bindings/dataset/engine/datasetops/source/sampler/bindings.cc b/mindspore/ccsrc/minddata/dataset/api/python/bindings/dataset/engine/datasetops/source/sampler/bindings.cc
+index 0b41cc1c7..53a35f2f1 100644
+--- a/mindspore/ccsrc/minddata/dataset/api/python/bindings/dataset/engine/datasetops/source/sampler/bindings.cc
++++ b/mindspore/ccsrc/minddata/dataset/api/python/bindings/dataset/engine/datasetops/source/sampler/bindings.cc
+@@ -21,6 +21,7 @@
+ #include "minddata/dataset/engine/datasetops/source/sampler/python_sampler.h"
+ #include "minddata/dataset/engine/datasetops/source/sampler/random_sampler.h"
+ #include "minddata/dataset/engine/datasetops/source/sampler/sequential_sampler.h"
++#include "minddata/dataset/engine/datasetops/source/sampler/elastic_sampler.h"
+ #include "minddata/dataset/engine/datasetops/source/sampler/subset_random_sampler.h"
+ #include "minddata/dataset/engine/datasetops/source/sampler/weighted_random_sampler.h"
+ 
+@@ -72,6 +73,11 @@ PYBIND_REGISTER(SequentialSamplerRT, 1, ([](const py::module *m) {
+                     .def(py::init<int64_t, int64_t>());
+                 }));
+ 
++PYBIND_REGISTER(ElasticSamplerRT, 1, ([](const py::module *m) {
++                  (void)py::class_<ElasticSamplerRT, SamplerRT, std::shared_ptr<ElasticSamplerRT>>(*m, "ElasticSampler")
++                    .def(py::init<int64_t, int64_t>());
++                }));
++
+ PYBIND_REGISTER(SubsetRandomSamplerRT, 1, ([](const py::module *m) {
+                   (void)py::class_<SubsetRandomSamplerRT, SamplerRT, std::shared_ptr<SubsetRandomSamplerRT>>(
+                     *m, "SubsetRandomSampler")

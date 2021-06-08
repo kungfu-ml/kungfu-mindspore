@@ -1,0 +1,12 @@
+diff --git a/mindspore/ccsrc/minddata/dataset/engine/datasetops/source/CMakeLists.txt b/mindspore/ccsrc/minddata/dataset/engine/datasetops/source/CMakeLists.txt
+index ae97e2f3f..f1500c59d 100644
+--- a/mindspore/ccsrc/minddata/dataset/engine/datasetops/source/CMakeLists.txt
++++ b/mindspore/ccsrc/minddata/dataset/engine/datasetops/source/CMakeLists.txt
+@@ -6,6 +6,7 @@ set(DATASET_ENGINE_DATASETOPS_SOURCE_SRC_FILES
+     io_block.cc
+     image_folder_op.cc
+     mnist_op.cc
++    kungfu_data_op.cc
+     coco_op.cc
+     cifar_op.cc
+     random_data_op.cc
