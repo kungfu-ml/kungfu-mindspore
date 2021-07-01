@@ -3,7 +3,7 @@ index 9a0fc86472..e5fca3c363 100644
 --- a/.gitignore
 +++ b/.gitignore
 @@ -107,3 +107,15 @@ mindspore/lite/test/do_test/
-
+ 
  # lite opencl compile file
  *.cl.inc
 +
@@ -27,7 +27,7 @@ index 8a3b6d4c9b..2786492e4d 100644
  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_party/flatbuffers/include)
  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_party/flatbuffers/include/flatbuffers)
 +include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_party/kungfu/include)
-
+ 
  include(${CMAKE_SOURCE_DIR}/cmake/dependency_utils.cmake)
  find_package(Python3 COMPONENTS Interpreter Development)
 diff --git a/mindspore/ccsrc/CMakeLists.txt b/mindspore/ccsrc/CMakeLists.txt
@@ -39,12 +39,12 @@ index 4b6911416f..8bf692da8b 100644
  include_directories(${CMAKE_CURRENT_SOURCE_DIR})
  include_directories(${CMAKE_BINARY_DIR})
 +link_directories(${CMAKE_SOURCE_DIR}/third_party/kungfu/lib)
-
+ 
  if(ENABLE_CPU)
      if("${X86_64_SIMD}" STREQUAL "sse")
 @@ -428,3 +429,12 @@ if(ENABLE_D)
  endif()
-
+ 
  add_subdirectory(cxx_api)
 +
 +if ($ENV{ENABLE_KUNGFU})
@@ -64,7 +64,7 @@ index d7e0b05e1f..7c0455c4d2 100644
  from .ada_grad import Adagrad
  from .thor import THOR
 +from .kungfu import KungFuMomentum, KungFuSGD
-
+ 
  __all__ = ['Optimizer', 'Momentum', 'LARS', 'Adam', 'AdamWeightDecay', 'LazyAdam', 'AdamOffload',
 -           'Lamb', 'SGD', 'FTRL', 'RMSProp', 'ProximalAdagrad', 'Adagrad', 'THOR']
 +           'Lamb', 'SGD', 'FTRL', 'RMSProp', 'ProximalAdagrad', 'Adagrad', 'THOR', 'KungFuMomentum', 'KungFuSGD']
