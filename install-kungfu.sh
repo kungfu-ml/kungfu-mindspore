@@ -3,7 +3,7 @@ set -e
 
 GIT_URL=https://github.com/lsds/KungFu.git
 # GIT_TAG=v0.2.4  # for mindspore v1.1.0
-GIT_TAG=lg-nccl-opt # TODO: upgrade to v0.2.5 when this branch is merged
+GIT_TAG=v0.2.5 # for mindspore v1.2.0
 
 # GIT_URL=git@ssh.dev.azure.com:v3/lg4869/kungfu/kungfu
 # GIT_TAG=ms-dev
